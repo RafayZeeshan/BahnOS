@@ -47,6 +47,8 @@ export const decisions = pgTable(
     payload: jsonb("payload").$type<Json>().notNull(),
     /** A person's edit from "Change it"; the agent's payload stays as proposed. */
     approvedPayload: jsonb("approved_payload").$type<Json>(),
+    // Set when BahnBot's newer proposal of the same kind replaced this one (lib/decisions/supersede.ts).
+    supersededBy: text("superseded_by"),
     headline: text("headline").notNull(),
     // PROPOSED | APPROVED | EXECUTING | EXECUTED | FAILED | DECLINED | TAKEN_OVER | SNOOZED
     status: text("status").notNull(),

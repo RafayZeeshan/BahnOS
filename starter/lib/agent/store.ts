@@ -1,5 +1,6 @@
 // Writes a run into the agent tables (ADR-005). Recorded traces are loaded the same way as live runs.
 import { and, eq, inArray } from "drizzle-orm"
+import { staleProposals } from "../decisions/supersede"
 import { db } from "../db-core"
 import { agentRuns, agentSteps, caseChain, decisions, interventions, watchFlags } from "../agent-schema"
 import { POLICY_V1 } from "../policy/defaults"
@@ -11,6 +12,9 @@ export async function deleteRun(runId: string): Promise<void> {
     const owned = await tx.select({ id: decisions.id }).from(decisions).where(eq(decisions.runId, runId))
     const ids = owned.map((d) => d.id)
     if (ids.length) {
+      // Proposals this run had replaced are open again once it is gone.
+      await tx.update(decisions).set({ status: "PROPOSED", supersededBy: null })
+        .where(and(inArray(decisions.supersededBy, ids), eq(decisions.status, "SUPERSEDED")))
       await tx.delete(interventions).where(inArray(interventions.decisionId, ids))
       await tx.delete(caseChain).where(inArray(caseChain.decisionId, ids))
       await tx.delete(decisions).where(inArray(decisions.id, ids))
@@ -18,6 +22,20 @@ export async function deleteRun(runId: string): Promise<void> {
     await tx.delete(watchFlags).where(eq(watchFlags.id, `flag-${runId}`))
     await tx.delete(agentRuns).where(eq(agentRuns.id, runId))
   })
+}
+
+/** Retires BahnBot's older open proposals of the same kind on an order (all orders when none is given). */
+export async function supersedeOlder(orderRef?: string): Promise<number> {
+  const open = await db.select({
+    id: decisions.id, runId: decisions.runId, orderRef: decisions.orderRef, action: decisions.action, status: decisions.status, createdAt: decisions.createdAt,
+  }).from(decisions).where(and(inArray(decisions.status, ["PROPOSED", "SNOOZED"]), orderRef ? eq(decisions.orderRef, orderRef) : undefined))
+  const stale = staleProposals(open)
+  for (const s of stale) {
+    // Compare-and-set: a person deciding at the same moment wins.
+    await db.update(decisions).set({ status: "SUPERSEDED", supersededBy: s.by })
+      .where(and(eq(decisions.id, s.id), inArray(decisions.status, ["PROPOSED", "SNOOZED"])))
+  }
+  return stale.length
 }
 
 /** Replaces any earlier copy of the same run, so reseeding and re-running are safe. */
@@ -54,6 +72,7 @@ export async function persistTrace(trace: Trace): Promise<void> {
       })
     }
   })
+  await supersedeOlder(trace.order)
 }
 
 /** Watch's recorded warning lines (ADR-008). Replaces only the rows for these orders. */

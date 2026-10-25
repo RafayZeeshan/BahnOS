@@ -1,7 +1,8 @@
 // What a person's response does to a decision (ADR-006). Pure, so the route and tests share it.
 // PROPOSED -> APPROVED -> EXECUTING -> EXECUTED | FAILED; or TAKEN_OVER, DECLINED, SNOOZED.
+// SUPERSEDED is set by BahnBot, not a person: a newer proposal of the same kind replaced it (supersede.ts).
 
-export type Status = "PROPOSED" | "APPROVED" | "EXECUTING" | "EXECUTED" | "FAILED" | "DECLINED" | "TAKEN_OVER" | "SNOOZED"
+export type Status = "PROPOSED" | "APPROVED" | "EXECUTING" | "EXECUTED" | "FAILED" | "DECLINED" | "TAKEN_OVER" | "SNOOZED" | "SUPERSEDED"
 export type HumanResponse = "go_ahead" | "change_it" | "take_over" | "not_this" | "snooze"
 export type DecisionState = { status: Status; action: string; undoUntil: string | null }
 export type Intervention = { response: "change_it" | "take_over" | "not_this"; reason: string; actor: string; at: string }

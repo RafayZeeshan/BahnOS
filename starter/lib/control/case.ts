@@ -343,7 +343,8 @@ export function buildCase(input: CaseInput): CaseView | null {
     headline,
     decision: pending ? decisionCard(pending) : null,
     agentWork: agentWork(order),
-    history: input.decisions.filter((d) => d !== pending).map(decisionCard),
+    // A superseded proposal was replaced by BahnBot's newer one, so it is not shown as a separate decision.
+    history: input.decisions.filter((d) => d !== pending && d.status !== "SUPERSEDED").map(decisionCard),
     thread,
     facts: [...facts(order, input.runs), ...(input.incoming ?? []).map((f): Fact => ({
       label: "New since the snapshot", value: f.text, evidence: { strength: "observed", label: f.source, at: f.at },

@@ -40,6 +40,19 @@ describe.runIf(process.env.DATABASE_URL)("persisting a trace", async () => {
     await deleteRun("run-TEST-recorded")
   })
 
+  it("retires BahnBot's older open proposal when it proposes the same thing again, and re-opens it if the newer run goes", async () => {
+    const base = { ...trace, order: "CD-TEST-3", escalation: null, headsUp: null }
+    const first = { ...base, id: "ask-TEST-3a", finishedAt: "2026-10-21T09:01:00.000Z", proposals: [{ ...trace.proposals[0], id: "dec-TEST-3a" }] }
+    const second = { ...base, id: "ask-TEST-3b", finishedAt: "2026-10-21T09:02:00.000Z", proposals: [{ ...trace.proposals[0], id: "dec-TEST-3b" }] }
+    const statuses = async () => Object.fromEntries((await db.select().from(decisions).where(eq(decisions.orderRef, "CD-TEST-3"))).map((r) => [r.id, r.status]))
+    await persistTrace(first)
+    await persistTrace(second)
+    expect(await statuses()).toEqual({ "dec-TEST-3a": "SUPERSEDED", "dec-TEST-3b": "PROPOSED" })
+    await deleteRun(second.id)
+    expect(await statuses()).toEqual({ "dec-TEST-3a": "PROPOSED" })
+    await deleteRun(first.id)
+  })
+
   it("writes Watch's recorded lines with their next step, and rewrites them on a second load", async () => {
     const line = { order: "CD-TEST-2", level: "watch" as const, line: "Tight.", next_step: "ask_driver" as const, model: "m", written_at: "2026-10-21T09:00:00.000Z" }
     await persistWatchLines([line])

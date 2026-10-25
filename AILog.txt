@@ -352,8 +352,10 @@ Later in the project:
   (the dev server had cached the stylesheet from before that folder existed), sideways scroll
   on phones (no grid column at small widths), and the packet's own agents labelled "BahnBot".
   All fixed.
-- Found and left as an open item: each "Ask BahnBot" that ends in a proposal adds another
-  open proposal for the same order.
+- Each "Ask BahnBot" that ended in a proposal added another open proposal for the same order
+  (CD-420154 showed three). Fixed after the hand-in review: BahnBot proposing the same kind of
+  action again retires its older open proposals as SUPERSEDED, naming the one that replaced
+  them, and they re-open if that newer run is deleted. Tests cover both.
 
 
 6. WHAT WAS CHECKED, AND HOW
@@ -380,7 +382,6 @@ Later in the project:
 -------------
 - Live voice (ADR-014) needs a licence for the prometheus repository, plus uv, cargo and
   ffmpeg.
-- Duplicate open proposals from repeated Ask BahnBot questions on the same order.
 - The recorded CD-420399 run states a pickup time without a time zone in one place.
 - Rotate the OpenRouter key after the hackathon, since it was pasted into a chat.
 

@@ -6,9 +6,11 @@ import type { Trace } from "@/lib/agent/trace"
 
 loadEnvFile(join(__dirname, "..", ".env"))
 
+// Later than any recorded run on CD-420299, so BahnBot's "one open proposal per kind" rule keeps these
+// fixtures open; deleting the run at the end re-opens the recorded proposals it replaced.
 const trace: Trace = {
   id: "run-TEST-2-ask", order: "CD-420299", trigger: "ask", mode: "recorded", model: null, prompt: "x",
-  startedAt: "2026-10-21T09:00:00.000Z", finishedAt: "2026-10-21T09:01:00.000Z", status: "done", steps: [],
+  startedAt: "2026-10-21T09:00:00.000Z", finishedAt: "2026-10-21T23:59:00.000Z", status: "done", steps: [],
   proposals: [
     { id: "dec-TEST-2-a", action: "propose_booking", payload: { option_id: "travel-xf29ed1732d895f37" }, headline: "Book", blockers: [], evidence: [] },
     { id: "dec-TEST-2-b", action: "propose_booking", payload: { option_id: "travel-xc1d8163d5443a606" }, headline: "Book sold out", blockers: [], evidence: [] },
