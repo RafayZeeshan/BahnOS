@@ -19,7 +19,9 @@ const ACTION: Record<FailureSource["kind"], string> = {
 const SEGMENTS = 12
 
 // A failure source at a glance (ADR-009): its honest k of n as a number and a meter, and who depends on it next.
-export function RiskCard({ source, levels, cars = {} }: { source: FailureSource; levels: Record<string, string>; cars?: Record<string, string>; compact?: boolean }) {
+export function RiskCard({ source, levels, cars = {}, onShowOnMap }: {
+  source: FailureSource; levels: Record<string, string>; cars?: Record<string, string>; compact?: boolean; onShowOnMap?: () => void
+}) {
   const [open, setOpen] = useState(false)
   const scale = Math.min(SEGMENTS, source.n)
   const on = Math.round((source.k / Math.max(1, source.n)) * scale)
@@ -33,7 +35,10 @@ export function RiskCard({ source, levels, cars = {} }: { source: FailureSource;
     <div className="meter" aria-hidden="true">{Array.from({ length: scale }, (_, i) => <i key={i} className={i < on ? "on" : ""} />)}</div>
     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10 }}>
       <span className="small" style={{ color: "var(--text-2)" }}><b className="num" style={{ color: "var(--text)" }}>{source.upcoming.orders}</b> upcoming {source.upcoming.orders === 1 ? "order" : "orders"}</span>
-      {source.upcoming.orders > 0 && <MoreToggle open={open} onToggle={() => setOpen(!open)}>Details</MoreToggle>}
+      {source.upcoming.orders > 0 && <span style={{ display: "inline-flex", gap: 14 }}>
+        {onShowOnMap && <button type="button" className="link" onClick={onShowOnMap}><Icon name="pin" size={12} />On the map</button>}
+        <MoreToggle open={open} onToggle={() => setOpen(!open)}>Details</MoreToggle>
+      </span>}
     </div>
     <Collapse open={open}>
       <div style={{ display: "grid", gap: 10, paddingTop: 4 }}>

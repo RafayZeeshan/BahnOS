@@ -22,6 +22,8 @@ Its own bot is thin: rule-generated suggestions and a live simulation of the sna
 - **Tailwind only where the ported code needs it.** The map and the answer book are written in Tailwind v4. Its utilities are generated only from `app/map` and `app/answers`, with a base reset scoped to `.tw`. Our own styles sit in a lower cascade layer, so no other page changes. Tailwind's colour names point at our tokens, so both pages follow light and dark.
 - **Names.** The product is BahnOS and the agent is BahnBot, on every screen and in BahnBot's prompt. Bahn's own packet agents keep their titles (Journey monitor, Travel planning agent), on the map as on the case. ADRs 001–016 keep "Recovery agent", the earlier name.
 
+- **The risk outlook gets a map too, as its second tab.** The cards stay the page. "On the map" draws the upcoming orders that lean on a risky source as lanes, coloured by the worst shrunk trouble rate among their sources (`lib/opsmap/risk.ts`). It shares the ops map's geometry and basemap (`app/map/geo.ts`).
+
 ## Alternatives Considered
 
 ### Make the ops map the home screen

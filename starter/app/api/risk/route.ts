@@ -5,6 +5,9 @@ import { activePolicy } from "@/lib/policy/active"
 import { attributeMishaps } from "@/lib/risk/attribute"
 import { failureSources } from "@/lib/risk/sources"
 import { packet } from "@/lib/packet"
+import { CITY } from "@/lib/opsmap/ops"
+import { orderPlaces } from "@/lib/opsmap/places"
+import { buildRiskMap } from "@/lib/opsmap/risk"
 
 function caseCar(ref: string): string {
   const p = packet()
@@ -28,5 +31,5 @@ export async function GET() {
     levels[ref] ??= evaluate(policy, ref, t).level
     cars[ref] ??= caseCar(ref)
   }
-  return NextResponse.json({ t, sources, levels, cars, mishaps: attributeMishaps() })
+  return NextResponse.json({ t, sources, levels, cars, mishaps: attributeMishaps(), map: buildRiskMap(sources, orderPlaces(), CITY) })
 }
