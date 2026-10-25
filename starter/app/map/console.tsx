@@ -16,6 +16,7 @@ import type { NextDecision } from '@/lib/opsmap/story'
 import type { Level as HandoverLevel } from '@/lib/opsmap/handover'
 import { MARKETS, type MarketCode, type NewsKind, type Watch, localDay } from '@/lib/opsmap/markets'
 import { codeName, commandName } from '@/lib/opsmap/labels'
+import { laneLabel } from '@/lib/present/labels'
 import type { BotItem } from '@/lib/opsmap/needs'
 import { BASEMAP, WORLD, arc, boundsOf, isDark, r2, toWorld } from './geo'
 import { Icon, type IconName } from './icons'
@@ -1565,6 +1566,7 @@ function Overview({
   setSelected: (s: Selection) => void
   bot: BotProps
 }) {
+  const [showAll, setShowAll] = useState(false)
   const tiers = (['NEEDS_PERSON', 'NEEDS_APPROVAL'] as const).map((k) => ({
     k,
     n: bot.all.filter((b) => b.who === k).length,
@@ -1598,6 +1600,7 @@ function Overview({
   const handovers = orders
     .flatMap((o) => o.handover.filter((h) => h.flagged).map((h) => ({ o, h })))
     .sort((a, b) => (a.h.hoursToArrive ?? 0) - (b.h.hoursToArrive ?? 0))
+  const blocked = handovers.filter(({ h }) => h.level === 'block').length
 
   const soonest = orders
     .filter((o) => o.hoursToNext !== null && o.hoursToNext > 0 && o.status !== 'DELIVERED')
@@ -1605,160 +1608,215 @@ function Overview({
     .slice(0, 4)
 
   return (
-    <div className="space-y-[18px]">
+    <div className="space-y-[22px]">
       {/* What needs doing comes first; the shape of the network after it. */}
-      <div>
-        <p className={CAPTION}>
-          <span style={{ color: BOT }}>
-            <Icon name="agent" size={11} />
-          </span>
-          Waiting on you
-          <span className="ml-auto tabular-nums">{bot.all.length}</span>
-        </p>
+      <section>
+        <OverviewHead title="Waiting on you" hint="Decisions BahnBot can't make alone" />
+        <div className="mt-[8px] grid grid-cols-2 gap-[8px]">
+          {tiers.map(({ k, n }) => (
+            <button
+              key={k}
+              type="button"
+              onClick={bot.showQueue}
+              className="rounded-[8px] border border-hair px-[10px] py-[9px] text-left hover:border-sand hover:bg-birch"
+            >
+              <span className={`flex items-center gap-[6px] ${n ? WHO[k].tone : 'text-tertiary'}`}>
+                <Icon name={WHO[k].icon} size={13} />
+                <span className="text-[22px] font-semibold tabular-nums leading-none">{n}</span>
+              </span>
+              <span className="mt-[5px] block text-[12.5px] leading-[1.3] text-label">
+                {k === 'NEEDS_PERSON' ? 'Need someone to act' : 'Need your approval'}
+              </span>
+            </button>
+          ))}
+        </div>
         <button
           type="button"
           onClick={bot.showQueue}
-          className="mt-[6px] w-full rounded-[8px] border border-hair px-[10px] py-[8px] text-left hover:border-sand hover:bg-birch"
+          className="mt-[6px] text-[12px] text-secondary hover:text-label"
         >
-          <span className="flex gap-[14px]">
-            {tiers.map(({ k, n }) => (
-              <span key={k} className="min-w-0">
-                <span className={`block font-mono text-[18px] font-semibold tabular-nums leading-none ${n ? WHO[k].tone : 'text-tertiary'}`}>
-                  {n}
-                </span>
-                <span className="mt-[3px] block text-[10.5px] leading-[1.25] text-secondary">
-                  {k === 'NEEDS_PERSON' ? 'handed to a person' : 'need approval'}
-                </span>
-              </span>
-            ))}
-          </span>
-          <span className="mt-[7px] block text-[11px] text-tertiary">
-            BahnBot&apos;s queue
-          </span>
+          Open BahnBot&apos;s queue →
         </button>
-      </div>
+      </section>
 
       {handovers.length ? (
-        <div>
-          <p className={CAPTION}>
-            <Icon name="handover" size={11} />
-            Handovers at risk · next 48 h
-            <span className="ml-auto tabular-nums">{handovers.length}</span>
+        <section>
+          <OverviewHead
+            title="Pickups & deliveries at risk"
+            hint="Next 2 days, something not confirmed yet"
+            count={handovers.length}
+          />
+          <p className="mt-[6px] flex gap-[12px] text-[12px]">
+            {blocked ? (
+              <span className="flex items-center gap-[4px] text-red">
+                <Icon name={LEVEL.block.icon} size={12} />
+                {blocked} blocked
+              </span>
+            ) : null}
+            {handovers.length - blocked ? (
+              <span className="flex items-center gap-[4px] text-orange">
+                <Icon name={LEVEL.risk.icon} size={12} />
+                {handovers.length - blocked} unconfirmed
+              </span>
+            ) : null}
           </p>
-          <ul className="mt-[5px]">
-            {handovers.slice(0, 6).map(({ o, h }) => {
+          <ul className="mt-[6px] divide-y divide-hair">
+            {(showAll ? handovers : handovers.slice(0, 5)).map(({ o, h }) => {
               const issue = h.checks.find((c) => c.level === h.level)
+              const late = (h.hoursToArrive ?? 0) < 0
               return (
                 <li key={`${o.id}${h.boundary}`}>
                   <button
                     type="button"
                     onClick={() => pick(o.id)}
-                    className="w-full rounded-[5px] px-[3px] py-[4px] text-left hover:bg-birch"
+                    title={issue?.text}
+                    className="flex w-full gap-[8px] rounded-[5px] px-[4px] py-[7px] text-left hover:bg-birch"
                   >
-                    <span className="flex items-baseline gap-[8px]">
-                      <span className={`self-center ${LEVEL[h.level].tone}`}>
-                        <Icon name={LEVEL[h.level].icon} size={11} />
-                      </span>
-                      <span className="font-mono text-[11.5px] text-label">{o.ref}</span>
-                      <span className="text-[11.5px] text-secondary">{h.boundary === 'PICKUP' ? 'pickup' : 'delivery'}</span>
-                      <span className="ml-auto font-mono text-[10.5px] tabular-nums text-secondary">{h.local}</span>
+                    <span className={`mt-[2px] ${LEVEL[h.level].tone}`}>
+                      <Icon name={LEVEL[h.level].icon} size={13} />
                     </span>
-                    {issue ? (
-                      <span className="mt-[1px] block truncate pl-[19px] text-[11px] text-tertiary">{issue.text}</span>
-                    ) : null}
+                    <span className="min-w-0 flex-1">
+                      <span className="flex items-baseline gap-[8px]">
+                        <span className="min-w-0 flex-1 truncate text-[13px] font-medium text-label">
+                          {issue?.short ?? LEVEL[h.level].label}
+                        </span>
+                        {h.hoursToArrive !== null ? (
+                          <span
+                            className={`shrink-0 text-[12px] tabular-nums ${late ? 'font-semibold text-red' : 'text-secondary'}`}
+                          >
+                            {late ? `${hours(h.hoursToArrive).replace(' ago', '')} overdue` : hours(h.hoursToArrive)}
+                          </span>
+                        ) : null}
+                      </span>
+                      <span className="mt-[2px] flex items-baseline gap-[8px] text-[12px] text-secondary">
+                        <span className="min-w-0 flex-1 truncate">
+                          <span className="font-mono text-label">{o.ref}</span> ·{' '}
+                          {h.boundary === 'PICKUP' ? 'Pickup' : 'Delivery'}
+                          {h.city ? ` in ${h.city.split(',')[0]}` : ''}
+                        </span>
+                        {/* "Wed 21 Oct, 13:46" → "Wed 13:46", on the site's own clock. */}
+                        {h.local ? <span className="shrink-0 tabular-nums">{h.local.replace(/ \d+ \w+,/, '')}</span> : null}
+                      </span>
+                    </span>
                   </button>
                 </li>
               )
             })}
           </ul>
-        </div>
+          {handovers.length > 5 ? (
+            <button
+              type="button"
+              onClick={() => setShowAll((v) => !v)}
+              className="mt-[4px] text-[12px] text-secondary hover:text-label"
+            >
+              {showAll ? 'Show fewer' : `Show all ${handovers.length}`}
+            </button>
+          ) : null}
+        </section>
       ) : null}
 
-      <div>
-        <p className={CAPTION}>
-          <Icon name="clock" size={11} />
-          Next deadlines
-        </p>
-        <ul className="mt-[5px]">
+      <section>
+        <OverviewHead title="Due soon" hint="The next deadlines across all orders" />
+        <ul className="mt-[6px] divide-y divide-hair">
           {soonest.map((o) => (
             <li key={o.id}>
               <button
                 type="button"
                 onClick={() => pick(o.id)}
-                className="flex w-full items-baseline gap-[8px] rounded-[5px] px-[3px] py-[4px] text-left hover:bg-birch"
+                className="flex w-full items-baseline gap-[8px] rounded-[5px] px-[4px] py-[7px] text-left hover:bg-birch"
               >
-                <span className="font-mono text-[11.5px] text-label">{o.ref}</span>
-                <span className="min-w-0 flex-1 truncate text-[11.5px] text-secondary">{o.nextLabel}</span>
+                <span className="min-w-0 flex-1">
+                  <span className="block truncate text-[13px] font-medium text-label">{o.nextLabel}</span>
+                  <span className="mt-[2px] block truncate text-[12px] text-secondary">
+                    <span className="font-mono text-label">{o.ref}</span> · {o.from} → {o.to}
+                  </span>
+                </span>
                 <span
-                  className={`font-mono text-[11px] tabular-nums ${o.hoursToNext! < 8 ? 'font-semibold text-red' : 'text-secondary'}`}
+                  className={`shrink-0 text-[12px] tabular-nums ${o.hoursToNext! < 8 ? 'font-semibold text-red' : 'text-secondary'}`}
                 >
                   {hours(o.hoursToNext!)}
                 </span>
               </button>
             </li>
           ))}
-          {!soonest.length ? <li className="text-[12px] text-secondary">Nothing due.</li> : null}
+          {!soonest.length ? <li className="py-[7px] text-[12.5px] text-secondary">Nothing due.</li> : null}
         </ul>
-      </div>
+      </section>
 
-
-      <div>
-        <p className={CAPTION}>Pipeline</p>
-        <ul className="mt-[6px] space-y-[3px]">
+      <section>
+        <OverviewHead title="Orders by stage" hint="Click a stage to show only those orders" />
+        <ul className="mt-[8px] space-y-[3px]">
           {byLane.map(({ l, n }) => (
             <li key={l}>
               <button
                 type="button"
                 onClick={() => toggleLane(l)}
-                className="flex w-full items-center gap-[8px] rounded-[5px] px-[3px] py-[2px] text-left hover:bg-birch"
+                className="flex w-full items-center gap-[8px] rounded-[5px] px-[4px] py-[3px] text-left hover:bg-birch"
               >
-                <span className="w-[64px] font-mono text-[11px] text-secondary">{l}</span>
+                <span className="w-[112px] shrink-0 text-[12.5px] text-label">{laneLabel(l)}</span>
                 <Bar value={n} max={maxLane} colour="var(--color-secondary)" />
-                <span className="w-[22px] text-right font-mono text-[11px] tabular-nums text-label">{n}</span>
+                <span className="w-[26px] text-right text-[12.5px] tabular-nums text-label">{n}</span>
               </button>
             </li>
           ))}
         </ul>
-      </div>
+      </section>
 
-      <div>
-        <p className={CAPTION}>Corridors</p>
-        <ul className="mt-[6px] space-y-[3px]">
+      <section>
+        <OverviewHead title="Busiest routes" hint="By country, with how many orders have a problem" />
+        <ul className="mt-[8px] space-y-[3px]">
           {corridors.map((c) => (
-            <li key={`${c.from}${c.to}`} className="flex items-center gap-[8px] px-[3px] py-[2px]">
-              <span className="w-[64px] font-mono text-[11px] text-secondary">
+            <li key={`${c.from}${c.to}`} className="flex items-center gap-[8px] px-[4px] py-[3px]">
+              <span className="w-[64px] shrink-0 font-mono text-[12px] text-label">
                 {c.from} → {c.to}
               </span>
               <Bar value={c.n} max={maxCorr} colour="var(--color-teal)" />
-              <span className="w-[22px] text-right font-mono text-[11px] tabular-nums text-label">{c.n}</span>
-              <span className="w-[38px] text-right font-mono text-[10.5px] tabular-nums text-orange">
-                {c.hot ? `${c.hot} hot` : ''}
+              <span className="w-[26px] text-right text-[12.5px] tabular-nums text-label">{c.n}</span>
+              <span className="w-[72px] text-right text-[12px] tabular-nums text-orange">
+                {c.hot ? `${c.hot} at risk` : ''}
               </span>
             </li>
           ))}
         </ul>
-      </div>
+      </section>
 
-      <div>
-        <p className={CAPTION}>Busiest cities</p>
-        <div className="mt-[6px] flex flex-wrap gap-[5px]">
+      <section>
+        <OverviewHead title="Busiest cities" hint="Orders leaving or arriving" />
+        <div className="mt-[8px] flex flex-wrap gap-[6px]">
           {hubs.map(([city, n]) => (
             <button
               key={city}
               type="button"
               onClick={() => setSelected({ kind: 'city', name: city })}
-              className="rounded-[6px] border border-hair px-[7px] py-[2px] font-mono text-[11px] text-secondary hover:border-sand hover:text-label"
+              className="rounded-[6px] border border-hair px-[8px] py-[3px] text-[12px] text-label hover:border-sand hover:bg-birch"
             >
-              {city} <span className="text-tertiary">{n}</span>
+              {city} <span className="tabular-nums text-tertiary">{n}</span>
             </button>
           ))}
         </div>
-      </div>
+      </section>
 
-      <p className="text-[11.5px] leading-[1.5] text-tertiary">
-        Click a lane, a city or a row to inspect it. Drag across the timeline to
+      <p className="text-[12px] leading-[1.5] text-tertiary">
+        Click any row, stage or city for details. Drag across the timeline to
         see only what moved in that window.
       </p>
+    </div>
+  )
+}
+
+/** A section title in plain words, with a one-line note on what it shows. */
+function OverviewHead({ title, hint, count }: { title: string; hint: string; count?: number }) {
+  return (
+    <div>
+      <p className="flex items-baseline gap-[8px] text-[13.5px] font-semibold text-label">
+        {title}
+        {count !== undefined ? (
+          <span className="ml-auto rounded-full bg-fill px-[7px] text-[11.5px] font-medium tabular-nums text-secondary">
+            {count}
+          </span>
+        ) : null}
+      </p>
+      <p className="mt-[1px] text-[12px] text-tertiary">{hint}</p>
     </div>
   )
 }

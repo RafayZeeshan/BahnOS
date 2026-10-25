@@ -11,7 +11,8 @@ import { codeName } from './labels'
 
 export type Level = 'block' | 'risk' | 'ok' | 'unknown'
 
-export type Check = { level: Level; text: string }
+/** `short` names the problem in a few words, for lists too narrow for `text`. */
+export type Check = { level: Level; text: string; short?: string }
 
 export type HandoverEnd = {
   boundary: 'PICKUP' | 'DELIVERY'
@@ -133,6 +134,7 @@ export function handoverOf(orderId: string, data: Dataset = load()): HandoverEnd
     if (next && lastChance && Date.parse(lastChance) < SNAPSHOT_AT.getTime()) {
       checks.push({
         level: 'block',
+        short: `Missed ${boundary === 'PICKUP' ? 'pickup' : 'delivery'}`,
         text: `The ${source} has passed and the ${boundary === 'PICKUP' ? 'pickup' : 'delivery'} is not recorded.`,
       })
     }
@@ -144,22 +146,25 @@ export function handoverOf(orderId: string, data: Dataset = load()): HandoverEnd
       if (h === null) {
         checks.push({ level: 'unknown', text: 'Opening hours are not recorded for this site.' })
       } else if (h === 'closed') {
-        checks.push({ level: 'block', text: `The site is closed on ${DAY_NAME[at.weekday] ?? at.weekday}.` })
+        checks.push({ level: 'block', short: 'Site closed that day', text: `The site is closed on ${DAY_NAME[at.weekday] ?? at.weekday}.` })
       } else {
         const [open, close, label] = h
         if (at.minute < open || at.minute >= close) {
           checks.push({
             level: 'block',
+            short: 'Outside opening hours',
             text: `Planned for ${at.time}, but the site is open ${label} that day.`,
           })
         } else if (end && end.weekday === at.weekday && end.minute >= close) {
           checks.push({
             level: 'risk',
+            short: 'Runs past closing time',
             text: `The ${source} runs past closing time (${label}).`,
           })
         } else if (!until && close - at.minute <= 30) {
           checks.push({
             level: 'risk',
+            short: 'Arrives just before closing',
             text: `Arrives ${at.time}, ${close - at.minute} min before the site closes.`,
           })
         } else {
@@ -179,6 +184,7 @@ export function handoverOf(orderId: string, data: Dataset = load()): HandoverEnd
       if (ep.access_status === 'NEEDS_VERIFICATION') {
         checks.push({
           level: 'risk',
+          short: 'Access not confirmed',
           text: `Access not verified${ep.access_instruction ? `: ${ep.access_instruction}` : '.'}`,
         })
       } else {
@@ -195,7 +201,7 @@ export function handoverOf(orderId: string, data: Dataset = load()): HandoverEnd
         // the contact only carries the handover at a private address or when
         // access is unverified too.
         const carries = !site || ep.access_status === 'NEEDS_VERIFICATION'
-        checks.push({ level: carries ? 'risk' : 'unknown', text: `${who} has not confirmed.` })
+        checks.push({ level: carries ? 'risk' : 'unknown', short: 'Contact not confirmed', text: `${who} has not confirmed.` })
       } else {
         checks.push({ level: 'ok', text: `${who} confirmed.` })
       }
