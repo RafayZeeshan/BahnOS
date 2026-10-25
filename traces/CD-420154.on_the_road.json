@@ -1,0 +1,722 @@
+{
+  "id": "run-CD-420154-on_the_road",
+  "order": "CD-420154",
+  "trigger": "on_the_road",
+  "mode": "recorded",
+  "model": "anthropic/claude-sonnet-5.5",
+  "prompt": "An earlier approved action on this order (refresh the ferry quote) is still awaiting execution, and the earliest crossing is sold out. Work the case and bring a person one decision.",
+  "startedAt": "2026-10-21T09:00:00.000Z",
+  "finishedAt": "2026-10-21T09:08:00.000Z",
+  "status": "done",
+  "steps": [
+    {
+      "kind": "tool_call",
+      "tool": "get_case",
+      "input": {
+        "order": "CD-420154"
+      },
+      "seq": 1,
+      "at": "2026-10-21T09:00:20.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "get_case",
+      "output": {
+        "order": "CD-420154",
+        "status": "WAITING_FOR_PICKUP",
+        "route_kind": "IMPORT",
+        "car": "Audi Q8 e-tron",
+        "customer": "Auvelloria Motor Collection",
+        "driver": "Jonas Haverforde (home Bordeaux)",
+        "windows": [
+          {
+            "purpose": "PICKUP_AVAILABILITY",
+            "start": "2026-10-22T08:00:00Z",
+            "end": "2026-10-22T15:00:00Z",
+            "timezone": "Europe/Paris",
+            "set_by": "CUSTOMER"
+          },
+          {
+            "purpose": "SELECTED_PICKUP_SLOT",
+            "start": "2026-10-22T08:00:00Z",
+            "end": "2026-10-22T11:00:00Z",
+            "timezone": "Europe/Paris",
+            "set_by": "OPS"
+          },
+          {
+            "purpose": "CUSTOMER_DELIVERY_PROMISE",
+            "start": "2026-10-27T10:00:00Z",
+            "end": "2026-10-27T14:00:00Z",
+            "timezone": "Europe/Helsinki",
+            "set_by": "SYSTEM"
+          }
+        ],
+        "travel": [
+          {
+            "id": "travel-x8e03315ae77a632b",
+            "kind": "FERRY",
+            "provider": "Vela Coast Lines",
+            "from": "West Baltic terminal",
+            "to": "South Finland terminal",
+            "departs": "2026-10-23T22:00:00Z",
+            "arrives": "2026-10-25T03:00:00Z",
+            "check_in_cutoff": "2026-10-23T20:00:00Z",
+            "price_cents": null,
+            "note": "Vehicle space unavailable at this check; no booking exists",
+            "evidence": {
+              "strength": "observed",
+              "label": "provider said sold out",
+              "at": "2026-10-21T07:00:00Z"
+            }
+          },
+          {
+            "id": "travel-xfdc7bc8969cfb3d0",
+            "kind": "FERRY",
+            "provider": "Vela Coast Lines",
+            "from": "West Baltic terminal",
+            "to": "South Finland terminal",
+            "departs": "2026-10-25T10:00:00Z",
+            "arrives": "2026-10-26T15:00:00Z",
+            "check_in_cutoff": "2026-10-25T08:00:00Z",
+            "price_cents": 57000,
+            "note": "Vehicle-space quote only; allow driver rest and about 3 hours from arrival terminal to delivery city. No reservation exists for this option.",
+            "evidence": {
+              "strength": "observed",
+              "label": "quoted by provider, not booked",
+              "at": "2026-10-21T07:00:00Z"
+            }
+          },
+          {
+            "id": "travel-xae55f19d2d6ecd88",
+            "kind": "FERRY",
+            "provider": "Vela Coast Lines",
+            "from": "West Baltic terminal",
+            "to": "South Finland terminal",
+            "departs": "2026-10-26T22:00:00Z",
+            "arrives": "2026-10-28T03:00:00Z",
+            "check_in_cutoff": "2026-10-26T20:00:00Z",
+            "price_cents": 65000,
+            "note": "Vehicle-space quote only; allow driver rest and about 3 hours from arrival terminal to delivery city. No reservation exists for this option.",
+            "evidence": {
+              "strength": "observed",
+              "label": "quoted by provider, not booked",
+              "at": "2026-10-21T07:00:00Z"
+            }
+          },
+          {
+            "id": "travel-x857e37e888660bca",
+            "kind": "TRAIN",
+            "provider": "Northrail",
+            "from": "Bordeaux",
+            "to": "Marseille",
+            "departs": "2026-10-21T21:00:00Z",
+            "arrives": "2026-10-22T04:00:00Z",
+            "check_in_cutoff": null,
+            "price_cents": 11300,
+            "note": "Quote only, not purchased; confirm driver arrival and local transfer",
+            "evidence": {
+              "strength": "observed",
+              "label": "quoted by provider, not booked",
+              "at": "2026-10-21T07:00:00Z"
+            }
+          },
+          {
+            "id": "travel-x747a011a8cd671c4",
+            "kind": "TRAIN",
+            "provider": "Northrail",
+            "from": "Bordeaux",
+            "to": "Marseille",
+            "departs": "2026-10-22T00:00:00Z",
+            "arrives": "2026-10-22T07:00:00Z",
+            "check_in_cutoff": null,
+            "price_cents": 15100,
+            "note": "Quote only, not purchased; confirm driver arrival and local transfer",
+            "evidence": {
+              "strength": "observed",
+              "label": "quoted by provider, not booked",
+              "at": "2026-10-21T07:00:00Z"
+            }
+          }
+        ],
+        "bookings": [],
+        "alerts": [
+          {
+            "signal": "FR_IMPORT_TRAVEL_DECISION",
+            "status": "ACKNOWLEDGED",
+            "summary": "Earliest crossing sold out; driver positioning and customer promise need a reviewed plan before purchase.",
+            "next_action": "Recheck road, rest, check-in, vehicle space, and delivery feasibility before booking or requesting approval.",
+            "evidence": {
+              "strength": "reported",
+              "label": "system alert",
+              "at": "2026-10-21T07:27:00Z"
+            }
+          }
+        ],
+        "messages": [
+          {
+            "at": "2026-10-21T07:25:00Z",
+            "channel": "internal_note",
+            "text": "Earliest vehicle crossing returned sold out. A later crossing is only a quote. The assigned driver is based away from Marseille; positioning, rest and the customer promise still need a reviewed plan.",
+            "evidence": {
+              "strength": "reported",
+              "label": "ops note",
+              "at": "2026-10-21T07:25:00Z"
+            }
+          },
+          {
+            "at": "2026-10-21T07:38:00Z",
+            "channel": "driver_chat",
+            "text": "I can collect from Marseille tomorrow if my trip there is confirmed. Please send the actual travel booking, not just a suggested route.",
+            "evidence": {
+              "strength": "claimed",
+              "label": "driver said",
+              "at": "2026-10-21T07:38:00Z"
+            }
+          },
+          {
+            "at": "2026-10-21T07:54:00Z",
+            "channel": "customer_email",
+            "text": "We are checking the route and vehicle space. The pickup slot and delivery promise have not been changed. We will ask before proposing a later handover.",
+            "evidence": {
+              "strength": "reported",
+              "label": "ops note",
+              "at": "2026-10-21T07:54:00Z"
+            }
+          },
+          {
+            "at": "2026-10-21T08:13:00Z",
+            "channel": "customer_email",
+            "text": "Please keep the agreed attended delivery window. If the route cannot make it, send the revised date and reason for approval before contacting the recipient at the home address.",
+            "evidence": {
+              "strength": "claimed",
+              "label": "customer said",
+              "at": "2026-10-21T08:13:00Z"
+            }
+          },
+          {
+            "at": "2026-10-21T08:30:00Z",
+            "channel": "internal_note",
+            "text": "Compare the available crossing with road time, driver rest, check-in and arrival at the private delivery address. Neither the crossing quote nor positioning quote is a purchase. Escalate if the promise needs revision and confirm the recipient separately.",
+            "evidence": {
+              "strength": "reported",
+              "label": "ops note",
+              "at": "2026-10-21T08:30:00Z"
+            }
+          }
+        ],
+        "earlier_agent_actions": [
+          {
+            "action": "travel.refresh_quote",
+            "status": "APPROVED_AWAITING_EXECUTION",
+            "error": null,
+            "evidence": {
+              "strength": "reported",
+              "label": "system record",
+              "at": "2026-10-21T08:32:00Z"
+            }
+          }
+        ],
+        "open_work": [],
+        "now": "2026-10-21T09:00:00.000Z"
+      },
+      "seq": 2,
+      "at": "2026-10-21T09:00:40.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "get_travel_options",
+      "input": {
+        "order": "CD-420154"
+      },
+      "seq": 3,
+      "at": "2026-10-21T09:01:00.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "get_travel_options",
+      "output": {
+        "order": "CD-420154",
+        "travel": [
+          {
+            "id": "travel-x8e03315ae77a632b",
+            "kind": "FERRY",
+            "provider": "Vela Coast Lines",
+            "from": "West Baltic terminal",
+            "to": "South Finland terminal",
+            "departs": "2026-10-23T22:00:00Z",
+            "arrives": "2026-10-25T03:00:00Z",
+            "check_in_cutoff": "2026-10-23T20:00:00Z",
+            "price_cents": null,
+            "note": "Vehicle space unavailable at this check; no booking exists",
+            "evidence": {
+              "strength": "observed",
+              "label": "provider said sold out",
+              "at": "2026-10-21T07:00:00Z"
+            }
+          },
+          {
+            "id": "travel-xfdc7bc8969cfb3d0",
+            "kind": "FERRY",
+            "provider": "Vela Coast Lines",
+            "from": "West Baltic terminal",
+            "to": "South Finland terminal",
+            "departs": "2026-10-25T10:00:00Z",
+            "arrives": "2026-10-26T15:00:00Z",
+            "check_in_cutoff": "2026-10-25T08:00:00Z",
+            "price_cents": 57000,
+            "note": "Vehicle-space quote only; allow driver rest and about 3 hours from arrival terminal to delivery city. No reservation exists for this option.",
+            "evidence": {
+              "strength": "observed",
+              "label": "quoted by provider, not booked",
+              "at": "2026-10-21T07:00:00Z"
+            }
+          },
+          {
+            "id": "travel-xae55f19d2d6ecd88",
+            "kind": "FERRY",
+            "provider": "Vela Coast Lines",
+            "from": "West Baltic terminal",
+            "to": "South Finland terminal",
+            "departs": "2026-10-26T22:00:00Z",
+            "arrives": "2026-10-28T03:00:00Z",
+            "check_in_cutoff": "2026-10-26T20:00:00Z",
+            "price_cents": 65000,
+            "note": "Vehicle-space quote only; allow driver rest and about 3 hours from arrival terminal to delivery city. No reservation exists for this option.",
+            "evidence": {
+              "strength": "observed",
+              "label": "quoted by provider, not booked",
+              "at": "2026-10-21T07:00:00Z"
+            }
+          },
+          {
+            "id": "travel-x857e37e888660bca",
+            "kind": "TRAIN",
+            "provider": "Northrail",
+            "from": "Bordeaux",
+            "to": "Marseille",
+            "departs": "2026-10-21T21:00:00Z",
+            "arrives": "2026-10-22T04:00:00Z",
+            "check_in_cutoff": null,
+            "price_cents": 11300,
+            "note": "Quote only, not purchased; confirm driver arrival and local transfer",
+            "evidence": {
+              "strength": "observed",
+              "label": "quoted by provider, not booked",
+              "at": "2026-10-21T07:00:00Z"
+            }
+          },
+          {
+            "id": "travel-x747a011a8cd671c4",
+            "kind": "TRAIN",
+            "provider": "Northrail",
+            "from": "Bordeaux",
+            "to": "Marseille",
+            "departs": "2026-10-22T00:00:00Z",
+            "arrives": "2026-10-22T07:00:00Z",
+            "check_in_cutoff": null,
+            "price_cents": 15100,
+            "note": "Quote only, not purchased; confirm driver arrival and local transfer",
+            "evidence": {
+              "strength": "observed",
+              "label": "quoted by provider, not booked",
+              "at": "2026-10-21T07:00:00Z"
+            }
+          }
+        ],
+        "bookings": []
+      },
+      "seq": 4,
+      "at": "2026-10-21T09:01:20.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "get_ferry_terminals",
+      "input": {},
+      "seq": 5,
+      "at": "2026-10-21T09:01:40.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "get_ferry_terminals",
+      "output": {
+        "terminals": [
+          {
+            "id": "terminal-west-baltic",
+            "name": "West Baltic Vehicle Terminal",
+            "city": "Hamburg",
+            "note": "Terminal location held at city level; no gate address is recorded."
+          },
+          {
+            "id": "terminal-south-baltic",
+            "name": "South Baltic Vehicle Terminal",
+            "city": "Copenhagen",
+            "note": "Terminal location held at city level; no gate address is recorded."
+          },
+          {
+            "id": "terminal-east-nordic",
+            "name": "East Nordic Vehicle Terminal",
+            "city": "Stockholm",
+            "note": "Terminal location held at city level; no gate address is recorded."
+          },
+          {
+            "id": "terminal-south-finland",
+            "name": "South Finland Vehicle Terminal",
+            "city": "Helsinki",
+            "note": "Terminal location held at city level; no gate address is recorded."
+          }
+        ]
+      },
+      "seq": 6,
+      "at": "2026-10-21T09:02:00.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "check_provider_status",
+      "input": {
+        "order": "CD-420154",
+        "provider": "Vela Coast Lines"
+      },
+      "seq": 7,
+      "at": "2026-10-21T09:02:20.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "check_provider_status",
+      "output": {
+        "order": "CD-420154",
+        "provider": "Vela Coast Lines",
+        "holds_reservation": false,
+        "reference": null,
+        "evidence": {
+          "strength": "observed",
+          "label": "provider desk replied (mock)",
+          "at": "2026-10-21T09:00:00.000Z"
+        },
+        "answer": "No reservation is held for this order. No charge was taken. Any earlier request did not complete."
+      },
+      "seq": 8,
+      "at": "2026-10-21T09:02:40.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "answer_book",
+      "input": {
+        "order": "CD-420154",
+        "question": "Driver asks for actual travel booking confirmed before positioning to pickup; who books and pays for train/ferry, and rest rules"
+      },
+      "seq": 9,
+      "at": "2026-10-21T09:03:00.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "answer_book",
+      "output": {
+        "market": "OTHER",
+        "entries": [
+          {
+            "id": "road-ferry-risk",
+            "topic": "On the road",
+            "routing": "ASK",
+            "answer": "Confirm whether they are still in the queue with the car and get their latest estimate. Keep the existing booking active.",
+            "reads": [
+              "travel_reservations",
+              "travel_options",
+              "ferry_terminal_events"
+            ],
+            "cautions": [
+              "Never tell a driver to turn away from the terminal.",
+              "Never promise another crossing before capacity and fare are confirmed. A quote is not a booking.",
+              "Only a gate observation confirms check-in."
+            ],
+            "corners": [],
+            "escalate_to": "ops-travel",
+            "market": "ALL"
+          },
+          {
+            "id": "pick-photo-order",
+            "topic": "Pickup",
+            "routing": "ANSWER",
+            "answer": "On international gigs, take the required pickup photos BEFORE attaching the transit plates. Inspect the car carefully and record all existing damage before moving it, and confirm every photo has uploaded before you leave.",
+            "reads": [],
+            "cautions": [
+              "Photos protect the customer, Bahn and the driver. Never suggest skipping or deferring them."
+            ],
+            "corners": [
+              {
+                "when": "The driver has already attached the plates and not photographed",
+                "then": "Photograph now anyway, note the sequence in the app, and flag it — a missing photo process carries a penalty of 50% of the gig fee, and only a person decides whether it applies.",
+                "routing": "ESCALATE"
+              }
+            ],
+            "escalate_to": "ops-evidence",
+            "market": "ALL"
+          },
+          {
+            "id": "avail-cannot-reach",
+            "topic": "Availability",
+            "routing": "LOOKUP",
+            "answer": "Confirm the constraint in the driver's own words — where they finish and the earliest they can start — and record it. The assignment remains accepted until they withdraw.",
+            "reads": [
+              "work_assignments",
+              "travel_reservations",
+              "travel_options"
+            ],
+            "cautions": [
+              "A previous duty's ETA and a home city are not a current location.",
+              "A travel quote is not a booked ticket.",
+              "A changed slot needs the customer to agree, and the agent may not contact a customer."
+            ],
+            "corners": [],
+            "escalate_to": "ops-dispatch",
+            "market": "ALL"
+          }
+        ],
+        "note": "Follow each entry's routing. Never assert anything listed under cautions."
+      },
+      "seq": 10,
+      "at": "2026-10-21T09:03:20.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "get_road_estimate",
+      "input": {
+        "from_city": "Marseille",
+        "terminal": "West Baltic Vehicle Terminal"
+      },
+      "seq": 11,
+      "at": "2026-10-21T09:03:40.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "get_road_estimate",
+      "output": {
+        "error": "No planning estimate from Marseille to West Baltic Vehicle Terminal."
+      },
+      "seq": 12,
+      "at": "2026-10-21T09:04:00.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "get_road_estimate",
+      "input": {
+        "from_city": "Helsinki",
+        "terminal": "South Finland Vehicle Terminal"
+      },
+      "seq": 13,
+      "at": "2026-10-21T09:04:20.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "get_road_estimate",
+      "output": {
+        "error": "No planning estimate from Helsinki to South Finland Vehicle Terminal."
+      },
+      "seq": 14,
+      "at": "2026-10-21T09:04:40.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "price_alternatives",
+      "input": {
+        "order": "CD-420154",
+        "reason": "Earliest crossing sold out; need positioning Bordeaux to Marseille and a later crossing that still meets the 27 Oct delivery window"
+      },
+      "seq": 15,
+      "at": "2026-10-21T09:05:00.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "price_alternatives",
+      "output": {
+        "order": "CD-420154",
+        "delivery_promise_ends": "2026-10-27T14:00:00Z",
+        "options": [
+          {
+            "option_id": "travel-xfdc7bc8969cfb3d0",
+            "label": "Vela Coast Lines West Baltic terminal to South Finland terminal",
+            "departure_at": "2026-10-25T10:00:00Z",
+            "check_in_cutoff_at": "2026-10-25T08:00:00Z",
+            "status": "quote, not booked",
+            "quote_checked_at": "2026-10-21T07:00:00Z",
+            "ferry_cents": 57000,
+            "hotel_nights": 1,
+            "hotel_cents": 9500,
+            "total_cents": 66500,
+            "currency": "EUR",
+            "driver_at_terminal_estimate": "2026-10-23T09:00:00.000Z",
+            "makes_check_in": true,
+            "arrives_by": "2026-10-26T15:00:00Z",
+            "delivered_by_estimate": "2026-10-26T18:00:00.000Z",
+            "makes_delivery_promise": true,
+            "basis": "Packet quote and timetable; hotel price and last-stretch time are mock estimates."
+          },
+          {
+            "option_id": "travel-xae55f19d2d6ecd88",
+            "label": "Vela Coast Lines West Baltic terminal to South Finland terminal",
+            "departure_at": "2026-10-26T22:00:00Z",
+            "check_in_cutoff_at": "2026-10-26T20:00:00Z",
+            "status": "quote, not booked",
+            "quote_checked_at": "2026-10-21T07:00:00Z",
+            "ferry_cents": 65000,
+            "hotel_nights": 1,
+            "hotel_cents": 9500,
+            "total_cents": 74500,
+            "currency": "EUR",
+            "driver_at_terminal_estimate": "2026-10-23T09:00:00.000Z",
+            "makes_check_in": true,
+            "arrives_by": "2026-10-28T03:00:00Z",
+            "delivered_by_estimate": "2026-10-28T06:00:00.000Z",
+            "makes_delivery_promise": false,
+            "basis": "Packet quote and timetable; hotel price and last-stretch time are mock estimates."
+          }
+        ]
+      },
+      "seq": 16,
+      "at": "2026-10-21T09:05:20.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "message_driver",
+      "input": {
+        "order": "CD-420154",
+        "recipient_role": "driver",
+        "question": "Where are you right now, and could you be at the station in Bordeaux for a train around 21:00 tonight (arriving Marseille about 04:00) or would the 00:00 train (arriving about 07:00) be your only option? Nothing is booked yet; a person must approve before any ticket is bought."
+      },
+      "seq": 17,
+      "at": "2026-10-21T09:05:40.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "message_driver",
+      "output": {
+        "sent": true,
+        "reply": {
+          "text": "I can be in Marseille for the slot if the train tonight is actually booked. Please send the ticket, not a suggestion.",
+          "evidence": {
+            "strength": "claimed",
+            "label": "driver said",
+            "at": "2026-10-21T09:09:00.000Z"
+          }
+        }
+      },
+      "seq": 18,
+      "at": "2026-10-21T09:06:00.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "call_site",
+      "input": {
+        "order": "CD-420154",
+        "recipient_role": "travel_provider",
+        "questions": [
+          "Is vehicle space (one Audi Q8 e-tron) currently available on the 25 Oct 10:00 sailing from West Baltic terminal to South Finland terminal, and is the fare still 570 EUR?",
+          "Is the 23 Oct 22:00 sailing still sold out for vehicles, or is there any waitlist or cancellation space?",
+          "How long will the vehicle space be held once confirmed, and what is the check-in cutoff for the 25 Oct sailing?"
+        ]
+      },
+      "seq": 19,
+      "at": "2026-10-21T09:06:20.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "call_site",
+      "output": {
+        "order": "CD-420154",
+        "recipient_role": "site",
+        "placed": false,
+        "recorded": false,
+        "transcript": [],
+        "answers": [],
+        "note": "Voice calls are off and no call is recorded for this order. Use message_driver instead."
+      },
+      "seq": 20,
+      "at": "2026-10-21T09:06:40.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "propose_booking",
+      "input": {
+        "order": "CD-420154",
+        "option_id": "travel-x857e37e888660bca",
+        "why": "Driver Jonas (Bordeaux) needs a real ticket to reach Marseille for the 22 Oct 08:00-11:00 pickup slot. The 21:00 train arrives about 04:00 with a four-hour buffer, for 113 EUR. The 00:00 train arrives about 07:00, which is too tight. The quote is not yet a purchase, and the driver's current location is unconfirmed. The later 25 Oct 10:00 crossing (570 EUR, about 665 EUR with a hotel night) is the only ferry that makes the 27 Oct promise, but it has no confirmed vehicle space, so it still needs a refreshed quote before anyone books it."
+      },
+      "seq": 21,
+      "at": "2026-10-21T09:07:00.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "propose_booking",
+      "output": {
+        "proposed": true,
+        "id": "dec-run-CD-420154-on_the_road-1",
+        "note": "Waiting for a person to decide. Nothing has changed yet."
+      },
+      "seq": 22,
+      "at": "2026-10-21T09:07:20.000Z"
+    },
+    {
+      "kind": "message",
+      "text": "CD-420154 has no ferry booking: the provider confirmed it holds no reservation and took no charge, and the 23 Oct crossing is sold out. The earlier approved \"refresh quote\" action has not run, so the 25 Oct 10:00 crossing (570 EUR) is still only a 07:00 quote with no confirmed vehicle space. I couldn't call the provider's desk, because voice calls are off. The 25 Oct crossing is the only one that makes the 27 Oct delivery window, with delivery estimated around 26 Oct 18:00Z. The 26 Oct 22:00 crossing misses the window. The estimates are mock figures: about 665 EUR with one hotel night, and the road time to the terminal is not recorded.\n\n**Decision for you:** please approve the 113 EUR Northrail train from Bordeaux, leaving 21:00 tonight and arriving Marseille about 04:00. Jonas says he can make the 22 Oct 08:00–11:00 pickup only if a ticket is actually booked. I have proposed this train as the single booking. I did not propose the ferry, because it has no confirmed space. The refresh should be run next, and the ferry proposed only if space is confirmed.\n\nI haven't confirmed where Jonas is now; I only know his home is Bordeaux. I also haven't drafted anything for the customer. The promise doesn't need revising if the 25 Oct crossing holds, but the customer wants the attended delivery confirmed with the recipient separately.",
+      "seq": 23,
+      "at": "2026-10-21T09:07:40.000Z"
+    }
+  ],
+  "proposals": [
+    {
+      "id": "dec-run-CD-420154-on_the_road-1",
+      "action": "propose_booking",
+      "payload": {
+        "order": "CD-420154",
+        "option_id": "travel-x857e37e888660bca",
+        "why": "Driver Jonas (Bordeaux) needs a real ticket to reach Marseille for the 22 Oct 08:00-11:00 pickup slot. The 21:00 train arrives about 04:00 with a four-hour buffer, for 113 EUR. The 00:00 train arrives about 07:00, which is too tight. The quote is not yet a purchase, and the driver's current location is unconfirmed. The later 25 Oct 10:00 crossing (570 EUR, about 665 EUR with a hotel night) is the only ferry that makes the 27 Oct promise, but it has no confirmed vehicle space, so it still needs a refreshed quote before anyone books it."
+      },
+      "headline": "Book travel: Driver Jonas (Bordeaux) needs a real ticket to reach Marseille for the 22 Oct 08:00-11:00 pickup slot. The 21:00 train arrives about 04:00 with a four-hour buffer, for 113 EUR. The 00:00 train arrives about 07:00, which is too tight. The quote is not yet a purchase, and the driver's current location is unconfirmed. The later 25 Oct 10:00 crossing (570 EUR, about 665 EUR with a hotel night) is the only ferry that makes the 27 Oct promise, but it has no confirmed vehicle space, so it still needs a refreshed quote before anyone books it.",
+      "blockers": [],
+      "evidence": [
+        {
+          "strength": "reported",
+          "label": "system record",
+          "at": "2026-10-21T08:32:00Z"
+        },
+        {
+          "strength": "observed",
+          "label": "provider said sold out",
+          "at": "2026-10-21T07:00:00Z"
+        },
+        {
+          "strength": "observed",
+          "label": "quoted by provider, not booked",
+          "at": "2026-10-21T07:00:00Z"
+        },
+        {
+          "strength": "observed",
+          "label": "quoted by provider, not booked",
+          "at": "2026-10-21T07:00:00Z"
+        },
+        {
+          "strength": "observed",
+          "label": "quoted by provider, not booked",
+          "at": "2026-10-21T07:00:00Z"
+        },
+        {
+          "strength": "observed",
+          "label": "quoted by provider, not booked",
+          "at": "2026-10-21T07:00:00Z"
+        },
+        {
+          "strength": "observed",
+          "label": "provider desk replied (mock)",
+          "at": "2026-10-21T09:00:00.000Z"
+        },
+        {
+          "strength": "claimed",
+          "label": "driver said",
+          "at": "2026-10-21T09:09:00.000Z"
+        }
+      ]
+    }
+  ],
+  "escalation": null,
+  "headsUp": null,
+  "summary": "CD-420154 has no ferry booking: the provider confirmed it holds no reservation and took no charge, and the 23 Oct crossing is sold out. The earlier approved \"refresh quote\" action has not run, so the 25 Oct 10:00 crossing (570 EUR) is still only a 07:00 quote with no confirmed vehicle space. I couldn't call the provider's desk, because voice calls are off. The 25 Oct crossing is the only one that makes the 27 Oct delivery window, with delivery estimated around 26 Oct 18:00Z. The 26 Oct 22:00 crossing misses the window. The estimates are mock figures: about 665 EUR with one hotel night, and the road time to the terminal is not recorded.\n\n**Decision for you:** please approve the 113 EUR Northrail train from Bordeaux, leaving 21:00 tonight and arriving Marseille about 04:00. Jonas says he can make the 22 Oct 08:00–11:00 pickup only if a ticket is actually booked. I have proposed this train as the single booking. I did not propose the ferry, because it has no confirmed space. The refresh should be run next, and the ferry proposed only if space is confirmed.\n\nI haven't confirmed where Jonas is now; I only know his home is Bordeaux. I also haven't drafted anything for the customer. The promise doesn't need revising if the 25 Oct crossing holds, but the customer wants the attended delivery confirmed with the recipient separately."
+}

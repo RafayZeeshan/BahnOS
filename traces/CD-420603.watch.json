@@ -1,0 +1,286 @@
+{
+  "id": "run-CD-420603-watch",
+  "order": "CD-420603",
+  "trigger": "watch",
+  "mode": "recorded",
+  "model": "anthropic/claude-sonnet-5.5",
+  "prompt": "Watch flagged this order: the booked ferry's check-in cutoff is close and the driver reports a slow queue. Check it and decide the cheap next step.",
+  "startedAt": "2026-10-21T09:00:00.000Z",
+  "finishedAt": "2026-10-21T09:04:00.000Z",
+  "status": "done",
+  "steps": [
+    {
+      "kind": "tool_call",
+      "tool": "get_case",
+      "input": {
+        "order": "CD-420603"
+      },
+      "seq": 1,
+      "at": "2026-10-21T09:00:20.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "get_case",
+      "output": {
+        "order": "CD-420603",
+        "status": "IN_TRANSIT",
+        "route_kind": "IMPORT",
+        "car": "Volkswagen Golf",
+        "customer": "Torvamelio Ajoneuvot",
+        "driver": "Charlotte Benvik (home Helsinki)",
+        "windows": [
+          {
+            "purpose": "PICKUP_AVAILABILITY",
+            "start": "2026-10-20T07:00:00Z",
+            "end": "2026-10-20T15:00:00Z",
+            "timezone": "Europe/Berlin",
+            "set_by": "CUSTOMER"
+          },
+          {
+            "purpose": "SELECTED_PICKUP_SLOT",
+            "start": "2026-10-20T14:00:00Z",
+            "end": "2026-10-20T15:00:00Z",
+            "timezone": "Europe/Berlin",
+            "set_by": "OPS"
+          },
+          {
+            "purpose": "CUSTOMER_DELIVERY_PROMISE",
+            "start": "2026-10-23T10:00:00Z",
+            "end": "2026-10-23T12:00:00Z",
+            "timezone": "Europe/Helsinki",
+            "set_by": "CUSTOMER"
+          }
+        ],
+        "travel": [],
+        "bookings": [
+          {
+            "id": "res-x1082202e8d139d61",
+            "kind": "FERRY",
+            "departs": "2026-10-21T14:00:00Z",
+            "check_in_cutoff": "2026-10-21T12:00:00Z",
+            "evidence": {
+              "strength": "verified",
+              "label": "confirmed by provider",
+              "at": "2026-10-15T05:01:00Z"
+            }
+          }
+        ],
+        "alerts": [
+          {
+            "signal": "FERRY_CONNECTION_RISK",
+            "status": "OPEN",
+            "summary": "Review ferry cutoff for CD-420603; source is a conversation, not a verified outcome.",
+            "next_action": null,
+            "evidence": {
+              "strength": "reported",
+              "label": "system alert",
+              "at": "2026-10-21T07:00:00Z"
+            }
+          }
+        ],
+        "messages": [
+          {
+            "at": "2026-10-21T06:58:00Z",
+            "channel": "support_chat",
+            "text": "The queue before the terminal has barely moved. The booked crossing for CD-420603 may close before I reach check-in.",
+            "evidence": {
+              "strength": "claimed",
+              "label": "driver said",
+              "at": "2026-10-21T06:58:00Z"
+            }
+          },
+          {
+            "at": "2026-10-21T07:10:00Z",
+            "channel": "support_chat",
+            "text": "I am checking the check-in deadline and next available sailing. Please send your latest ETA when it updates.",
+            "evidence": {
+              "strength": "reported",
+              "label": "ops note",
+              "at": "2026-10-21T07:10:00Z"
+            }
+          },
+          {
+            "at": "2026-10-21T07:14:00Z",
+            "channel": "internal_note",
+            "text": "Do not cancel the current booking or promise another crossing until capacity and fare terms are confirmed.",
+            "evidence": {
+              "strength": "reported",
+              "label": "ops note",
+              "at": "2026-10-21T07:14:00Z"
+            }
+          },
+          {
+            "at": "2026-10-21T07:31:00Z",
+            "channel": "support_chat",
+            "text": "I am still in the queue with the car. I have not turned toward another terminal.",
+            "evidence": {
+              "strength": "claimed",
+              "label": "driver said",
+              "at": "2026-10-21T07:31:00Z"
+            }
+          },
+          {
+            "at": "2026-10-21T08:43:00Z",
+            "channel": "internal_note",
+            "text": "Carrier desk took our request to move this car to a later crossing, but has not confirmed a slot or fare. Keep the original booking active. Do not tell the driver to turn away or change the customer's delivery promise yet.",
+            "evidence": {
+              "strength": "reported",
+              "label": "ops note",
+              "at": "2026-10-21T08:43:00Z"
+            }
+          }
+        ],
+        "earlier_agent_actions": [
+          {
+            "action": "travel.refresh_crossing",
+            "status": "APPROVED_AWAITING_EXECUTION",
+            "error": null,
+            "evidence": {
+              "strength": "reported",
+              "label": "system record",
+              "at": "2026-10-21T07:57:00Z"
+            }
+          }
+        ],
+        "open_work": [],
+        "now": "2026-10-21T09:00:00.000Z"
+      },
+      "seq": 2,
+      "at": "2026-10-21T09:00:40.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "get_travel_options",
+      "input": {
+        "order": "CD-420603"
+      },
+      "seq": 3,
+      "at": "2026-10-21T09:01:00.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "get_travel_options",
+      "output": {
+        "order": "CD-420603",
+        "travel": [],
+        "bookings": [
+          {
+            "id": "res-x1082202e8d139d61",
+            "kind": "FERRY",
+            "departs": "2026-10-21T14:00:00Z",
+            "check_in_cutoff": "2026-10-21T12:00:00Z",
+            "evidence": {
+              "strength": "verified",
+              "label": "confirmed by provider",
+              "at": "2026-10-15T05:01:00Z"
+            }
+          }
+        ]
+      },
+      "seq": 4,
+      "at": "2026-10-21T09:01:20.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "message_driver",
+      "input": {
+        "order": "CD-420603",
+        "recipient_role": "driver",
+        "question": "Please reply with your exact position (terminal name and how many cars/km ahead of you in the queue) and your best estimate of when you will reach check-in. The cutoff is 12:00Z. Stay in the queue for now; do not change terminal."
+      },
+      "seq": 5,
+      "at": "2026-10-21T09:01:40.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "message_driver",
+      "output": {
+        "sent": true,
+        "reply": {
+          "text": "Still in the queue with the car. My guess is about 40 minutes to the gate, but it isn't moving much.",
+          "evidence": {
+            "strength": "claimed",
+            "label": "driver said",
+            "at": "2026-10-21T09:03:00.000Z"
+          }
+        }
+      },
+      "seq": 6,
+      "at": "2026-10-21T09:02:00.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "get_ferry_terminals",
+      "input": {},
+      "seq": 7,
+      "at": "2026-10-21T09:02:20.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "get_ferry_terminals",
+      "output": {
+        "terminals": [
+          {
+            "id": "terminal-west-baltic",
+            "name": "West Baltic Vehicle Terminal",
+            "city": "Hamburg",
+            "note": "Terminal location held at city level; no gate address is recorded."
+          },
+          {
+            "id": "terminal-south-baltic",
+            "name": "South Baltic Vehicle Terminal",
+            "city": "Copenhagen",
+            "note": "Terminal location held at city level; no gate address is recorded."
+          },
+          {
+            "id": "terminal-east-nordic",
+            "name": "East Nordic Vehicle Terminal",
+            "city": "Stockholm",
+            "note": "Terminal location held at city level; no gate address is recorded."
+          },
+          {
+            "id": "terminal-south-finland",
+            "name": "South Finland Vehicle Terminal",
+            "city": "Helsinki",
+            "note": "Terminal location held at city level; no gate address is recorded."
+          }
+        ]
+      },
+      "seq": 8,
+      "at": "2026-10-21T09:02:40.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "raise_heads_up",
+      "input": {
+        "order": "CD-420603",
+        "risk": "watch",
+        "line": "Driver says about 40 minutes to the gate at 09:03Z, which would beat the 12:00Z cutoff by about 2 hours, but the queue is barely moving and this is an unverified estimate; keep the original booking and recheck the driver's ETA by about 10:30Z."
+      },
+      "seq": 9,
+      "at": "2026-10-21T09:03:00.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "raise_heads_up",
+      "output": {
+        "flagged": true
+      },
+      "seq": 10,
+      "at": "2026-10-21T09:03:20.000Z"
+    },
+    {
+      "kind": "message",
+      "text": "The booking looks safe for now, but I'm only going on the driver's word. The ferry (departs 14:00Z, check-in cutoff 12:00Z) is confirmed by the provider. At 09:03Z the driver said they were still in the queue and about 40 minutes from the gate. If that holds, they'd check in around 09:45Z, about two hours before the cutoff. I couldn't verify that, and the driver says the queue is barely moving.\n\nI told the driver to stay in the queue and not change terminal. I left the booking untouched, as the ops notes say, and raised a \"watch\" flag to recheck the driver's ETA around 10:30Z. The carrier desk still hasn't confirmed a later slot or fare, and the earlier \"refresh crossing\" action is still approved but not executed.\n\nDecision for you: nothing is needed right now. If the driver's ETA slips toward 11:30Z, you would then have to decide whether to push the carrier for a later crossing and a date change, which would need the customer's agreement.",
+      "seq": 11,
+      "at": "2026-10-21T09:03:40.000Z"
+    }
+  ],
+  "proposals": [],
+  "escalation": null,
+  "headsUp": {
+    "risk": "watch",
+    "line": "Driver says about 40 minutes to the gate at 09:03Z, which would beat the 12:00Z cutoff by about 2 hours, but the queue is barely moving and this is an unverified estimate; keep the original booking and recheck the driver's ETA by about 10:30Z."
+  },
+  "summary": "The booking looks safe for now, but I'm only going on the driver's word. The ferry (departs 14:00Z, check-in cutoff 12:00Z) is confirmed by the provider. At 09:03Z the driver said they were still in the queue and about 40 minutes from the gate. If that holds, they'd check in around 09:45Z, about two hours before the cutoff. I couldn't verify that, and the driver says the queue is barely moving.\n\nI told the driver to stay in the queue and not change terminal. I left the booking untouched, as the ops notes say, and raised a \"watch\" flag to recheck the driver's ETA around 10:30Z. The carrier desk still hasn't confirmed a later slot or fare, and the earlier \"refresh crossing\" action is still approved but not executed.\n\nDecision for you: nothing is needed right now. If the driver's ETA slips toward 11:30Z, you would then have to decide whether to push the carrier for a later crossing and a date change, which would need the customer's agreement."
+}

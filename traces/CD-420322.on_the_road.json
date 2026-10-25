@@ -1,0 +1,378 @@
+{
+  "id": "run-CD-420322-on_the_road",
+  "order": "CD-420322",
+  "trigger": "on_the_road",
+  "mode": "recorded",
+  "model": "anthropic/claude-sonnet-5.5",
+  "prompt": "New alert: the driver reports a red warning light and has stopped. Work the case and bring a person one decision.",
+  "startedAt": "2026-10-21T09:00:00.000Z",
+  "finishedAt": "2026-10-21T09:04:00.000Z",
+  "status": "done",
+  "steps": [
+    {
+      "kind": "tool_call",
+      "tool": "get_case",
+      "input": {
+        "order": "CD-420322"
+      },
+      "seq": 1,
+      "at": "2026-10-21T09:00:20.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "get_case",
+      "output": {
+        "order": "CD-420322",
+        "status": "IN_TRANSIT",
+        "route_kind": "DOMESTIC",
+        "car": "Bentley Continental GT",
+        "customer": "Marvellin Motorhandel",
+        "driver": "Kasper Kovelund (home Munich)",
+        "windows": [
+          {
+            "purpose": "PICKUP_AVAILABILITY",
+            "start": "2026-10-20T08:00:00Z",
+            "end": "2026-10-20T15:00:00Z",
+            "timezone": "Europe/Berlin",
+            "set_by": "CUSTOMER"
+          },
+          {
+            "purpose": "SELECTED_PICKUP_SLOT",
+            "start": "2026-10-20T08:00:00Z",
+            "end": "2026-10-20T11:00:00Z",
+            "timezone": "Europe/Berlin",
+            "set_by": "OPS"
+          },
+          {
+            "purpose": "CUSTOMER_DELIVERY_PROMISE",
+            "start": "2026-10-21T10:00:00Z",
+            "end": "2026-10-21T14:00:00Z",
+            "timezone": "Europe/Berlin",
+            "set_by": "CUSTOMER"
+          }
+        ],
+        "travel": [],
+        "bookings": [],
+        "alerts": [
+          {
+            "signal": "TRACKING_GAP",
+            "status": "OPEN",
+            "summary": "No recent driver-app position; check before changing a promise.",
+            "next_action": null,
+            "evidence": {
+              "strength": "reported",
+              "label": "system alert",
+              "at": "2026-10-21T05:16:00Z"
+            }
+          },
+          {
+            "signal": "SAFETY_STOP",
+            "status": "ACKNOWLEDGED",
+            "summary": "Driver reports a red warning and has stopped safely. Diagnosis and recovery remain open.",
+            "next_action": null,
+            "evidence": {
+              "strength": "reported",
+              "label": "system alert",
+              "at": "2026-10-21T08:07:00Z"
+            }
+          }
+        ],
+        "messages": [
+          {
+            "at": "2026-10-21T08:04:00Z",
+            "channel": "driver_chat",
+            "text": "I have stopped the Bentley Continental GT on CD-420322. A red warning came on and the car felt different when accelerating.",
+            "evidence": {
+              "strength": "claimed",
+              "label": "driver said",
+              "at": "2026-10-21T08:04:00Z"
+            }
+          },
+          {
+            "at": "2026-10-21T08:13:00Z",
+            "channel": "driver_chat",
+            "text": "Thank you for stopping. Are you and the vehicle in a safe place? Please do not drive it further while we contact the owner.",
+            "evidence": {
+              "strength": "reported",
+              "label": "ops note",
+              "at": "2026-10-21T08:13:00Z"
+            }
+          },
+          {
+            "at": "2026-10-21T08:22:00Z",
+            "channel": "driver_chat",
+            "text": "I am safe at a service-area car park. The engine is off. I can send a dashboard photo, but I have not diagnosed the issue.",
+            "evidence": {
+              "strength": "claimed",
+              "label": "driver said",
+              "at": "2026-10-21T08:22:00Z"
+            }
+          },
+          {
+            "at": "2026-10-21T08:31:00Z",
+            "channel": "internal_note",
+            "text": "Human owner required. Record the safe stop, get the photo and call the customer for instructions. No recovery booking or delivery promise yet.",
+            "evidence": {
+              "strength": "reported",
+              "label": "ops note",
+              "at": "2026-10-21T08:31:00Z"
+            }
+          },
+          {
+            "at": "2026-10-21T08:37:00Z",
+            "channel": "driver_chat",
+            "text": "Operations has a human coordinator on this. Please keep the vehicle stopped and send the service-area name or a safe location pin when you can. We are waiting for the owner's service instruction; nobody has cleared onward driving.",
+            "evidence": {
+              "strength": "reported",
+              "label": "agent wrote",
+              "at": "2026-10-21T08:37:00Z"
+            }
+          },
+          {
+            "at": "2026-10-21T08:40:00Z",
+            "channel": "customer_email",
+            "text": "Please keep the vehicle stopped. I will ask our service contact whether it needs roadside assistance or collection.",
+            "evidence": {
+              "strength": "claimed",
+              "label": "customer said",
+              "at": "2026-10-21T08:40:00Z"
+            }
+          },
+          {
+            "at": "2026-10-21T08:49:00Z",
+            "channel": "customer_email",
+            "text": "We have paused the journey pending the owner's instruction. We will update the delivery estimate after the recovery plan is confirmed.",
+            "evidence": {
+              "strength": "reported",
+              "label": "ops note",
+              "at": "2026-10-21T08:49:00Z"
+            }
+          },
+          {
+            "at": "2026-10-21T08:58:00Z",
+            "channel": "driver_chat",
+            "text": "I will wait here. Please tell me who is collecting the car before anyone moves it.",
+            "evidence": {
+              "strength": "claimed",
+              "label": "driver said",
+              "at": "2026-10-21T08:58:00Z"
+            }
+          }
+        ],
+        "earlier_agent_actions": [
+          {
+            "action": "driver.request_safe_stop_details",
+            "status": "EXECUTED",
+            "error": null,
+            "evidence": {
+              "strength": "reported",
+              "label": "system record",
+              "at": "2026-10-21T08:23:00Z"
+            }
+          }
+        ],
+        "open_work": [
+          {
+            "kind": "VEHICLE_WARNING",
+            "status": "NEEDS_HUMAN"
+          },
+          {
+            "kind": "VEHICLE_RECOVERY_DECISION",
+            "next_action": "Obtain the dashboard photo and owner's service decision; agree recovery or safe custody, then separately replan the driver and customer promise. Do not authorize driving from the warning report alone."
+          }
+        ],
+        "now": "2026-10-21T09:00:00.000Z"
+      },
+      "seq": 2,
+      "at": "2026-10-21T09:00:40.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "get_travel_options",
+      "input": {
+        "order": "CD-420322"
+      },
+      "seq": 3,
+      "at": "2026-10-21T09:01:00.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "get_travel_options",
+      "output": {
+        "order": "CD-420322",
+        "travel": [],
+        "bookings": []
+      },
+      "seq": 4,
+      "at": "2026-10-21T09:01:20.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "answer_book",
+      "input": {
+        "question": "Driver reports a red warning light on the car and has stopped. What should happen?",
+        "order": "CD-420322"
+      },
+      "seq": 5,
+      "at": "2026-10-21T09:01:40.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "answer_book",
+      "output": {
+        "market": "DE",
+        "entries": [
+          {
+            "id": "road-warning-light",
+            "topic": "On the road",
+            "routing": "ASK",
+            "answer": "Ask three things, in this order: are you safe, exactly where are you, and send a photo of the warning light. Then bring a person one decision. Tell the driver to keep the vehicle stopped.",
+            "reads": [
+              "incidents",
+              "orders",
+              "vehicles",
+              "time_windows"
+            ],
+            "cautions": [
+              "Never clear the driver to continue. Only the owner decides recovery.",
+              "A driver-reported stop location is not a verified position."
+            ],
+            "corners": [],
+            "escalate_to": "ops-shift",
+            "market": "ALL"
+          },
+          {
+            "id": "road-overnight-custody",
+            "topic": "On the road",
+            "routing": "ESCALATE",
+            "answer": "Tell the driver to keep the keys with them for now. Third-party custody needs the vehicle owner's approval, which no record establishes.",
+            "reads": [
+              "custody_assets",
+              "custody_reports"
+            ],
+            "cautions": [
+              "Never approve a third party taking custody. Ask if they need another parking arrangement instead."
+            ],
+            "corners": [],
+            "escalate_to": "ops-shift",
+            "market": "ALL"
+          },
+          {
+            "id": "pick-car-not-ready",
+            "topic": "Pickup",
+            "routing": "ASK",
+            "answer": "Gather the facts first: which site, who you spoke to, what they said, and whether the car is physically present. Then escalate with that in hand.",
+            "reads": [
+              "order_endpoint_details",
+              "sites",
+              "custody_assets"
+            ],
+            "cautions": [
+              "Vehicle presence is not pickup authority.",
+              "Do not tell the driver to wait a specific time, and never mark the car collected."
+            ],
+            "corners": [],
+            "escalate_to": "ops-readiness",
+            "market": "ALL"
+          }
+        ],
+        "note": "Follow each entry's routing. Never assert anything listed under cautions."
+      },
+      "seq": 6,
+      "at": "2026-10-21T09:02:00.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "message_driver",
+      "input": {
+        "order": "CD-420322",
+        "recipient_role": "driver",
+        "question": "Please keep the car stopped and keep the keys with you. Can you send the service-area name or a location pin, plus the dashboard photo of the red warning light? Nobody has been named to collect the car yet; a coordinator will tell you who when the owner decides."
+      },
+      "seq": 7,
+      "at": "2026-10-21T09:02:20.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "message_driver",
+      "output": {
+        "sent": true,
+        "reply": {
+          "text": "I'm safe. I'm parked at the service area car park, engine off, the red warning is still on. I've sent the dashboard photo in the app.",
+          "evidence": {
+            "strength": "claimed",
+            "label": "driver said",
+            "at": "2026-10-21T09:04:00.000Z"
+          }
+        }
+      },
+      "seq": 8,
+      "at": "2026-10-21T09:02:40.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "escalate",
+      "input": {
+        "order": "CD-420322",
+        "reason": "Red warning on a Bentley Continental GT; the driver is stopped. The owner must decide on recovery or safe custody. No one else can decide this, and I have not authorised any driving.",
+        "what_i_know": [
+          "Driver says he stopped safely at a service-area car park with the engine off. The red warning is still on at 09:04 (driver said, not verified)",
+          "At 08:04 he reported the car felt different when accelerating (driver said)",
+          "He says he sent a dashboard photo in the app at 09:04. I have not seen or read it.",
+          "The customer said at 08:40 they would ask their service contact about roadside assistance or collection (customer said). No answer is recorded.",
+          "Internal note at 08:31: human owner required, no recovery booking or delivery promise yet",
+          "The delivery promise is 2026-10-21 10:00-14:00 Europe/Berlin, and it is at risk. Ops told the customer at 08:49 that the journey is paused.",
+          "There are no travel options or bookings on the order.",
+          "The driver asked at 08:58 who is collecting the car. I told him to keep the car stopped and keep the keys with him."
+        ],
+        "what_i_dont_know": [
+          "The exact location. He has not given the service-area name or a pin, and the tracking-gap alert is still open.",
+          "What the dashboard photo shows, and whether the warning means it is unsafe to move the car",
+          "The owner's service decision: roadside assistance, recovery or collection",
+          "Who will collect the car, and when",
+          "Whether the driver can be replanned, and what the new delivery date will be. The customer has not agreed to any date."
+        ]
+      },
+      "seq": 9,
+      "at": "2026-10-21T09:03:00.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "escalate",
+      "output": {
+        "handed_over": true
+      },
+      "seq": 10,
+      "at": "2026-10-21T09:03:20.000Z"
+    },
+    {
+      "kind": "message",
+      "text": "The driver, Kasper Kovelund, has stopped the Bentley safely and says the red warning is still on. He says he is in a service-area car park with the engine off and has sent a dashboard photo in the app. All of this is his own report. I haven't seen the photo, and he still hasn't given a location, so the open tracking-gap alert stands.\n\nI told him to keep the car stopped and keep the keys with him. I made no bookings and no promises, and nobody has cleared the car to drive.\n\n**Decision for ops:** get the owner's service instruction (roadside assistance, recovery or collection) and name who collects the car. The customer said at 08:40 they would ask their service contact, and I found no answer recorded. The 10:00–14:00 delivery promise today is at risk. The customer should hear a new date only once ops and the customer have agreed one.",
+      "seq": 11,
+      "at": "2026-10-21T09:03:40.000Z"
+    }
+  ],
+  "proposals": [],
+  "escalation": {
+    "reason": "Red warning on a Bentley Continental GT; the driver is stopped. The owner must decide on recovery or safe custody. No one else can decide this, and I have not authorised any driving.",
+    "what_i_know": [
+      "Driver says he stopped safely at a service-area car park with the engine off. The red warning is still on at 09:04 (driver said, not verified)",
+      "At 08:04 he reported the car felt different when accelerating (driver said)",
+      "He says he sent a dashboard photo in the app at 09:04. I have not seen or read it.",
+      "The customer said at 08:40 they would ask their service contact about roadside assistance or collection (customer said). No answer is recorded.",
+      "Internal note at 08:31: human owner required, no recovery booking or delivery promise yet",
+      "The delivery promise is 2026-10-21 10:00-14:00 Europe/Berlin, and it is at risk. Ops told the customer at 08:49 that the journey is paused.",
+      "There are no travel options or bookings on the order.",
+      "The driver asked at 08:58 who is collecting the car. I told him to keep the car stopped and keep the keys with him."
+    ],
+    "what_i_dont_know": [
+      "The exact location. He has not given the service-area name or a pin, and the tracking-gap alert is still open.",
+      "What the dashboard photo shows, and whether the warning means it is unsafe to move the car",
+      "The owner's service decision: roadside assistance, recovery or collection",
+      "Who will collect the car, and when",
+      "Whether the driver can be replanned, and what the new delivery date will be. The customer has not agreed to any date."
+    ]
+  },
+  "headsUp": null,
+  "summary": "The driver, Kasper Kovelund, has stopped the Bentley safely and says the red warning is still on. He says he is in a service-area car park with the engine off and has sent a dashboard photo in the app. All of this is his own report. I haven't seen the photo, and he still hasn't given a location, so the open tracking-gap alert stands.\n\nI told him to keep the car stopped and keep the keys with him. I made no bookings and no promises, and nobody has cleared the car to drive.\n\n**Decision for ops:** get the owner's service instruction (roadside assistance, recovery or collection) and name who collects the car. The customer said at 08:40 they would ask their service contact, and I found no answer recorded. The 10:00–14:00 delivery promise today is at risk. The customer should hear a new date only once ops and the customer have agreed one."
+}

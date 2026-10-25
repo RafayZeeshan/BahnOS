@@ -1,0 +1,371 @@
+{
+  "id": "run-CD-420399-on_the_road",
+  "order": "CD-420399",
+  "trigger": "on_the_road",
+  "mode": "recorded",
+  "model": "anthropic/claude-sonnet-5.5",
+  "prompt": "New alert: the assigned driver reports they cannot reach the selected pickup after their current duty. Work the case.",
+  "startedAt": "2026-10-21T09:00:00.000Z",
+  "finishedAt": "2026-10-21T09:04:40.000Z",
+  "status": "done",
+  "steps": [
+    {
+      "kind": "tool_call",
+      "tool": "get_case",
+      "input": {
+        "order": "CD-420399"
+      },
+      "seq": 1,
+      "at": "2026-10-21T09:00:20.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "get_case",
+      "output": {
+        "order": "CD-420399",
+        "status": "WAITING_FOR_PICKUP",
+        "route_kind": "DOMESTIC",
+        "car": "Ferrari 296 GTB",
+        "customer": "Merovik Premiumfahrzeuge",
+        "driver": "Freya Marvellen (home Düsseldorf)",
+        "windows": [
+          {
+            "purpose": "PICKUP_AVAILABILITY",
+            "start": "2026-10-22T07:00:00Z",
+            "end": "2026-10-22T15:00:00Z",
+            "timezone": "Europe/Berlin",
+            "set_by": "CUSTOMER"
+          },
+          {
+            "purpose": "SELECTED_PICKUP_SLOT",
+            "start": "2026-10-22T09:00:00Z",
+            "end": "2026-10-22T10:00:00Z",
+            "timezone": "Europe/Berlin",
+            "set_by": "OPS"
+          },
+          {
+            "purpose": "CUSTOMER_DELIVERY_PROMISE",
+            "start": "2026-10-23T11:00:00Z",
+            "end": "2026-10-23T13:00:00Z",
+            "timezone": "Europe/Berlin",
+            "set_by": "SYSTEM"
+          }
+        ],
+        "travel": [],
+        "bookings": [],
+        "alerts": [
+          {
+            "signal": "POSITIONING_AT_RISK",
+            "status": "ACKNOWLEDGED",
+            "summary": "Assigned driver reports they cannot reach the selected Leipzig pickup after their current duty. Human review needed.",
+            "next_action": "Check replacement drivers, then seek buyer approval before changing the slot or assignment.",
+            "evidence": {
+              "strength": "reported",
+              "label": "system alert",
+              "at": "2026-10-21T08:25:00Z"
+            }
+          }
+        ],
+        "messages": [
+          {
+            "at": "2026-10-21T08:14:00Z",
+            "channel": "driver_chat",
+            "text": "I am still on CD-420326, heading toward Hamburg. After that handover I need my rest. My first time to travel is after 12:00 tomorrow local time, so I cannot reach the selected Leipzig collection slot. I have no travel booking. Please check a replacement or ask the customer about another slot.",
+            "evidence": {
+              "strength": "claimed",
+              "label": "driver said",
+              "at": "2026-10-21T08:14:00Z"
+            }
+          },
+          {
+            "at": "2026-10-21T08:21:00Z",
+            "channel": "internal_note",
+            "text": "Driver reported no workable positioning to the selected Leipzig pickup after their active Hamburg duty. Previous-duty tracking is only an ETA. Confirm the driver constraint, then review replacement capacity or a customer-approved change. The assignment remains accepted.",
+            "evidence": {
+              "strength": "reported",
+              "label": "ops note",
+              "at": "2026-10-21T08:21:00Z"
+            }
+          },
+          {
+            "at": "2026-10-21T08:32:00Z",
+            "channel": "internal_note",
+            "text": "Driver called from CD-420326 and says they need rest before another pickup. They won't reach the Leipzig slot on CD-420399. I don't see any positioning ticket booked. Who can cover that slot?",
+            "evidence": {
+              "strength": "reported",
+              "label": "ops note",
+              "at": "2026-10-21T08:32:00Z"
+            }
+          },
+          {
+            "at": "2026-10-21T08:54:00Z",
+            "channel": "internal_note",
+            "text": "Keep the accepted assignment on CD-420399 while we check replacement capacity. Please prepare a buyer update that says collection timing is under review, without naming the driver's earlier customer's trip. No changed slot has been agreed.",
+            "evidence": {
+              "strength": "reported",
+              "label": "ops note",
+              "at": "2026-10-21T08:54:00Z"
+            }
+          }
+        ],
+        "earlier_agent_actions": [
+          {
+            "action": "assignment.review_positioning",
+            "status": "PENDING_REVIEW",
+            "error": null,
+            "evidence": {
+              "strength": "reported",
+              "label": "system record",
+              "at": "2026-10-21T08:27:00Z"
+            }
+          }
+        ],
+        "open_work": [
+          {
+            "kind": "DRIVER_START_CHECK",
+            "next_action": "Check replacement drivers for the existing Leipzig slot. If none can take it, obtain buyer approval before changing the slot and only then adjust the assignment."
+          }
+        ],
+        "now": "2026-10-21T09:00:00.000Z"
+      },
+      "seq": 2,
+      "at": "2026-10-21T09:00:40.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "get_travel_options",
+      "input": {
+        "order": "CD-420399"
+      },
+      "seq": 3,
+      "at": "2026-10-21T09:01:00.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "get_travel_options",
+      "output": {
+        "order": "CD-420399",
+        "travel": [],
+        "bookings": []
+      },
+      "seq": 4,
+      "at": "2026-10-21T09:01:20.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "answer_book",
+      "input": {
+        "order": "CD-420399",
+        "question": "Driver cannot reach the pickup slot after current duty because they need rest; can the slot or assignment be changed, and who decides?"
+      },
+      "seq": 5,
+      "at": "2026-10-21T09:01:40.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "answer_book",
+      "output": {
+        "market": "DE",
+        "entries": [
+          {
+            "id": "avail-cannot-reach",
+            "topic": "Availability",
+            "routing": "LOOKUP",
+            "answer": "Confirm the constraint in the driver's own words — where they finish and the earliest they can start — and record it. The assignment remains accepted until they withdraw.",
+            "reads": [
+              "work_assignments",
+              "travel_reservations",
+              "travel_options"
+            ],
+            "cautions": [
+              "A previous duty's ETA and a home city are not a current location.",
+              "A travel quote is not a booked ticket.",
+              "A changed slot needs the customer to agree, and the agent may not contact a customer."
+            ],
+            "corners": [],
+            "escalate_to": "ops-dispatch",
+            "market": "ALL"
+          },
+          {
+            "id": "liab-report-deadlines",
+            "topic": "Penalties & damage",
+            "routing": "ANSWER",
+            "answer": "Apparent damage has to be noted at delivery. Hidden damage must be reported within 7 days, excluding Sundays and public holidays. A CMR delay claim needs a written reservation within 21 days.",
+            "reads": [],
+            "cautions": [
+              "A late claim is not automatically void: the deadline does not apply where the damage could not reasonably have been discovered.",
+              "Never tell a driver a claim is time-barred. That is a commercial decision."
+            ],
+            "corners": [],
+            "escalate_to": "ops-shift",
+            "market": "ALL"
+          },
+          {
+            "id": "pick-waiting-time",
+            "topic": "Pickup",
+            "routing": "ANSWER",
+            "answer": "There is 45 minutes of free waiting time at pickup or delivery. Beyond that a waiting fee runs at €25 per vehicle per additional half hour on a driven transfer, capped at the empty pickup fee. Tell the driver to log when they arrived.",
+            "reads": [],
+            "cautions": [
+              "The waiting fee is charged to the customer, not paid to the driver. Never present it as the driver’s compensation."
+            ],
+            "corners": [
+              {
+                "when": "The free 45 minutes is nearly up and nothing is happening",
+                "then": "Record the arrival time and escalate before the driver leaves. A failed pickup the customer caused — car unavailable, not roadworthy, nobody authorised, missing documents or keys — is an empty pickup, and that is a commercial decision, not the driver’s.",
+                "routing": "ESCALATE"
+              }
+            ],
+            "escalate_to": "ops-readiness",
+            "market": "ALL"
+          }
+        ],
+        "note": "Follow each entry's routing. Never assert anything listed under cautions."
+      },
+      "seq": 6,
+      "at": "2026-10-21T09:02:00.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "get_road_estimate",
+      "input": {
+        "from_city": "Hamburg",
+        "terminal": "Leipzig"
+      },
+      "seq": 7,
+      "at": "2026-10-21T09:02:20.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "get_road_estimate",
+      "output": {
+        "error": "No planning estimate from Hamburg to Leipzig."
+      },
+      "seq": 8,
+      "at": "2026-10-21T09:02:40.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "draft_customer_update",
+      "input": {
+        "order": "CD-420399",
+        "body": "Hello, this is an update on the collection of your Ferrari 296 GTB (CD-420399). We are reviewing the collection timing for the Leipzig pickup planned for 22 October, 11:00–12:00 local time. We are checking what we can do to keep that slot. Nothing has changed yet and no new slot has been agreed. If we cannot keep it, we will come back to you with a proposed alternative for your approval. Your delivery promise of 23 October, 13:00–15:00 local time, is not yet confirmed as affected. We will update you as soon as we know more."
+      },
+      "seq": 9,
+      "at": "2026-10-21T09:03:00.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "draft_customer_update",
+      "output": {
+        "proposed": true,
+        "id": "dec-run-CD-420399-on_the_road-1",
+        "note": "Waiting for a person to decide. Nothing has changed yet."
+      },
+      "seq": 10,
+      "at": "2026-10-21T09:03:20.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "escalate",
+      "input": {
+        "order": "CD-420399",
+        "reason": "Driver cannot make the selected Leipzig slot. Replacement capacity must be checked and, if none exists, the customer must agree to a changed slot. I have no tool to see other drivers and may not contact the customer.",
+        "what_i_know": [
+          "Driver Freya Marvellen (home Düsseldorf) is on CD-420326 heading toward Hamburg and needs rest after that handover. Her first travel time is after 12:00 local tomorrow (driver chat, 08:14Z, claimed).",
+          "The selected pickup slot is 22 Oct 09:00-10:00Z (OPS-set). The customer's availability window is 22 Oct 07:00-15:00Z. The delivery promise is 23 Oct 11:00-13:00Z.",
+          "No travel options or bookings are recorded for this order (get_travel_options, get_case).",
+          "The assignment stays accepted (ops note 08:54Z; answer book: it stays accepted until the driver withdraws). No slot change has been agreed.",
+          "Her current location is not verified. The previous-duty tracking is only an ETA. There is no Hamburg-Leipzig road estimate available.",
+          "A customer holding message is drafted for a person to send. It says timing is under review and does not mention the other trip."
+        ],
+        "what_i_dont_know": [
+          "Whether any replacement driver can take the existing Leipzig slot.",
+          "Whether the customer would accept a later slot on 22 Oct (inside their 07:00-15:00Z availability window) or a different day.",
+          "Whether Freya could still reach Leipzig inside the customer window after starting at 12:00 local, given the Hamburg-Leipzig travel time, which is unknown.",
+          "Whether the 23 Oct delivery promise can still be met if the pickup moves."
+        ]
+      },
+      "seq": 11,
+      "at": "2026-10-21T09:03:40.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "escalate",
+      "output": {
+        "handed_over": true
+      },
+      "seq": 12,
+      "at": "2026-10-21T09:04:00.000Z"
+    },
+    {
+      "kind": "message",
+      "text": "Freya Marvellen can't make the Leipzig pickup slot on 22 Oct (09:00–10:00Z). She is still on CD-420326 heading to Hamburg and needs rest afterwards. Her first available travel time is after 12:00 local tomorrow, and no positioning travel is booked. This is her own account from the driver chat and ops notes. Her location is not verified, and I couldn't get a Hamburg–Leipzig road time. Her assignment stays accepted and no slot change has been agreed.\n\nI can't see other drivers, and I may not contact the customer. So I've escalated the case and drafted a holding message to the customer for a person to send. It says the collection timing is under review and doesn't mention the other trip.\n\nThe decision waiting for you is whether another driver can cover the existing slot. If none can, someone needs to get the customer's approval for a later slot before the assignment is changed. The customer is available until 15:00Z that day, and delivery is promised for 23 Oct 11:00–13:00Z.",
+      "seq": 13,
+      "at": "2026-10-21T09:04:20.000Z"
+    }
+  ],
+  "proposals": [
+    {
+      "id": "dec-run-CD-420399-on_the_road-1",
+      "action": "draft_customer_update",
+      "payload": {
+        "order": "CD-420399",
+        "body": "Hello, this is an update on the collection of your Ferrari 296 GTB (CD-420399). We are reviewing the collection timing for the Leipzig pickup planned for 22 October, 11:00–12:00 local time. We are checking what we can do to keep that slot. Nothing has changed yet and no new slot has been agreed. If we cannot keep it, we will come back to you with a proposed alternative for your approval. Your delivery promise of 23 October, 13:00–15:00 local time, is not yet confirmed as affected. We will update you as soon as we know more."
+      },
+      "headline": "Send the customer an update: Hello, this is an update on the collection of your Ferrari 296 GTB (CD-420399). We are reviewing the collection timing for the Leipzig pickup planned for 22 October, 11:00–12:00 local time. We are checking what we can do to keep that slot. Nothing has changed yet and no new slot has been agreed. If we cannot keep it, we will come back to you with a proposed alternative for your approval. Your delivery promise of 23 October, 13:00–15:00 local time, is not yet confirmed as affected. We will update you as soon as we know more.",
+      "blockers": [],
+      "evidence": [
+        {
+          "strength": "reported",
+          "label": "system alert",
+          "at": "2026-10-21T08:25:00Z"
+        },
+        {
+          "strength": "claimed",
+          "label": "driver said",
+          "at": "2026-10-21T08:14:00Z"
+        },
+        {
+          "strength": "reported",
+          "label": "ops note",
+          "at": "2026-10-21T08:21:00Z"
+        },
+        {
+          "strength": "reported",
+          "label": "ops note",
+          "at": "2026-10-21T08:32:00Z"
+        },
+        {
+          "strength": "reported",
+          "label": "ops note",
+          "at": "2026-10-21T08:54:00Z"
+        },
+        {
+          "strength": "reported",
+          "label": "system record",
+          "at": "2026-10-21T08:27:00Z"
+        }
+      ]
+    }
+  ],
+  "escalation": {
+    "reason": "Driver cannot make the selected Leipzig slot. Replacement capacity must be checked and, if none exists, the customer must agree to a changed slot. I have no tool to see other drivers and may not contact the customer.",
+    "what_i_know": [
+      "Driver Freya Marvellen (home Düsseldorf) is on CD-420326 heading toward Hamburg and needs rest after that handover. Her first travel time is after 12:00 local tomorrow (driver chat, 08:14Z, claimed).",
+      "The selected pickup slot is 22 Oct 09:00-10:00Z (OPS-set). The customer's availability window is 22 Oct 07:00-15:00Z. The delivery promise is 23 Oct 11:00-13:00Z.",
+      "No travel options or bookings are recorded for this order (get_travel_options, get_case).",
+      "The assignment stays accepted (ops note 08:54Z; answer book: it stays accepted until the driver withdraws). No slot change has been agreed.",
+      "Her current location is not verified. The previous-duty tracking is only an ETA. There is no Hamburg-Leipzig road estimate available.",
+      "A customer holding message is drafted for a person to send. It says timing is under review and does not mention the other trip."
+    ],
+    "what_i_dont_know": [
+      "Whether any replacement driver can take the existing Leipzig slot.",
+      "Whether the customer would accept a later slot on 22 Oct (inside their 07:00-15:00Z availability window) or a different day.",
+      "Whether Freya could still reach Leipzig inside the customer window after starting at 12:00 local, given the Hamburg-Leipzig travel time, which is unknown.",
+      "Whether the 23 Oct delivery promise can still be met if the pickup moves."
+    ]
+  },
+  "headsUp": null,
+  "summary": "Freya Marvellen can't make the Leipzig pickup slot on 22 Oct (09:00–10:00Z). She is still on CD-420326 heading to Hamburg and needs rest afterwards. Her first available travel time is after 12:00 local tomorrow, and no positioning travel is booked. This is her own account from the driver chat and ops notes. Her location is not verified, and I couldn't get a Hamburg–Leipzig road time. Her assignment stays accepted and no slot change has been agreed.\n\nI can't see other drivers, and I may not contact the customer. So I've escalated the case and drafted a holding message to the customer for a person to send. It says the collection timing is under review and doesn't mention the other trip.\n\nThe decision waiting for you is whether another driver can cover the existing slot. If none can, someone needs to get the customer's approval for a later slot before the assignment is changed. The customer is available until 15:00Z that day, and delivery is promised for 23 Oct 11:00–13:00Z."
+}

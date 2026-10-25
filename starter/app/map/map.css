@@ -1,0 +1,72 @@
+/* The ops map and the answer book, ported from the team's BahnOS (ADR-017). They are written in
+   Tailwind; only their own folders are scanned, so no other page gets a utility class. Their colour
+   names point at BahnOS's tokens, so they follow the light and dark themes like every other page. */
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities) source(none);
+@source "./";
+@source "../answers"; /* the answer book page */
+
+@theme inline {
+  --color-canvas: var(--bg);
+  --color-card: var(--surface);
+  --color-birch: var(--surface-3);
+  --color-hair: var(--line);
+  --color-sand: var(--line-2);
+  --color-fill: var(--surface-3);
+  --color-label: var(--text);
+  --color-body: var(--text-2);
+  --color-secondary: var(--text-2);
+  --color-tertiary: var(--text-3);
+  --color-ink: var(--text);
+  --color-red: var(--danger);
+  --color-orange: var(--accent);
+  --color-amber: var(--warn);
+  --color-green: var(--ok);
+  --color-teal: var(--info);
+  --color-bot: var(--accent);
+  --font-display: var(--font-sans);
+}
+
+/* Tailwind's base reset, scoped to these views only: their components assume it, the rest of BahnOS does not. */
+@layer base {
+  :where(.tw) *, :where(.tw) ::before, :where(.tw) ::after { box-sizing: border-box; margin: 0; padding: 0; border: 0 solid; }
+  :where(.tw) button, :where(.tw) input { font: inherit; color: inherit; background: transparent; border-radius: 0; }
+  :where(.tw) button { cursor: pointer; text-align: inherit; }
+  :where(.tw) ul, :where(.tw) ol { list-style: none; }
+  :where(.tw) a { color: inherit; text-decoration: inherit; }
+  :where(.tw) svg { display: block; }
+  :where(.tw) svg.icon { display: inline-block; }
+}
+
+@keyframes ops-flow {
+  to { stroke-dashoffset: -16; }
+}
+@keyframes ops-pulse {
+  0% { r: 4; opacity: 0.7; }
+  100% { r: 13; opacity: 0; }
+}
+.ops-flow { animation: ops-flow 1.2s linear infinite; }
+.ops-pulse { animation: ops-pulse 2s ease-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .ops-flow, .ops-pulse { animation: none; }
+}
+
+/* MapLibre's controls, in the BahnOS tokens. */
+.maplibregl-ctrl-group {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-2);
+}
+.maplibregl-ctrl-group button + button { border-top-color: var(--line); }
+:root[data-theme="dark"] .maplibregl-ctrl-icon,
+:root[data-theme="dark"] .maplibregl-ctrl-attrib-button { filter: invert(1) opacity(0.7); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .maplibregl-ctrl-icon,
+  :root:not([data-theme="light"]) .maplibregl-ctrl-attrib-button { filter: invert(1) opacity(0.7); }
+}
+.maplibregl-ctrl.maplibregl-ctrl-attrib,
+.maplibregl-ctrl.maplibregl-ctrl-attrib.maplibregl-compact-show {
+  background: color-mix(in srgb, var(--surface) 85%, transparent);
+  color: var(--text-3);
+}
+.maplibregl-ctrl-attrib a { color: var(--text-2); }

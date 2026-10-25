@@ -1,0 +1,763 @@
+{
+  "id": "run-CD-420299-on_the_road",
+  "order": "CD-420299",
+  "trigger": "on_the_road",
+  "mode": "recorded",
+  "model": "anthropic/claude-sonnet-5.5",
+  "prompt": "New alert: the current ferry crossing is unavailable, and an earlier attempt to book a replacement timed out without a confirmation. Work the case and bring a person one decision.",
+  "startedAt": "2026-10-21T09:00:00.000Z",
+  "finishedAt": "2026-10-21T09:07:40.000Z",
+  "status": "done",
+  "steps": [
+    {
+      "kind": "tool_call",
+      "tool": "get_case",
+      "input": {
+        "order": "CD-420299"
+      },
+      "seq": 1,
+      "at": "2026-10-21T09:00:20.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "get_case",
+      "output": {
+        "order": "CD-420299",
+        "status": "WAITING_FOR_PICKUP",
+        "route_kind": "IMPORT",
+        "car": "BMW M4",
+        "customer": "Kavellora Car House",
+        "driver": "Camille Emberwick (home Pori)",
+        "windows": [
+          {
+            "purpose": "PICKUP_AVAILABILITY",
+            "start": "2026-10-23T07:00:00Z",
+            "end": "2026-10-23T15:00:00Z",
+            "timezone": "Europe/Berlin",
+            "set_by": "CUSTOMER"
+          },
+          {
+            "purpose": "SELECTED_PICKUP_SLOT",
+            "start": "2026-10-23T09:00:00Z",
+            "end": "2026-10-23T11:00:00Z",
+            "timezone": "Europe/Berlin",
+            "set_by": "OPS"
+          },
+          {
+            "purpose": "CUSTOMER_DELIVERY_PROMISE",
+            "start": "2026-10-27T11:00:00Z",
+            "end": "2026-10-27T13:00:00Z",
+            "timezone": "Europe/Helsinki",
+            "set_by": "CUSTOMER"
+          }
+        ],
+        "travel": [
+          {
+            "id": "travel-xc1d8163d5443a606",
+            "kind": "FERRY",
+            "provider": "Vela Coast Lines",
+            "from": "West Baltic terminal",
+            "to": "South Finland terminal",
+            "departs": "2026-10-23T22:00:00Z",
+            "arrives": "2026-10-25T02:00:00Z",
+            "check_in_cutoff": "2026-10-23T20:00:00Z",
+            "price_cents": null,
+            "note": "Vehicle slot unavailable",
+            "evidence": {
+              "strength": "observed",
+              "label": "provider said sold out",
+              "at": "2026-10-21T07:00:00Z"
+            }
+          },
+          {
+            "id": "travel-xf29ed1732d895f37",
+            "kind": "FERRY",
+            "provider": "Vela Coast Lines",
+            "from": "West Baltic terminal",
+            "to": "South Finland terminal",
+            "departs": "2026-10-24T12:00:00Z",
+            "arrives": "2026-10-25T16:00:00Z",
+            "check_in_cutoff": "2026-10-24T10:00:00Z",
+            "price_cents": 38700,
+            "note": "Vehicle slot quoted, not booked",
+            "evidence": {
+              "strength": "observed",
+              "label": "quoted by provider, not booked",
+              "at": "2026-10-21T07:00:00Z"
+            }
+          }
+        ],
+        "bookings": [],
+        "alerts": [
+          {
+            "signal": "FERRY_SOLD_OUT",
+            "status": "ACKNOWLEDGED",
+            "summary": "Current crossing is unavailable; alternative and customer promise need a decision.",
+            "next_action": null,
+            "evidence": {
+              "strength": "reported",
+              "label": "system alert",
+              "at": "2026-10-21T07:26:00Z"
+            }
+          }
+        ],
+        "messages": [
+          {
+            "at": "2026-10-21T07:20:00Z",
+            "channel": "driver_chat",
+            "text": "I have the gig for CD-420299, but I do not have a ferry reference. Is the overnight vehicle crossing booked?",
+            "evidence": {
+              "strength": "claimed",
+              "label": "driver said",
+              "at": "2026-10-21T07:20:00Z"
+            }
+          },
+          {
+            "at": "2026-10-21T07:29:00Z",
+            "channel": "driver_chat",
+            "text": "It is not booked. I am checking capacity against the pickup and delivery windows now.",
+            "evidence": {
+              "strength": "reported",
+              "label": "ops note",
+              "at": "2026-10-21T07:29:00Z"
+            }
+          },
+          {
+            "at": "2026-10-21T07:38:00Z",
+            "channel": "internal_note",
+            "text": "The overnight sailing returned sold out. The later sailing has a quote only. Check driver rest and customer promise before purchase.",
+            "evidence": {
+              "strength": "reported",
+              "label": "ops note",
+              "at": "2026-10-21T07:38:00Z"
+            }
+          },
+          {
+            "at": "2026-10-21T07:47:00Z",
+            "channel": "driver_chat",
+            "text": "The overnight crossing is unavailable. I am checking an alternative and will confirm the revised plan before you start toward the terminal.",
+            "evidence": {
+              "strength": "reported",
+              "label": "ops note",
+              "at": "2026-10-21T07:47:00Z"
+            }
+          },
+          {
+            "at": "2026-10-21T07:56:00Z",
+            "channel": "customer_email",
+            "text": "Please keep us informed. We need to approve a later delivery date before it is promised to the receiving contact.",
+            "evidence": {
+              "strength": "claimed",
+              "label": "customer said",
+              "at": "2026-10-21T07:56:00Z"
+            }
+          },
+          {
+            "at": "2026-10-21T08:05:00Z",
+            "channel": "driver_chat",
+            "text": "The later sailing can work for me if the overnight stop and return travel are arranged. I have not changed my pickup time.",
+            "evidence": {
+              "strength": "claimed",
+              "label": "driver said",
+              "at": "2026-10-21T08:05:00Z"
+            }
+          },
+          {
+            "at": "2026-10-21T08:14:00Z",
+            "channel": "internal_note",
+            "text": "No ferry booking, hotel booking or changed customer promise exists yet. Prepare a reviewable plan with the cost and ETA difference.",
+            "evidence": {
+              "strength": "reported",
+              "label": "ops note",
+              "at": "2026-10-21T08:14:00Z"
+            }
+          }
+        ],
+        "earlier_agent_actions": [
+          {
+            "action": "travel.verify_booking_outcome",
+            "status": "PENDING_REVIEW",
+            "error": null,
+            "evidence": {
+              "strength": "reported",
+              "label": "system record",
+              "at": "2026-10-21T08:16:00Z"
+            }
+          },
+          {
+            "action": "travel.book_ferry",
+            "status": "FAILED",
+            "error": "Provider request timed out without a confirmation reference. Outcome needs reconciliation; no reservation is recorded.",
+            "evidence": {
+              "strength": "reported",
+              "label": "booking outcome unknown",
+              "at": "2026-10-21T07:10:00Z"
+            }
+          }
+        ],
+        "open_work": [
+          {
+            "kind": "TRAVEL_CAPACITY",
+            "status": "AWAITING_DECISION"
+          }
+        ],
+        "now": "2026-10-21T09:00:00.000Z"
+      },
+      "seq": 2,
+      "at": "2026-10-21T09:00:40.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "get_travel_options",
+      "input": {
+        "order": "CD-420299"
+      },
+      "seq": 3,
+      "at": "2026-10-21T09:01:00.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "get_travel_options",
+      "output": {
+        "order": "CD-420299",
+        "travel": [
+          {
+            "id": "travel-xc1d8163d5443a606",
+            "kind": "FERRY",
+            "provider": "Vela Coast Lines",
+            "from": "West Baltic terminal",
+            "to": "South Finland terminal",
+            "departs": "2026-10-23T22:00:00Z",
+            "arrives": "2026-10-25T02:00:00Z",
+            "check_in_cutoff": "2026-10-23T20:00:00Z",
+            "price_cents": null,
+            "note": "Vehicle slot unavailable",
+            "evidence": {
+              "strength": "observed",
+              "label": "provider said sold out",
+              "at": "2026-10-21T07:00:00Z"
+            }
+          },
+          {
+            "id": "travel-xf29ed1732d895f37",
+            "kind": "FERRY",
+            "provider": "Vela Coast Lines",
+            "from": "West Baltic terminal",
+            "to": "South Finland terminal",
+            "departs": "2026-10-24T12:00:00Z",
+            "arrives": "2026-10-25T16:00:00Z",
+            "check_in_cutoff": "2026-10-24T10:00:00Z",
+            "price_cents": 38700,
+            "note": "Vehicle slot quoted, not booked",
+            "evidence": {
+              "strength": "observed",
+              "label": "quoted by provider, not booked",
+              "at": "2026-10-21T07:00:00Z"
+            }
+          }
+        ],
+        "bookings": []
+      },
+      "seq": 4,
+      "at": "2026-10-21T09:01:20.000Z"
+    },
+    {
+      "kind": "message",
+      "text": "Check what the provider actually holds.",
+      "seq": 5,
+      "at": "2026-10-21T09:01:40.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "check_provider_status",
+      "input": {
+        "order": "CD-420299",
+        "provider": "Vela Coast Lines"
+      },
+      "seq": 6,
+      "at": "2026-10-21T09:02:00.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "check_provider_status",
+      "output": {
+        "order": "CD-420299",
+        "provider": "Vela Coast Lines",
+        "holds_reservation": false,
+        "reference": null,
+        "evidence": {
+          "strength": "observed",
+          "label": "provider desk replied (mock)",
+          "at": "2026-10-21T09:00:00.000Z"
+        },
+        "answer": "No reservation is held for this order. No charge was taken. Any earlier request did not complete."
+      },
+      "seq": 7,
+      "at": "2026-10-21T09:02:20.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "price_alternatives",
+      "input": {
+        "order": "CD-420299",
+        "reason": "Overnight sailing sold out; later sailing quoted only; need hotel/return and ETA vs customer promise."
+      },
+      "seq": 8,
+      "at": "2026-10-21T09:02:40.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "price_alternatives",
+      "output": {
+        "order": "CD-420299",
+        "delivery_promise_ends": "2026-10-27T13:00:00Z",
+        "options": [
+          {
+            "option_id": "travel-xf29ed1732d895f37",
+            "label": "Vela Coast Lines West Baltic terminal to South Finland terminal",
+            "departure_at": "2026-10-24T12:00:00Z",
+            "check_in_cutoff_at": "2026-10-24T10:00:00Z",
+            "status": "quote, not booked",
+            "quote_checked_at": "2026-10-21T07:00:00Z",
+            "ferry_cents": 38700,
+            "hotel_nights": 1,
+            "hotel_cents": 9500,
+            "total_cents": 48200,
+            "currency": "EUR",
+            "driver_at_terminal_estimate": "2026-10-23T18:00:00.000Z",
+            "makes_check_in": true,
+            "arrives_by": "2026-10-25T16:00:00Z",
+            "delivered_by_estimate": "2026-10-25T19:00:00.000Z",
+            "makes_delivery_promise": true,
+            "basis": "Packet quote and timetable; hotel price and last-stretch time are mock estimates."
+          }
+        ]
+      },
+      "seq": 9,
+      "at": "2026-10-21T09:03:00.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "answer_book",
+      "input": {
+        "question": "Ferry is sold out and I must wait for the later sailing; may the driver get a hotel night and who pays? Return travel home?",
+        "order": "CD-420299"
+      },
+      "seq": 10,
+      "at": "2026-10-21T09:03:20.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "answer_book",
+      "output": {
+        "market": "FI",
+        "entries": [
+          {
+            "id": "road-ferry-risk",
+            "topic": "On the road",
+            "routing": "ASK",
+            "answer": "Confirm whether they are still in the queue with the car and get their latest estimate. Keep the existing booking active.",
+            "reads": [
+              "travel_reservations",
+              "travel_options",
+              "ferry_terminal_events"
+            ],
+            "cautions": [
+              "Never tell a driver to turn away from the terminal.",
+              "Never promise another crossing before capacity and fare are confirmed. A quote is not a booking.",
+              "Only a gate observation confirms check-in."
+            ],
+            "corners": [],
+            "escalate_to": "ops-travel",
+            "market": "ALL"
+          },
+          {
+            "id": "pay-return-trip",
+            "topic": "Pay & invoicing",
+            "routing": "ANSWER",
+            "answer": "On international gigs, return travel by public transport is reimbursed. On domestic gigs, you take a bundled gig that includes a return car rather than being reimbursed for transport.",
+            "reads": [],
+            "cautions": [],
+            "corners": [],
+            "escalate_to": null,
+            "market": "FI"
+          },
+          {
+            "id": "pick-waiting-time",
+            "topic": "Pickup",
+            "routing": "ANSWER",
+            "answer": "There is 45 minutes of free waiting time at pickup or delivery. Beyond that a waiting fee runs at €25 per vehicle per additional half hour on a driven transfer, capped at the empty pickup fee. Tell the driver to log when they arrived.",
+            "reads": [],
+            "cautions": [
+              "The waiting fee is charged to the customer, not paid to the driver. Never present it as the driver’s compensation."
+            ],
+            "corners": [
+              {
+                "when": "The free 45 minutes is nearly up and nothing is happening",
+                "then": "Record the arrival time and escalate before the driver leaves. A failed pickup the customer caused — car unavailable, not roadworthy, nobody authorised, missing documents or keys — is an empty pickup, and that is a commercial decision, not the driver’s.",
+                "routing": "ESCALATE"
+              }
+            ],
+            "escalate_to": "ops-readiness",
+            "market": "ALL"
+          }
+        ],
+        "note": "Follow each entry's routing. Never assert anything listed under cautions."
+      },
+      "seq": 11,
+      "at": "2026-10-21T09:03:40.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "call_site",
+      "input": {
+        "order": "CD-420299",
+        "recipient_role": "travel_provider",
+        "questions": [
+          "Is a vehicle slot still available on the 24 Oct 12:00 West Baltic to South Finland sailing, and is the quote of 387.00 EUR still valid?",
+          "Can the slot be held until a Bahn person approves, and for how long?"
+        ]
+      },
+      "seq": 12,
+      "at": "2026-10-21T09:04:00.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "call_site",
+      "output": {
+        "order": "CD-420299",
+        "recipient_role": "site",
+        "placed": true,
+        "recorded": true,
+        "with": "site",
+        "who": "Vela Coast Lines booking desk",
+        "transcript": [
+          {
+            "speaker": "agent",
+            "text": "Hello, this is an AI assistant calling for Bahn about order CD-420299. Do you hold a vehicle reservation for it from this morning's request?",
+            "at": "2026-10-21T09:00:00.000Z"
+          },
+          {
+            "speaker": "site",
+            "text": "Let me check. No, there's no reservation under that order. The request at ten past seven never completed, and nothing was charged.",
+            "at": "2026-10-21T09:00:09.000Z"
+          },
+          {
+            "speaker": "agent",
+            "text": "Thank you. Is there still vehicle space on Saturday's sailing from the West Baltic terminal?",
+            "at": "2026-10-21T09:00:21.000Z"
+          },
+          {
+            "speaker": "site",
+            "text": "Yes, there's space as of now. That's a quote, not a hold. I can't keep it for you without a booking.",
+            "at": "2026-10-21T09:00:28.000Z"
+          },
+          {
+            "speaker": "agent",
+            "text": "Understood. A colleague will decide and come back to you. Thank you for checking.",
+            "at": "2026-10-21T09:00:37.000Z"
+          }
+        ],
+        "answers": [
+          {
+            "fact": "The desk holds no reservation for the timed-out request, and nothing was charged.",
+            "evidence": {
+              "strength": "claimed",
+              "label": "site said on a call",
+              "at": "2026-10-21T09:00:09.000Z"
+            }
+          },
+          {
+            "fact": "Saturday's sailing still has vehicle space, as a quote, not a hold.",
+            "evidence": {
+              "strength": "claimed",
+              "label": "site said on a call",
+              "at": "2026-10-21T09:00:28.000Z"
+            }
+          }
+        ]
+      },
+      "seq": 13,
+      "at": "2026-10-21T09:04:20.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "get_ferry_terminals",
+      "input": {},
+      "seq": 14,
+      "at": "2026-10-21T09:04:40.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "get_ferry_terminals",
+      "output": {
+        "terminals": [
+          {
+            "id": "terminal-west-baltic",
+            "name": "West Baltic Vehicle Terminal",
+            "city": "Hamburg",
+            "note": "Terminal location held at city level; no gate address is recorded."
+          },
+          {
+            "id": "terminal-south-baltic",
+            "name": "South Baltic Vehicle Terminal",
+            "city": "Copenhagen",
+            "note": "Terminal location held at city level; no gate address is recorded."
+          },
+          {
+            "id": "terminal-east-nordic",
+            "name": "East Nordic Vehicle Terminal",
+            "city": "Stockholm",
+            "note": "Terminal location held at city level; no gate address is recorded."
+          },
+          {
+            "id": "terminal-south-finland",
+            "name": "South Finland Vehicle Terminal",
+            "city": "Helsinki",
+            "note": "Terminal location held at city level; no gate address is recorded."
+          }
+        ]
+      },
+      "seq": 15,
+      "at": "2026-10-21T09:05:00.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "propose_booking",
+      "input": {
+        "order": "CD-420299",
+        "option_id": "travel-xf29ed1732d895f37",
+        "why": "Overnight 23 Oct sailing is sold out. Provider confirmed at 09:00 that no reservation or charge exists from the timed-out attempt, so booking will not duplicate. 24 Oct 12:00 sailing has space (quote 387.00 EUR, not held; check-in 10:00). Arrives 25 Oct 16:00, delivery est. 25 Oct 19:00, inside the 27 Oct 11:00-13:00 promise, so no customer date change needed."
+      },
+      "seq": 16,
+      "at": "2026-10-21T09:05:20.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "propose_booking",
+      "output": {
+        "proposed": true,
+        "id": "dec-run-CD-420299-on_the_road-1",
+        "note": "Waiting for a person to decide. Nothing has changed yet."
+      },
+      "seq": 17,
+      "at": "2026-10-21T09:05:40.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "propose_hotel",
+      "input": {
+        "order": "CD-420299",
+        "city": "Hamburg",
+        "night_of": "2026-10-23"
+      },
+      "seq": 18,
+      "at": "2026-10-21T09:06:00.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "propose_hotel",
+      "output": {
+        "proposed": true,
+        "id": "dec-run-CD-420299-on_the_road-2",
+        "note": "Waiting for a person to decide. Nothing has changed yet."
+      },
+      "seq": 19,
+      "at": "2026-10-21T09:06:20.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "propose_cost",
+      "input": {
+        "order": "CD-420299",
+        "amount_cents": 48200,
+        "currency": "EUR",
+        "why": "Ferry 387.00 EUR (quote, not booked) plus one hotel night in Hamburg ~95.00 EUR (mock estimate) for the 24 Oct sailing. Driver return travel by public transport is reimbursable on international gigs, amount not yet priced."
+      },
+      "seq": 20,
+      "at": "2026-10-21T09:06:40.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "propose_cost",
+      "output": {
+        "proposed": true,
+        "id": "dec-run-CD-420299-on_the_road-3",
+        "note": "Waiting for a person to decide. Nothing has changed yet."
+      },
+      "seq": 21,
+      "at": "2026-10-21T09:07:00.000Z"
+    },
+    {
+      "kind": "message",
+      "text": "The overnight sailing on 23 Oct is sold out. The earlier booking attempt that timed out left nothing behind. The ferry desk told me twice, including on a call, that it holds no reservation and took no charge, so a new booking won't duplicate anything.\n\nThe decision for you is whether to approve the Vela Coast Lines sailing on 24 Oct at 12:00, with a hotel night in Hamburg on 23 Oct. The total is about 482 EUR: ferry 387 EUR plus a hotel estimate of 95 EUR. The ferry has space but the desk can't hold it without a booking, and the driver must check in by 10:00 on 24 Oct. This sailing arrives on 25 Oct at 16:00, and I estimate delivery that evening. That is inside the 27 Oct 11:00–13:00 promise, so the customer needs no date change. The driver said this plan works for her.\n\nNot yet known:\n- The hotel price is a mock estimate.\n- The driver's return travel home isn't priced. Public transport is reimbursed on international gigs.\n- The last-stretch time is an estimate.\n\nI didn't draft a customer message because the promise is unchanged.",
+      "seq": 22,
+      "at": "2026-10-21T09:07:20.000Z"
+    }
+  ],
+  "proposals": [
+    {
+      "id": "dec-run-CD-420299-on_the_road-1",
+      "action": "propose_booking",
+      "payload": {
+        "order": "CD-420299",
+        "option_id": "travel-xf29ed1732d895f37",
+        "why": "Overnight 23 Oct sailing is sold out. Provider confirmed at 09:00 that no reservation or charge exists from the timed-out attempt, so booking will not duplicate. 24 Oct 12:00 sailing has space (quote 387.00 EUR, not held; check-in 10:00). Arrives 25 Oct 16:00, delivery est. 25 Oct 19:00, inside the 27 Oct 11:00-13:00 promise, so no customer date change needed."
+      },
+      "headline": "Book travel: Overnight 23 Oct sailing is sold out. Provider confirmed at 09:00 that no reservation or charge exists from the timed-out attempt, so booking will not duplicate. 24 Oct 12:00 sailing has space (quote 387.00 EUR, not held; check-in 10:00). Arrives 25 Oct 16:00, delivery est. 25 Oct 19:00, inside the 27 Oct 11:00-13:00 promise, so no customer date change needed.",
+      "blockers": [],
+      "evidence": [
+        {
+          "strength": "reported",
+          "label": "ops note",
+          "at": "2026-10-21T08:14:00Z"
+        },
+        {
+          "strength": "reported",
+          "label": "system record",
+          "at": "2026-10-21T08:16:00Z"
+        },
+        {
+          "strength": "reported",
+          "label": "booking outcome unknown",
+          "at": "2026-10-21T07:10:00Z"
+        },
+        {
+          "strength": "observed",
+          "label": "provider said sold out",
+          "at": "2026-10-21T07:00:00Z"
+        },
+        {
+          "strength": "observed",
+          "label": "quoted by provider, not booked",
+          "at": "2026-10-21T07:00:00Z"
+        },
+        {
+          "strength": "observed",
+          "label": "provider desk replied (mock)",
+          "at": "2026-10-21T09:00:00.000Z"
+        },
+        {
+          "strength": "claimed",
+          "label": "site said on a call",
+          "at": "2026-10-21T09:00:09.000Z"
+        },
+        {
+          "strength": "claimed",
+          "label": "site said on a call",
+          "at": "2026-10-21T09:00:28.000Z"
+        }
+      ]
+    },
+    {
+      "id": "dec-run-CD-420299-on_the_road-2",
+      "action": "propose_hotel",
+      "payload": {
+        "order": "CD-420299",
+        "city": "Hamburg",
+        "night_of": "2026-10-23"
+      },
+      "headline": "Book a hotel night",
+      "blockers": [],
+      "evidence": [
+        {
+          "strength": "reported",
+          "label": "ops note",
+          "at": "2026-10-21T08:14:00Z"
+        },
+        {
+          "strength": "reported",
+          "label": "system record",
+          "at": "2026-10-21T08:16:00Z"
+        },
+        {
+          "strength": "reported",
+          "label": "booking outcome unknown",
+          "at": "2026-10-21T07:10:00Z"
+        },
+        {
+          "strength": "observed",
+          "label": "provider said sold out",
+          "at": "2026-10-21T07:00:00Z"
+        },
+        {
+          "strength": "observed",
+          "label": "quoted by provider, not booked",
+          "at": "2026-10-21T07:00:00Z"
+        },
+        {
+          "strength": "observed",
+          "label": "provider desk replied (mock)",
+          "at": "2026-10-21T09:00:00.000Z"
+        },
+        {
+          "strength": "claimed",
+          "label": "site said on a call",
+          "at": "2026-10-21T09:00:09.000Z"
+        },
+        {
+          "strength": "claimed",
+          "label": "site said on a call",
+          "at": "2026-10-21T09:00:28.000Z"
+        }
+      ]
+    },
+    {
+      "id": "dec-run-CD-420299-on_the_road-3",
+      "action": "propose_cost",
+      "payload": {
+        "order": "CD-420299",
+        "amount_cents": 48200,
+        "currency": "EUR",
+        "why": "Ferry 387.00 EUR (quote, not booked) plus one hotel night in Hamburg ~95.00 EUR (mock estimate) for the 24 Oct sailing. Driver return travel by public transport is reimbursable on international gigs, amount not yet priced."
+      },
+      "headline": "Approve a cost: Ferry 387.00 EUR (quote, not booked) plus one hotel night in Hamburg ~95.00 EUR (mock estimate) for the 24 Oct sailing. Driver return travel by public transport is reimbursable on international gigs, amount not yet priced.",
+      "blockers": [],
+      "evidence": [
+        {
+          "strength": "reported",
+          "label": "ops note",
+          "at": "2026-10-21T08:14:00Z"
+        },
+        {
+          "strength": "reported",
+          "label": "system record",
+          "at": "2026-10-21T08:16:00Z"
+        },
+        {
+          "strength": "reported",
+          "label": "booking outcome unknown",
+          "at": "2026-10-21T07:10:00Z"
+        },
+        {
+          "strength": "observed",
+          "label": "provider said sold out",
+          "at": "2026-10-21T07:00:00Z"
+        },
+        {
+          "strength": "observed",
+          "label": "quoted by provider, not booked",
+          "at": "2026-10-21T07:00:00Z"
+        },
+        {
+          "strength": "observed",
+          "label": "provider desk replied (mock)",
+          "at": "2026-10-21T09:00:00.000Z"
+        },
+        {
+          "strength": "claimed",
+          "label": "site said on a call",
+          "at": "2026-10-21T09:00:09.000Z"
+        },
+        {
+          "strength": "claimed",
+          "label": "site said on a call",
+          "at": "2026-10-21T09:00:28.000Z"
+        }
+      ]
+    }
+  ],
+  "escalation": null,
+  "headsUp": null,
+  "summary": "The overnight sailing on 23 Oct is sold out. The earlier booking attempt that timed out left nothing behind. The ferry desk told me twice, including on a call, that it holds no reservation and took no charge, so a new booking won't duplicate anything.\n\nThe decision for you is whether to approve the Vela Coast Lines sailing on 24 Oct at 12:00, with a hotel night in Hamburg on 23 Oct. The total is about 482 EUR: ferry 387 EUR plus a hotel estimate of 95 EUR. The ferry has space but the desk can't hold it without a booking, and the driver must check in by 10:00 on 24 Oct. This sailing arrives on 25 Oct at 16:00, and I estimate delivery that evening. That is inside the 27 Oct 11:00–13:00 promise, so the customer needs no date change. The driver said this plan works for her.\n\nNot yet known:\n- The hotel price is a mock estimate.\n- The driver's return travel home isn't priced. Public transport is reimbursed on international gigs.\n- The last-stretch time is an estimate.\n\nI didn't draft a customer message because the promise is unchanged."
+}

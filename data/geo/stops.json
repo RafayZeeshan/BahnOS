@@ -1,0 +1,482 @@
+{
+  "note": "Indicative routes. Terminals are fictional and approximate.",
+  "stops": {
+    "Aalborg": {
+      "name": "Aalborg",
+      "lat": 57.048,
+      "lon": 9.919,
+      "country": "DK",
+      "timezone": "Europe/Copenhagen",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Aarhus": {
+      "name": "Aarhus",
+      "lat": 56.157,
+      "lon": 10.211,
+      "country": "DK",
+      "timezone": "Europe/Copenhagen",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Antwerp": {
+      "name": "Antwerp",
+      "lat": 51.219,
+      "lon": 4.402,
+      "country": "BE",
+      "timezone": "Europe/Brussels",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Berlin": {
+      "name": "Berlin",
+      "lat": 52.52,
+      "lon": 13.405,
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Bordeaux": {
+      "name": "Bordeaux",
+      "lat": 44.838,
+      "lon": -0.579,
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Cologne": {
+      "name": "Cologne",
+      "lat": 50.938,
+      "lon": 6.96,
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Copenhagen": {
+      "name": "Copenhagen",
+      "lat": 55.676,
+      "lon": 12.568,
+      "country": "DK",
+      "timezone": "Europe/Copenhagen",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Düsseldorf": {
+      "name": "Düsseldorf",
+      "lat": 51.227,
+      "lon": 6.773,
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Espoo": {
+      "name": "Espoo",
+      "lat": 60.205,
+      "lon": 24.652,
+      "country": "FI",
+      "timezone": "Europe/Helsinki",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Frankfurt": {
+      "name": "Frankfurt",
+      "lat": 50.11,
+      "lon": 8.682,
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Gothenburg": {
+      "name": "Gothenburg",
+      "lat": 57.709,
+      "lon": 11.974,
+      "country": "SE",
+      "timezone": "Europe/Stockholm",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Graz": {
+      "name": "Graz",
+      "lat": 47.071,
+      "lon": 15.439,
+      "country": "AT",
+      "timezone": "Europe/Vienna",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Hamburg": {
+      "name": "Hamburg",
+      "lat": 53.551,
+      "lon": 9.993,
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Helsinki": {
+      "name": "Helsinki",
+      "lat": 60.17,
+      "lon": 24.938,
+      "country": "FI",
+      "timezone": "Europe/Helsinki",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Lahti": {
+      "name": "Lahti",
+      "lat": 60.983,
+      "lon": 25.656,
+      "country": "FI",
+      "timezone": "Europe/Helsinki",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Leipzig": {
+      "name": "Leipzig",
+      "lat": 51.34,
+      "lon": 12.375,
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Lille": {
+      "name": "Lille",
+      "lat": 50.629,
+      "lon": 3.057,
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Linköping": {
+      "name": "Linköping",
+      "lat": 58.411,
+      "lon": 15.622,
+      "country": "SE",
+      "timezone": "Europe/Stockholm",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Lyon": {
+      "name": "Lyon",
+      "lat": 45.764,
+      "lon": 4.836,
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Malmö": {
+      "name": "Malmö",
+      "lat": 55.605,
+      "lon": 13.004,
+      "country": "SE",
+      "timezone": "Europe/Stockholm",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Marseille": {
+      "name": "Marseille",
+      "lat": 43.296,
+      "lon": 5.37,
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Munich": {
+      "name": "Munich",
+      "lat": 48.137,
+      "lon": 11.576,
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Odense": {
+      "name": "Odense",
+      "lat": 55.396,
+      "lon": 10.388,
+      "country": "DK",
+      "timezone": "Europe/Copenhagen",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Oulu": {
+      "name": "Oulu",
+      "lat": 65.012,
+      "lon": 25.465,
+      "country": "FI",
+      "timezone": "Europe/Helsinki",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Paris": {
+      "name": "Paris",
+      "lat": 48.857,
+      "lon": 2.352,
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Pori": {
+      "name": "Pori",
+      "lat": 61.485,
+      "lon": 21.797,
+      "country": "FI",
+      "timezone": "Europe/Helsinki",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Rotterdam": {
+      "name": "Rotterdam",
+      "lat": 51.924,
+      "lon": 4.478,
+      "country": "NL",
+      "timezone": "Europe/Amsterdam",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Seinäjoki": {
+      "name": "Seinäjoki",
+      "lat": 62.79,
+      "lon": 22.84,
+      "country": "FI",
+      "timezone": "Europe/Helsinki",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Stockholm": {
+      "name": "Stockholm",
+      "lat": 59.329,
+      "lon": 18.069,
+      "country": "SE",
+      "timezone": "Europe/Stockholm",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Stuttgart": {
+      "name": "Stuttgart",
+      "lat": 48.776,
+      "lon": 9.183,
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Tampere": {
+      "name": "Tampere",
+      "lat": 61.498,
+      "lon": 23.761,
+      "country": "FI",
+      "timezone": "Europe/Helsinki",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Turku": {
+      "name": "Turku",
+      "lat": 60.452,
+      "lon": 22.267,
+      "country": "FI",
+      "timezone": "Europe/Helsinki",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Uppsala": {
+      "name": "Uppsala",
+      "lat": 59.859,
+      "lon": 17.639,
+      "country": "SE",
+      "timezone": "Europe/Stockholm",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Vantaa": {
+      "name": "Vantaa",
+      "lat": 60.294,
+      "lon": 25.04,
+      "country": "FI",
+      "timezone": "Europe/Helsinki",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Vienna": {
+      "name": "Vienna",
+      "lat": 48.208,
+      "lon": 16.374,
+      "country": "AT",
+      "timezone": "Europe/Vienna",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "Jyväskylä": {
+      "name": "Jyväskylä",
+      "lat": 62.242,
+      "lon": 25.747,
+      "country": "FI",
+      "timezone": "Europe/Helsinki",
+      "kind": "city",
+      "synthetic": false,
+      "basis": "approximate city centre"
+    },
+    "West Baltic Vehicle Terminal": {
+      "id": "terminal-west-baltic",
+      "name": "West Baltic Vehicle Terminal",
+      "lat": 53.581,
+      "lon": 9.933,
+      "kind": "terminal",
+      "near": "Hamburg",
+      "timezone": "Europe/Berlin",
+      "synthetic": true,
+      "approximate": true,
+      "radiusKm": 6,
+      "basis": "fictional terminal placed near its port city"
+    },
+    "West Baltic terminal": {
+      "id": "terminal-west-baltic",
+      "name": "West Baltic Vehicle Terminal",
+      "lat": 53.581,
+      "lon": 9.933,
+      "kind": "terminal",
+      "near": "Hamburg",
+      "timezone": "Europe/Berlin",
+      "synthetic": true,
+      "approximate": true,
+      "radiusKm": 6,
+      "basis": "fictional terminal placed near its port city"
+    },
+    "South Baltic Vehicle Terminal": {
+      "id": "terminal-south-baltic",
+      "name": "South Baltic Vehicle Terminal",
+      "lat": 55.696,
+      "lon": 12.618,
+      "kind": "terminal",
+      "near": "Copenhagen",
+      "timezone": "Europe/Copenhagen",
+      "synthetic": true,
+      "approximate": true,
+      "radiusKm": 6,
+      "basis": "fictional terminal placed near its port city"
+    },
+    "South Baltic terminal": {
+      "id": "terminal-south-baltic",
+      "name": "South Baltic Vehicle Terminal",
+      "lat": 55.696,
+      "lon": 12.618,
+      "kind": "terminal",
+      "near": "Copenhagen",
+      "timezone": "Europe/Copenhagen",
+      "synthetic": true,
+      "approximate": true,
+      "radiusKm": 6,
+      "basis": "fictional terminal placed near its port city"
+    },
+    "East Nordic Vehicle Terminal": {
+      "id": "terminal-east-nordic",
+      "name": "East Nordic Vehicle Terminal",
+      "lat": 59.309,
+      "lon": 18.149,
+      "kind": "terminal",
+      "near": "Stockholm",
+      "timezone": "Europe/Stockholm",
+      "synthetic": true,
+      "approximate": true,
+      "radiusKm": 6,
+      "basis": "fictional terminal placed near its port city"
+    },
+    "East Nordic terminal": {
+      "id": "terminal-east-nordic",
+      "name": "East Nordic Vehicle Terminal",
+      "lat": 59.309,
+      "lon": 18.149,
+      "kind": "terminal",
+      "near": "Stockholm",
+      "timezone": "Europe/Stockholm",
+      "synthetic": true,
+      "approximate": true,
+      "radiusKm": 6,
+      "basis": "fictional terminal placed near its port city"
+    },
+    "East Sweden terminal": {
+      "id": "terminal-east-nordic",
+      "name": "East Nordic Vehicle Terminal",
+      "lat": 59.309,
+      "lon": 18.149,
+      "kind": "terminal",
+      "near": "Stockholm",
+      "timezone": "Europe/Stockholm",
+      "synthetic": true,
+      "approximate": true,
+      "radiusKm": 6,
+      "basis": "fictional terminal placed near its port city"
+    },
+    "South Finland Vehicle Terminal": {
+      "id": "terminal-south-finland",
+      "name": "South Finland Vehicle Terminal",
+      "lat": 60.15,
+      "lon": 24.918,
+      "kind": "terminal",
+      "near": "Helsinki",
+      "timezone": "Europe/Helsinki",
+      "synthetic": true,
+      "approximate": true,
+      "radiusKm": 6,
+      "basis": "fictional terminal placed near its port city"
+    },
+    "South Finland terminal": {
+      "id": "terminal-south-finland",
+      "name": "South Finland Vehicle Terminal",
+      "lat": 60.15,
+      "lon": 24.918,
+      "kind": "terminal",
+      "near": "Helsinki",
+      "timezone": "Europe/Helsinki",
+      "synthetic": true,
+      "approximate": true,
+      "radiusKm": 6,
+      "basis": "fictional terminal placed near its port city"
+    }
+  }
+}

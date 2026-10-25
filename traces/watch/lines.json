@@ -1,0 +1,58 @@
+[
+  {
+    "order": "CD-420154",
+    "level": "likely_to_slip",
+    "line": "Planned ferry is sold out and nothing is booked; later ferries and the driver's train are only quotes, so tomorrow's pickup and the 27 Oct delivery lack a confirmed route.",
+    "next_step": "none",
+    "model": "anthropic/claude-sonnet-5.5",
+    "written_at": "2026-10-21T09:00:00.000Z"
+  },
+  {
+    "order": "CD-420299",
+    "level": "likely_to_slip",
+    "line": "The overnight ferry is sold out, the later sailing is only quoted, and a booking attempt timed out, so nobody knows if a reservation exists; the pickup is still on.",
+    "next_step": "check_provider",
+    "model": "anthropic/claude-sonnet-5.5",
+    "written_at": "2026-10-21T09:00:00.000Z"
+  },
+  {
+    "order": "CD-420360",
+    "level": "likely_to_slip",
+    "line": "The planned Oct 27 ferry was sold out when the provider was last checked, nothing is booked, and the later options are only quotes, so the Nov 2 delivery promise is at risk.",
+    "next_step": "check_provider",
+    "model": "anthropic/claude-sonnet-5.5",
+    "written_at": "2026-10-21T09:00:00.000Z"
+  },
+  {
+    "order": "CD-420399",
+    "level": "likely_to_slip",
+    "line": "Driver says they can't reach Leipzig before after 12:00 tomorrow, missing the 11:00–12:00 pickup; no travel is booked, and no replacement or new slot is agreed yet.",
+    "next_step": "none",
+    "model": "anthropic/claude-sonnet-5.5",
+    "written_at": "2026-10-21T09:00:00.000Z"
+  },
+  {
+    "order": "CD-420439",
+    "level": "likely_to_slip",
+    "line": "Driver app's ETA is later than the customer's 26 October delivery window; the ferry is confirmed with check-in closing 13:45 UTC today, so ask the driver for their position.",
+    "next_step": "ask_driver",
+    "model": "anthropic/claude-sonnet-5.5",
+    "written_at": "2026-10-21T09:00:00.000Z"
+  },
+  {
+    "order": "CD-420075",
+    "level": "watch",
+    "line": "Ferry check-in closes in 3 hours, and the driver said last evening she was resting and had not yet reached the terminal; we have no location or check-in record to confirm she is on her way.",
+    "next_step": "ask_driver",
+    "model": "anthropic/claude-sonnet-5.5",
+    "written_at": "2026-10-21T09:00:00.000Z"
+  },
+  {
+    "order": "CD-420322",
+    "level": "watch",
+    "line": "Driver says the car is stopped at a service area after a red warning, but its position is unconfirmed and no one has yet named who collects it; ask for a location pin and dashboard photo.",
+    "next_step": "ask_driver",
+    "model": "anthropic/claude-sonnet-5.5",
+    "written_at": "2026-10-21T09:00:00.000Z"
+  }
+]

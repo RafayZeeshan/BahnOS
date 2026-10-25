@@ -1,0 +1,420 @@
+{
+  "id": "run-CD-420449-watch",
+  "order": "CD-420449",
+  "trigger": "watch",
+  "mode": "recorded",
+  "model": "anthropic/claude-sonnet-5.5",
+  "prompt": "Watch flagged this order: the driver's fitness for tomorrow's pickup is still unconfirmed. Check it and decide the cheap next step.",
+  "startedAt": "2026-10-21T09:00:00.000Z",
+  "finishedAt": "2026-10-21T09:03:20.000Z",
+  "status": "done",
+  "steps": [
+    {
+      "kind": "tool_call",
+      "tool": "get_case",
+      "input": {
+        "order": "CD-420449"
+      },
+      "seq": 1,
+      "at": "2026-10-21T09:00:20.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "get_case",
+      "output": {
+        "order": "CD-420449",
+        "status": "WAITING_FOR_PICKUP",
+        "route_kind": "IMPORT",
+        "car": "Toyota Corolla",
+        "customer": "Vandellora Biler",
+        "driver": "Carl Birkelane (home Aalborg)",
+        "windows": [
+          {
+            "purpose": "PICKUP_AVAILABILITY",
+            "start": "2026-10-22T07:00:00Z",
+            "end": "2026-10-22T15:00:00Z",
+            "timezone": "Europe/Berlin",
+            "set_by": "CUSTOMER"
+          },
+          {
+            "purpose": "SELECTED_PICKUP_SLOT",
+            "start": "2026-10-22T08:00:00Z",
+            "end": "2026-10-22T11:00:00Z",
+            "timezone": "Europe/Berlin",
+            "set_by": "OPS"
+          },
+          {
+            "purpose": "CUSTOMER_DELIVERY_PROMISE",
+            "start": "2026-10-23T09:00:00Z",
+            "end": "2026-10-23T14:00:00Z",
+            "timezone": "Europe/Copenhagen",
+            "set_by": "CUSTOMER"
+          }
+        ],
+        "travel": [
+          {
+            "id": "travel-x29f1d50383956888",
+            "kind": "TRAIN",
+            "provider": "Northrail",
+            "from": "Aalborg",
+            "to": "Copenhagen",
+            "departs": "2026-10-21T10:25:00Z",
+            "arrives": "2026-10-21T14:45:00Z",
+            "check_in_cutoff": null,
+            "price_cents": 7606,
+            "note": "Quote for this leg only; purchase is recorded separately",
+            "evidence": {
+              "strength": "observed",
+              "label": "quoted by provider, not booked",
+              "at": "2026-10-20T07:23:00Z"
+            }
+          },
+          {
+            "id": "travel-x0cd3294ecf0dc86f",
+            "kind": "FLIGHT",
+            "provider": "Nordhaven Air",
+            "from": "Copenhagen",
+            "to": "Hamburg",
+            "departs": "2026-10-21T16:45:00Z",
+            "arrives": "2026-10-21T18:00:00Z",
+            "check_in_cutoff": null,
+            "price_cents": 17693,
+            "note": "Quote for this leg only; purchase is recorded separately",
+            "evidence": {
+              "strength": "observed",
+              "label": "quoted by provider, not booked",
+              "at": "2026-10-20T07:23:00Z"
+            }
+          },
+          {
+            "id": "travel-x2a66c0ce21a72ef9",
+            "kind": "FLIGHT",
+            "provider": "Aeralis Travel",
+            "from": "Copenhagen",
+            "to": "Hamburg",
+            "departs": "2026-10-22T06:00:00Z",
+            "arrives": "2026-10-22T07:15:00Z",
+            "check_in_cutoff": null,
+            "price_cents": 14233,
+            "note": "Unpurchased alternative; terminal arrival plus transfer misses selected pickup",
+            "evidence": {
+              "strength": "observed",
+              "label": "quoted by provider, not booked",
+              "at": "2026-10-20T07:23:00Z"
+            }
+          }
+        ],
+        "bookings": [
+          {
+            "id": "res-x0320cdf029cd4c96",
+            "kind": "TRAIN",
+            "provider": "Northrail",
+            "departs": "2026-10-21T10:25:00Z",
+            "check_in_cutoff": null,
+            "evidence": {
+              "strength": "verified",
+              "label": "confirmed by provider",
+              "at": "2026-10-20T08:20:00Z"
+            }
+          },
+          {
+            "id": "res-xe71985ace48030a6",
+            "kind": "FLIGHT",
+            "provider": "Nordhaven Air",
+            "departs": "2026-10-21T16:45:00Z",
+            "check_in_cutoff": null,
+            "evidence": {
+              "strength": "verified",
+              "label": "confirmed by provider",
+              "at": "2026-10-20T08:20:00Z"
+            }
+          },
+          {
+            "id": "res-xbdba16c24ca9005e",
+            "kind": "HOTEL",
+            "provider": "Esker Rooms",
+            "departs": "2026-10-21T20:00:00Z",
+            "check_in_cutoff": null,
+            "evidence": {
+              "strength": "verified",
+              "label": "confirmed by provider",
+              "at": "2026-10-20T08:20:00Z"
+            }
+          }
+        ],
+        "alerts": [
+          {
+            "signal": "DRIVER_AVAILABILITY_RISK",
+            "status": "OPEN",
+            "summary": "Review illness risk for CD-420449; source is a conversation, not a verified outcome.",
+            "next_action": null,
+            "evidence": {
+              "strength": "reported",
+              "label": "system alert",
+              "at": "2026-10-20T10:35:00Z"
+            }
+          }
+        ],
+        "messages": [
+          {
+            "at": "2026-10-20T10:33:00Z",
+            "channel": "support_chat",
+            "text": "I am unwell this morning. I may not be fit to collect CD-420449 in the booked slot; I can confirm by early evening.",
+            "evidence": {
+              "strength": "claimed",
+              "label": "driver said",
+              "at": "2026-10-20T10:33:00Z"
+            }
+          },
+          {
+            "at": "2026-10-20T10:37:00Z",
+            "channel": "support_chat",
+            "text": "Thanks for letting us know. Please update us this evening; I'll look for cover in case you can't drive.",
+            "evidence": {
+              "strength": "reported",
+              "label": "ops note",
+              "at": "2026-10-20T10:37:00Z"
+            }
+          },
+          {
+            "at": "2026-10-20T10:54:00Z",
+            "channel": "internal_note",
+            "text": "The driver has not cancelled. Keep the assignment visible and prepare a replacement option without double-booking.",
+            "evidence": {
+              "strength": "reported",
+              "label": "ops note",
+              "at": "2026-10-20T10:54:00Z"
+            }
+          },
+          {
+            "at": "2026-10-20T11:06:00Z",
+            "channel": "support_chat",
+            "text": "I will update you before 18:00. Do not cancel the gig yet.",
+            "evidence": {
+              "strength": "claimed",
+              "label": "driver said",
+              "at": "2026-10-20T11:06:00Z"
+            }
+          },
+          {
+            "at": "2026-10-21T08:03:00Z",
+            "channel": "email",
+            "text": "I am still unsure whether I will be well enough to drive CD-420449.",
+            "evidence": {
+              "strength": "claimed",
+              "label": "driver said",
+              "at": "2026-10-21T08:03:00Z"
+            }
+          },
+          {
+            "at": "2026-10-21T08:14:00Z",
+            "channel": "email",
+            "text": "Thanks for updating us. The assignment remains active while we prepare a backup and wait for your definite answer.",
+            "evidence": {
+              "strength": "reported",
+              "label": "ops note",
+              "at": "2026-10-21T08:14:00Z"
+            }
+          }
+        ],
+        "earlier_agent_actions": [
+          {
+            "action": "assignment.prepare_backup",
+            "status": "APPROVED_AWAITING_EXECUTION",
+            "error": null,
+            "evidence": {
+              "strength": "reported",
+              "label": "system record",
+              "at": "2026-10-21T07:54:00Z"
+            }
+          }
+        ],
+        "open_work": [
+          {
+            "kind": "BACKUP_DRIVER_DECISION",
+            "next_action": "Obtain a definite driver response and prepare a backup without double booking or treating the current assignment as cancelled."
+          }
+        ],
+        "now": "2026-10-21T09:00:00.000Z"
+      },
+      "seq": 2,
+      "at": "2026-10-21T09:00:40.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "answer_book",
+      "input": {
+        "question": "Driver is unwell and may not be fit to drive tomorrow's pickup; what should happen?",
+        "order": "CD-420449"
+      },
+      "seq": 3,
+      "at": "2026-10-21T09:01:00.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "answer_book",
+      "output": {
+        "market": "DK",
+        "entries": [
+          {
+            "id": "avail-illness",
+            "topic": "Availability",
+            "routing": "LOOKUP",
+            "answer": "Thank them, confirm the assignment is still theirs and has not been cancelled, state the unchanged slot, and ask for a definite answer by a named time. Illness must be supported by a doctor's certificate.",
+            "reads": [
+              "work_assignments",
+              "time_windows"
+            ],
+            "cautions": [
+              "An illness report is not a cancellation. Only the driver can withdraw from accepted work.",
+              "Never say a replacement is booked. Preparing cover is not a booking, and double-booking must be avoided.",
+              "Never promise the fee is safe either way."
+            ],
+            "corners": [
+              {
+                "when": "The driver asks you not to cancel the gig yet",
+                "then": "Honour it explicitly in the reply, and make sure dispatch sees that the assignment stays visible while cover is prepared.",
+                "routing": "LOOKUP"
+              },
+              {
+                "when": "The slot is within hours and there is still no definite answer",
+                "then": "Escalate to dispatch for a backup decision rather than waiting.",
+                "routing": "ESCALATE"
+              }
+            ],
+            "escalate_to": "ops-dispatch",
+            "market": "ALL"
+          },
+          {
+            "id": "pick-car-not-ready",
+            "topic": "Pickup",
+            "routing": "ASK",
+            "answer": "Gather the facts first: which site, who you spoke to, what they said, and whether the car is physically present. Then escalate with that in hand.",
+            "reads": [
+              "order_endpoint_details",
+              "sites",
+              "custody_assets"
+            ],
+            "cautions": [
+              "Vehicle presence is not pickup authority.",
+              "Do not tell the driver to wait a specific time, and never mark the car collected."
+            ],
+            "corners": [],
+            "escalate_to": "ops-readiness",
+            "market": "ALL"
+          },
+          {
+            "id": "road-overnight-custody",
+            "topic": "On the road",
+            "routing": "ESCALATE",
+            "answer": "Tell the driver to keep the keys with them for now. Third-party custody needs the vehicle owner's approval, which no record establishes.",
+            "reads": [
+              "custody_assets",
+              "custody_reports"
+            ],
+            "cautions": [
+              "Never approve a third party taking custody. Ask if they need another parking arrangement instead."
+            ],
+            "corners": [],
+            "escalate_to": "ops-shift",
+            "market": "ALL"
+          }
+        ],
+        "note": "Follow each entry's routing. Never assert anything listed under cautions."
+      },
+      "seq": 4,
+      "at": "2026-10-21T09:01:20.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "message_driver",
+      "input": {
+        "order": "CD-420449",
+        "recipient_role": "driver",
+        "question": "Carl, your train to Copenhagen leaves at 10:25 today and the pickup is tomorrow morning. Are you fit to travel and collect CD-420449 — yes or no? If you can't say yet, please tell us by what time you can."
+      },
+      "seq": 5,
+      "at": "2026-10-21T09:01:40.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "message_driver",
+      "output": {
+        "sent": true,
+        "reply": {
+          "text": "Feeling a bit better, but I can't promise yet. I'll give you a definite answer by 06:00 tomorrow.",
+          "evidence": {
+            "strength": "claimed",
+            "label": "driver said",
+            "at": "2026-10-21T09:12:00.000Z"
+          }
+        }
+      },
+      "seq": 6,
+      "at": "2026-10-21T09:02:00.000Z"
+    },
+    {
+      "kind": "tool_call",
+      "tool": "escalate",
+      "input": {
+        "order": "CD-420449",
+        "reason": "Driver still has no definite answer on fitness. The pickup slot is within hours, and the driver's answer isn't due until 06:00, two hours before the slot opens. Policy says dispatch decides on a backup rather than waiting.",
+        "what_i_know": [
+          "Driver reported illness on 2026-10-20 10:33 and said not to cancel the gig. He has not cancelled, so the assignment stays active (case messages).",
+          "At 2026-10-21 08:03 he emailed that he is still unsure (claimed).",
+          "At 2026-10-21 09:12 he replied in the app: 'a bit better, can't promise yet', with a definite answer promised by 06:00 on 2026-10-22 (claimed, not verified).",
+          "The pickup slot is 2026-10-22 08:00-11:00Z, set by ops. The customer's availability window is 07:00-15:00Z. Delivery promise is 2026-10-23 09:00-14:00 Copenhagen.",
+          "Confirmed bookings: Northrail train Aalborg to Copenhagen departs 2026-10-21 10:25Z, and Nordhaven Air flight Copenhagen to Hamburg departs 16:45Z. Esker Rooms hotel is confirmed for the night of 10-21 (provider-confirmed, 10-20 08:20).",
+          "A backup-prepare action is approved but awaiting execution (system record, 10-21 07:54). Nothing records a replacement driver as booked.",
+          "The answer book says illness must be supported by a doctor's certificate. Nothing in the record shows one has been provided."
+        ],
+        "what_i_dont_know": [
+          "Whether Carl will board the 10:25 train, which is about 85 minutes away.",
+          "Whether he will be fit to drive tomorrow.",
+          "Whether a replacement driver is available for the 08:00-11:00 slot, and whether they could reach it.",
+          "Whether Carl has a doctor's certificate.",
+          "Whether the ops-held cost of the already-booked train, flight and hotel is acceptable if Carl is later unfit."
+        ]
+      },
+      "seq": 7,
+      "at": "2026-10-21T09:02:20.000Z"
+    },
+    {
+      "kind": "tool_result",
+      "tool": "escalate",
+      "output": {
+        "handed_over": true
+      },
+      "seq": 8,
+      "at": "2026-10-21T09:02:40.000Z"
+    },
+    {
+      "kind": "message",
+      "text": "Carl Birkelane is still unsure whether he can drive. At 09:12 he told us he's \"a bit better\" but can't promise, and he will give a definite answer by 06:00 tomorrow. That is his own claim and nothing verifies it. He hasn't cancelled, so the assignment is still his, and nothing shows a replacement as booked. I haven't seen a doctor's certificate.\n\nThe pickup slot is 08:00–11:00 tomorrow. His train to Copenhagen leaves at 10:25 today, in about 85 minutes, and the flight and hotel are already confirmed. Waiting for a 06:00 answer leaves almost no time to arrange cover, so I've escalated to dispatch.\n\n**Decision for ops:** whether to line up a backup driver for the slot now, without double-booking, or to let Carl take the 10:25 train and wait for his answer.",
+      "seq": 9,
+      "at": "2026-10-21T09:03:00.000Z"
+    }
+  ],
+  "proposals": [],
+  "escalation": {
+    "reason": "Driver still has no definite answer on fitness. The pickup slot is within hours, and the driver's answer isn't due until 06:00, two hours before the slot opens. Policy says dispatch decides on a backup rather than waiting.",
+    "what_i_know": [
+      "Driver reported illness on 2026-10-20 10:33 and said not to cancel the gig. He has not cancelled, so the assignment stays active (case messages).",
+      "At 2026-10-21 08:03 he emailed that he is still unsure (claimed).",
+      "At 2026-10-21 09:12 he replied in the app: 'a bit better, can't promise yet', with a definite answer promised by 06:00 on 2026-10-22 (claimed, not verified).",
+      "The pickup slot is 2026-10-22 08:00-11:00Z, set by ops. The customer's availability window is 07:00-15:00Z. Delivery promise is 2026-10-23 09:00-14:00 Copenhagen.",
+      "Confirmed bookings: Northrail train Aalborg to Copenhagen departs 2026-10-21 10:25Z, and Nordhaven Air flight Copenhagen to Hamburg departs 16:45Z. Esker Rooms hotel is confirmed for the night of 10-21 (provider-confirmed, 10-20 08:20).",
+      "A backup-prepare action is approved but awaiting execution (system record, 10-21 07:54). Nothing records a replacement driver as booked.",
+      "The answer book says illness must be supported by a doctor's certificate. Nothing in the record shows one has been provided."
+    ],
+    "what_i_dont_know": [
+      "Whether Carl will board the 10:25 train, which is about 85 minutes away.",
+      "Whether he will be fit to drive tomorrow.",
+      "Whether a replacement driver is available for the 08:00-11:00 slot, and whether they could reach it.",
+      "Whether Carl has a doctor's certificate.",
+      "Whether the ops-held cost of the already-booked train, flight and hotel is acceptable if Carl is later unfit."
+    ]
+  },
+  "headsUp": null,
+  "summary": "Carl Birkelane is still unsure whether he can drive. At 09:12 he told us he's \"a bit better\" but can't promise, and he will give a definite answer by 06:00 tomorrow. That is his own claim and nothing verifies it. He hasn't cancelled, so the assignment is still his, and nothing shows a replacement as booked. I haven't seen a doctor's certificate.\n\nThe pickup slot is 08:00–11:00 tomorrow. His train to Copenhagen leaves at 10:25 today, in about 85 minutes, and the flight and hotel are already confirmed. Waiting for a 06:00 answer leaves almost no time to arrange cover, so I've escalated to dispatch.\n\n**Decision for ops:** whether to line up a backup driver for the slot now, without double-booking, or to let Carl take the 10:25 train and wait for his answer."
+}
