@@ -22,7 +22,7 @@ export function RouteStrip({ route, compact = false }: { route: Route; compact?:
       const badge = legBadge(leg)
       return <div key={i}>
         <div className="rs-stop"><span className="rs-node" /><span>{leg.from.name}{leg.from.approximate ? <span className="muted"> · approx.</span> : null}</span></div>
-        <div className={`rs-leg rs-${leg.status}`}>
+        <div className={`rs-leg rs-leg-${leg.mode} rs-${leg.status}`}>
           <span className="rs-line" aria-hidden="true" />
           <div className="rs-body">
             <span className="rs-mode"><Icon name={MODE_ICON[leg.mode]} size={14} />{MODE_WORD[leg.mode]}</span>

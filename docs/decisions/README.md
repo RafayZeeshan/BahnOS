@@ -21,5 +21,6 @@ Don't delete an ADR. When a decision changes, write a new one that supersedes it
 | [013](ADR-013-triage-ui-model.md) | A triage queue, not a board; Linear's interaction patterns but not its look | Accepted; visual system superseded by 016 |
 | [014](ADR-014-voice-calls-via-prometheus.md) | Voice calls to drivers and sites through a prometheus sidecar | **Proposed**: pending licence |
 | [015](ADR-015-in-memory-packet-index.md) | Read the packet through an in-memory index for the agent and the engine | Accepted |
-| [016](ADR-016-premium-ui-system.md) | A premium visual system on Motion and Geist, with details on demand | Accepted |
+| [016](ADR-016-premium-ui-system.md) | A premium visual system on Motion and Geist, with details on demand | Accepted; visual system superseded by 018 |
 | [017](ADR-017-ops-map-and-answer-book.md) | Bring in the team's ops map and answer book; the product is BahnOS and the agent BahnBot | Accepted |
+| [018](ADR-018-kursbuch-visual-system.md) | The Kursbuch visual system: the day set as a timetable | Accepted |

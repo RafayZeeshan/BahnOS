@@ -19,10 +19,10 @@
   --color-tertiary: var(--text-3);
   --color-ink: var(--text);
   --color-red: var(--danger);
-  --color-orange: var(--accent);
+  --color-orange: var(--open-case); /* a muted red: same family as "needs a human", quieter, and clear of road ochre */
   --color-amber: var(--warn);
   --color-green: var(--ok);
-  --color-teal: var(--info);
+  --color-teal: var(--moving); /* "on the road" on the map; teal stays the ferry leg colour */
   --color-bot: var(--accent);
   --font-display: var(--font-sans);
 }

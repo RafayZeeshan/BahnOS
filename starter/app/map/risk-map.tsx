@@ -24,8 +24,8 @@ const BANDS = [
 ]
 const bandOf = (heat: number) => BANDS.find((b) => heat >= b.min)!
 
-const PANEL = 'rounded-[10px] border border-hair bg-card'
-const CAPTION = 'flex items-center gap-[6px] font-mono text-[10.5px] font-medium uppercase tracking-[0.08em] text-tertiary'
+const PANEL = 'rounded-[2px] border border-hair bg-card'
+const CAPTION = 'flex items-center gap-[6px] text-[11.5px] font-bold uppercase tracking-[0.06em] [font-stretch:75%] text-tertiary'
 const pct = (x: number) => `${Math.round(x * 100)}%`
 
 export default function RiskMap({ map: data, scope, focus, setFocus, levels, cars }: {
@@ -115,7 +115,7 @@ function LaneDetail({ lane, sources, level, car, close }: { lane: RiskLane; sour
         {lane.sources.map((id) => {
           const s = sources.find((x) => x.id === id)!
           return (
-            <li key={id} className="rounded-[8px] border border-hair px-[10px] py-[7px]">
+            <li key={id} className="rounded-[2px] border border-hair px-[10px] py-[7px]">
               <p className="flex items-center gap-[6px] text-[12.5px] text-label">
                 <Icon name={KIND_ICON[s.kind]} size={12} className="text-tertiary" />
                 {s.label}
@@ -129,7 +129,7 @@ function LaneDetail({ lane, sources, level, car, close }: { lane: RiskLane; sour
       </ul>
       <Link
         href={`/case/${lane.ref}`}
-        className="mt-[14px] inline-flex w-full items-center justify-center gap-[6px] rounded-[7px] bg-ink px-[12px] py-[7px] text-[12.5px] font-semibold text-canvas hover:opacity-90"
+        className="mt-[14px] inline-flex w-full items-center justify-center gap-[6px] rounded-[2px] bg-ink px-[12px] py-[7px] text-[12.5px] font-semibold text-canvas hover:opacity-90"
       >
         Open the case
         <Icon name="arrow-right" size={13} />
@@ -289,19 +289,19 @@ function MapPane({ data, lanes, focus, picked, pick, clear }: {
 
       <div className="absolute left-[10px] top-[10px] z-[1] flex flex-wrap items-center gap-[8px]">
         {focus ? (
-          <button type="button" onClick={clear} className="inline-flex items-center gap-[5px] rounded-[8px] border border-hair bg-card/90 px-[9px] py-[5px] text-[12px] text-label backdrop-blur">
+          <button type="button" onClick={clear} className="inline-flex items-center gap-[5px] rounded-[2px] border border-hair bg-card/90 px-[9px] py-[5px] text-[12px] text-label backdrop-blur">
             {focus.label}
             <Icon name="close" size={11} />
           </button>
         ) : (
-          <span className="rounded-[8px] border border-hair bg-card/90 px-[9px] py-[5px] text-[12px] text-secondary backdrop-blur">
+          <span className="rounded-[2px] border border-hair bg-card/90 px-[9px] py-[5px] text-[12px] text-secondary backdrop-blur">
             {lanes.length} upcoming {lanes.length === 1 ? 'order leans' : 'orders lean'} on a risky source
           </span>
         )}
-        {offline ? <span className="rounded-[6px] bg-card/90 px-[8px] py-[4px] font-mono text-[10.5px] text-orange">basemap offline · lanes still drawn</span> : null}
+        {offline ? <span className="rounded-[2px] bg-card/90 px-[8px] py-[4px] font-mono text-[10.5px] text-orange">basemap offline · lanes still drawn</span> : null}
       </div>
 
-      <ul className="pointer-events-none absolute bottom-[10px] left-[10px] z-[1] flex flex-wrap gap-x-[12px] gap-y-[4px] rounded-[7px] bg-card/80 px-[9px] py-[5px] backdrop-blur">
+      <ul className="pointer-events-none absolute bottom-[10px] left-[10px] z-[1] flex flex-wrap gap-x-[12px] gap-y-[4px] rounded-[2px] bg-card/80 px-[9px] py-[5px] backdrop-blur">
         <li className="text-[10.5px] text-tertiary">Worst trouble rate on the lane:</li>
         {BANDS.map((b) => (
           <li key={b.label} className="inline-flex items-center gap-[5px] text-[10.5px] text-secondary">
@@ -312,7 +312,7 @@ function MapPane({ data, lanes, focus, picked, pick, clear }: {
       </ul>
 
       {tip && tipLane ? (
-        <div className="pointer-events-none absolute z-[2] max-w-[240px] rounded-[7px] border border-sand bg-birch px-[9px] py-[6px] text-[11.5px] leading-[1.45] shadow-[var(--shadow-2)]"
+        <div className="pointer-events-none absolute z-[2] max-w-[240px] rounded-[2px] border border-sand bg-birch px-[9px] py-[6px] text-[11.5px] leading-[1.45] shadow-[var(--shadow-2)]"
           style={{ left: tip.x + 14, top: tip.y + 12 }}>
           <p className="font-mono text-label">{tipLane.ref}</p>
           <p className="text-secondary">{tipLane.from} → {tipLane.to}</p>

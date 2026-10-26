@@ -13,7 +13,7 @@ import '../map/map.css'
 export const metadata = { title: 'Answer book' }
 
 function Code({ children }: { children: string }) {
-  return <code className="rounded-[5px] bg-fill px-[5px] py-[1.5px] font-mono text-[12px] text-label">{children}</code>
+  return <code className="rounded-[2px] bg-fill px-[5px] py-[1.5px] font-mono text-[12px] text-label">{children}</code>
 }
 
 function Chevron({ className }: { className?: string }) {
@@ -55,7 +55,7 @@ const ROUTING: Record<
 }
 
 const CARD =
-  'rounded-[14px] border border-hair bg-card shadow-[var(--shadow-1)]'
+  'rounded-[2px] border border-hair bg-card shadow-[var(--shadow-1)]'
 
 const slug = (s: string) =>
   s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
@@ -82,7 +82,7 @@ function Badge({ routing }: { routing: Routing }) {
 
 function EntryCard({ entry }: { entry: Entry }) {
   return (
-    <li className="rounded-[14px] border border-hair bg-card px-[18px] pt-[13px] pb-[14px] shadow-[0_1px_2px_rgba(66,61,51,0.04),0_2px_10px_rgba(66,61,51,0.05)]">
+    <li className="rounded-[2px] border border-hair bg-card px-[18px] pt-[13px] pb-[14px] shadow-[0_1px_2px_rgba(66,61,51,0.04),0_2px_10px_rgba(66,61,51,0.05)]">
       <div className="flex flex-wrap items-center gap-2">
         <Badge routing={entry.routing} />
         {entry.market !== 'ALL' ? (
@@ -142,7 +142,7 @@ function EntryCard({ entry }: { entry: Entry }) {
           </summary>
           <ul className="mt-[9px] flex flex-col gap-[11px]">
             {entry.corners.map((c) => (
-              <li key={c.when} className="rounded-[10px] bg-canvas px-[12px] py-[10px]">
+              <li key={c.when} className="rounded-[2px] bg-canvas px-[12px] py-[10px]">
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="text-[11.5px] font-semibold tracking-[-0.005em] text-tertiary">
                     If
@@ -184,7 +184,7 @@ export default function AnswersPage() {
     <AppFrame section="answers">
     <main className="pg tw">
       <header>
-        <h1 className="font-display text-[29px] font-bold leading-[1.1] tracking-[-0.025em] text-label">
+        <h1 className="font-display text-[34px] font-bold uppercase leading-none tracking-[0.01em] [font-stretch:75%] text-label">
           Answer book
         </h1>
         <p className="mt-[7px] max-w-[62ch] text-[14px] leading-[1.5] text-secondary">
@@ -211,7 +211,7 @@ export default function AnswersPage() {
         ))}
       </section>
 
-      <p className="mt-[18px] rounded-[14px] border border-hair bg-canvas px-[16px] py-[13px] text-[12.5px] leading-[1.5] text-secondary">
+      <p className="mt-[18px] rounded-[2px] border border-hair bg-canvas px-[16px] py-[13px] text-[12.5px] leading-[1.5] text-secondary">
         <span className="font-medium text-label">
           {n.ANSWER + n.LOOKUP} of {c.total} never need an operator.
         </span>{' '}

@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next"
 import { GeistMono } from "geist/font/mono"
-import { GeistSans } from "geist/font/sans"
 import { Providers } from "./ui/kit"
+import "@fontsource-variable/archivo/wdth.css"
 import "./globals.css"
 import "./ui/theme.css"
 
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: [{ media: "(prefers-color-scheme: light)", color: "#f7f7f5" }, { media: "(prefers-color-scheme: dark)", color: "#09090a" }],
+  themeColor: [{ media: "(prefers-color-scheme: light)", color: "#111111" }, { media: "(prefers-color-scheme: dark)", color: "#000000" }],
   width: "device-width",
   initialScale: 1,
 }
@@ -20,9 +20,9 @@ export const viewport: Viewport = {
 const THEME_SCRIPT = `try{var t=localStorage.getItem("cr.theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}`
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  // Geist is bundled with the app, so the type works offline.
+  // Archivo and Geist Mono are bundled with the app, so the type works offline.
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
+    <html lang="en" className={GeistMono.variable} suppressHydrationWarning>
       <head><script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} /></head>
       <body><Providers>{children}</Providers></body>
     </html>

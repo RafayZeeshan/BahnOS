@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
-import type { DecisionCard as Card } from "@/lib/control/case"
+import type { CaseView, DecisionCard as Card } from "@/lib/control/case"
 import type { Route } from "@/lib/geo/types"
 import { fmtMoney } from "@/lib/present/time"
 import { AnimatePresence, Collapse, MoreToggle, motion, Ring } from "../../ui/kit"
@@ -36,7 +36,7 @@ async function post(id: string, body: Record<string, unknown>) {
 const firstSentence = (text: string) => (text.match(/^.*?[.!?](\s|$)/)?.[0] ?? text).trim()
 
 // The one decision on a case (ADR-006): what changes, what it costs, four responses. The reasoning folds away.
-export function DecisionCard({ card, active, onChanged, route = null }: { card: Card; active: boolean; onChanged: () => void; route?: Route | null }) {
+export function DecisionCard({ card, active, onChanged, route = null, facts = [] }: { card: Card; active: boolean; onChanged: () => void; route?: Route | null; facts?: CaseView["facts"] }) {
   const [asking, setAsking] = useState<Response | null>(null)
   const [reason, setReason] = useState("")
   const [error, setError] = useState("")
@@ -110,16 +110,21 @@ export function DecisionCard({ card, active, onChanged, route = null }: { card: 
   const status = STATUS[card.status]
 
   return <section className={`surf dec${open ? "" : " decided"}`} aria-labelledby={`dcard-${card.id}`}>
+    <h2 id={`dcard-${card.id}`} className="dec-title">{card.headline}</h2>
     <div className="dec-kicker">
-      <span className="agent-tag"><span className="agent-orb"><Icon name="sparkle" size={12} /></span>{escalation ? "Handed to you" : open ? "BahnBot proposes" : "BahnBot proposed"}</span>
+      <span className="agent-tag"><span className="agent-orb"><Icon name="sparkle" size={11} /></span>{escalation ? "Handed to you" : open ? "BahnBot proposes" : "BahnBot proposed"}</span>
       {!open && status && <span className={`badge ${status.tone}`}><span className="badge-dot" />{status.text}</span>}
     </div>
-    <h2 id={`dcard-${card.id}`} className="dec-title">{card.headline}</h2>
 
     {(tiles.length > 0 || card.cost || !escalation) && <dl className="facts-row">
       {tiles.map((t, i) => <div key={t} className="fact-tile"><dt>{i === 0 ? "Change" : "Details"}</dt><dd>{t}</dd></div>)}
       {card.cost && <div className="fact-tile"><dt>Cost</dt><dd className="num">{fmtMoney(card.cost.cents, card.cost.currency)}<small>{card.cost.note}</small></dd></div>}
       <div className="fact-tile"><dt>Who gets told</dt><dd>{firstSentence(card.whoIsTold)}</dd></div>
+      {active && card.evidence.length > 0 && <div className="fact-tile"><dt>Based on</dt><dd className="ev-list">{card.evidence.slice(0, 3).map((e, i) => <EvidenceChip key={i} evidence={e} />)}</dd></div>}
+    </dl>}
+    {/* A handed-over case has no change to show, so its first facts take the rows, each with its source. */}
+    {escalation && active && facts.length > 0 && <dl className="facts-row">
+      {facts.slice(0, 4).map((f, i) => <div key={i} className="fact-tile"><dt>{f.label}</dt><dd>{f.value}</dd><dd className="fact-src"><EvidenceChip evidence={f.evidence} /></dd></div>)}
     </dl>}
     {escalation && known.length > 0 && <p style={{ margin: "12px 0 14px", fontSize: 13, color: "var(--text-2)" }}>
       BahnBot gathered {known.length} {known.length === 1 ? "fact" : "facts"}{unknown.length ? ` and ${unknown.length} open ${unknown.length === 1 ? "question" : "questions"}` : ""}. A person needs to decide.
@@ -161,7 +166,7 @@ export function DecisionCard({ card, active, onChanged, route = null }: { card: 
     <Collapse open={why}>
       <div className="dec-why">
         {card.detail && <p>{card.detail}</p>}
-        {longLines.map((l) => <p key={l} style={{ padding: "10px 12px", borderRadius: 10, background: "var(--surface-2)", boxShadow: "inset 0 0 0 1px var(--line)" }}>{l}</p>)}
+        {longLines.map((l) => <p key={l} style={{ padding: "10px 12px", background: "var(--surface-2)" }}>{l}</p>)}
         {known.length > 0 && <div><h3 className="h-section">What BahnBot knows</h3><ul style={{ display: "grid", gap: 6 }}>{known.map((k) => <li key={k} style={{ display: "flex", gap: 8 }}><Icon name="check" size={13} style={{ marginTop: 3, color: "var(--ok)" }} />{k}</li>)}</ul></div>}
         {unknown.length > 0 && <div><h3 className="h-section">Still unknown</h3><ul style={{ display: "grid", gap: 6 }}>{unknown.map((k) => <li key={k} style={{ display: "flex", gap: 8 }}><Icon name="note" size={13} style={{ marginTop: 3, color: "var(--warn)" }} />{k}</li>)}</ul></div>}
         {card.evidence.length > 0 && <div><h3 className="h-section">Based on</h3><div className="ev-list">{card.evidence.slice(0, 6).map((e, i) => <EvidenceChip key={i} evidence={e} />)}</div></div>}

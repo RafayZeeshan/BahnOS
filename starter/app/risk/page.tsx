@@ -6,7 +6,7 @@ import type { FailureSource } from "@/lib/risk/sources"
 import { AppFrame } from "../components/app-frame"
 import { RiskCard } from "../components/cr/risk-card"
 import RiskMap from "../map/risk-map"
-import { Reveal, Segmented, Tabs, Ticker } from "../ui/kit"
+import { Reveal, Segmented, Tabs } from "../ui/kit"
 import "../map/map.css"
 
 type Risk = { t: string; sources: FailureSource[]; levels: Record<string, string>; cars: Record<string, string>; map: RiskMapData }
@@ -42,9 +42,9 @@ export default function RiskPage() {
         </header>
       </Reveal>
       {data && <Reveal i={1}><div className="kpis">
-        <dl className="surf kpi"><dt>Sources worth a look</dt><dd><Ticker value={worth.length} /></dd></dl>
-        <dl className="surf kpi"><dt>Upcoming orders that lean on them</dt><dd><Ticker value={exposed} /></dd></dl>
-        <dl className="surf kpi"><dt>Sources tracked</dt><dd><Ticker value={data.sources.length} /></dd></dl>
+        <dl className="surf kpi"><dt>Sources worth a look</dt><dd>{worth.length}</dd></dl>
+        <dl className="surf kpi"><dt>Upcoming orders that lean on them</dt><dd>{exposed}</dd></dl>
+        <dl className="surf kpi"><dt>Sources tracked</dt><dd>{data.sources.length}</dd></dl>
       </div></Reveal>}
       {error && <div className="state" role="alert"><p>{error}</p></div>}
       {!data && !error && <div className="risk-grid">{[0, 1, 2].map((i) => <div key={i} className="sk" style={{ height: 180, borderRadius: 16 }} />)}</div>}

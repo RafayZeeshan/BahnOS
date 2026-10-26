@@ -47,9 +47,9 @@ const ACTOR_COLOUR = Object.fromEntries(ACTORS.map((a) => [a.key, a.colour]))
 
 const LANES = ['intake', 'ready', 'market', 'booked', 'moving', 'delivered', 'cancelled']
 
-const PANEL = 'rounded-[10px] border border-hair bg-card'
+const PANEL = 'rounded-[2px] border border-hair bg-card'
 const CAPTION =
-  'flex items-center gap-[6px] font-mono text-[10.5px] font-medium uppercase tracking-[0.08em] text-tertiary'
+  'flex items-center gap-[6px] text-[11.5px] font-bold uppercase tracking-[0.06em] [font-stretch:75%] text-tertiary'
 
 const BIN_H = 6
 const HOUR = 3_600_000
@@ -213,10 +213,10 @@ export default function Console({ model, watch, bot }: { model: OpsModel; watch:
       {/* Same title block as every other view, so the heading never moves between tabs. */}
       <header className="flex flex-wrap items-start gap-x-5 gap-y-3">
         <div>
-          <h1 className="font-display text-[29px] font-bold leading-[1.1] tracking-[-0.025em] text-label">
+          <h1 className="font-display text-[34px] font-bold uppercase leading-none tracking-[0.01em] [font-stretch:75%] text-label">
             Ops map
           </h1>
-          <p className="mt-[6px] flex items-center gap-[6px] font-mono text-[11px] text-tertiary">
+          <p className="mt-[8px] flex items-center gap-[6px] text-[13px] text-secondary">
             <span className="size-[6px] rounded-full bg-teal" />
             Snapshot {stamp(model.snapshot)} UTC · {model.orders.length} orders
           </p>
@@ -265,7 +265,7 @@ export default function Console({ model, watch, bot }: { model: OpsModel; watch:
                 </span>
                 {label}
                 <span
-                  className={`rounded-full px-[6px] tabular-nums ${key === 'queue' && n ? 'text-canvas' : ''}`}
+                  className={`rounded-[2px] px-[6px] tabular-nums ${key === 'queue' && n ? 'text-canvas' : ''}`}
                   style={key === 'queue' && n ? { background: BOT } : undefined}
                 >
                   {n}
@@ -402,11 +402,11 @@ function Kpis({
   ]
 
   return (
-    <dl className="ml-auto grid grid-cols-4 overflow-hidden rounded-[10px] border border-hair bg-hair sm:grid-cols-7" style={{ gap: 1 }}>
+    <dl className="ml-auto grid grid-cols-4 overflow-hidden rounded-[2px] border border-hair bg-hair sm:grid-cols-7" style={{ gap: 1 }}>
       {cells.map((c) => {
         const body = (
           <>
-            <dt className="font-mono text-[10px] uppercase tracking-[0.08em] text-tertiary">{c.label}</dt>
+            <dt className="text-[11.5px] font-bold uppercase tracking-[0.06em] [font-stretch:75%] text-tertiary">{c.label}</dt>
             <dd
               className={`mt-[3px] font-mono text-[19px] font-semibold tabular-nums leading-none ${c.tone ?? 'text-label'}`}
               style={c.colour ? { color: c.colour } : undefined}
@@ -459,7 +459,7 @@ function Chip({
       onClick={onClick}
       aria-pressed={on}
       className={
-        'inline-flex items-center gap-[5px] rounded-[6px] border px-[8px] py-[3px] font-mono text-[11px] transition-colors ' +
+        'inline-flex items-center gap-[5px] rounded-[2px] border px-[8px] py-[3px] text-[12.5px] font-medium transition-colors ' +
         (on
           ? 'border-label bg-label text-canvas'
           : 'border-hair bg-card text-secondary hover:border-sand hover:text-label')
@@ -498,7 +498,7 @@ function FilterBar({
           onChange={(e) => setFilters((f) => ({ ...f, q: e.target.value }))}
           placeholder="Reference, city, driver, car"
           aria-label="Search orders"
-          className="w-[230px] rounded-[6px] border border-hair bg-card py-[4px] pl-[27px] pr-[8px] font-mono text-[11.5px] text-label outline-none placeholder:text-tertiary focus:border-sand"
+          className="w-[230px] rounded-[2px] border border-hair bg-card py-[4px] pl-[27px] pr-[8px] text-[13px] text-label outline-none placeholder:text-tertiary focus:border-sand"
         />
       </label>
       <span className={`${CAPTION} mx-1`}>Lane</span>
@@ -582,7 +582,7 @@ function OrderList({
                 onClick={() => pick(o.id)}
                 className={
                   'flex w-full items-center gap-[8px] border-b border-hair/60 px-[12px] py-[7px] text-left transition-colors ' +
-                  (on ? 'bg-birch shadow-[inset_2px_0_0_var(--color-label)]' : 'hover:bg-birch/60') +
+                  (on ? 'bg-birch' : 'hover:bg-birch/60') +
                   (dim ? ' opacity-35' : '')
                 }
               >
@@ -605,7 +605,7 @@ function OrderList({
                         <Icon name="agent" size={11} />
                       </span>
                     ) : null}
-                    <span className="ml-auto font-mono text-[10px] uppercase text-tertiary">{o.lane}</span>
+                    <span className="ml-auto text-[11.5px] font-bold uppercase tracking-[0.06em] [font-stretch:75%] text-tertiary">{o.lane}</span>
                   </span>
                   <span className="block truncate text-[11.5px] text-secondary">
                     {o.from} → {o.to}
@@ -652,7 +652,7 @@ function BotQueue({
         const on = id === selectedId
         const w = WHO_SHORT[b.who]
         return (
-          <li key={b.id} className={`border-b border-hair/60 ${on ? 'bg-birch shadow-[inset_2px_0_0_var(--color-bot)]' : ''}`}>
+          <li key={b.id} className={`border-b border-hair/60 ${on ? 'bg-birch' : ''}`}>
             <button
               type="button"
               onClick={() => id && open(id)}
@@ -1097,7 +1097,7 @@ function MapPanel({
         <div
           role="radiogroup"
           aria-label="Transfers"
-          className="flex overflow-hidden rounded-[8px] border border-hair bg-card/90 p-[2px] shadow-[0_4px_16px_rgba(0,0,0,0.35)] backdrop-blur"
+          className="flex overflow-hidden rounded-[2px] border border-hair bg-card/90 p-[2px] shadow-[0_4px_16px_rgba(0,0,0,0.35)] backdrop-blur"
         >
           {SCOPES.map((s) => {
             const on = s.key === scope
@@ -1109,7 +1109,7 @@ function MapPanel({
                 aria-checked={on}
                 onClick={() => setScope(s.key)}
                 className={
-                  'inline-flex items-center gap-[5px] rounded-[6px] px-[9px] py-[4px] text-[12px] transition-colors ' +
+                  'inline-flex items-center gap-[5px] rounded-[2px] px-[9px] py-[4px] text-[12px] transition-colors ' +
                   (on ? 'bg-label font-semibold text-canvas' : 'text-secondary hover:text-label')
                 }
               >
@@ -1128,13 +1128,13 @@ function MapPanel({
           type="button"
           onClick={() => fit()}
           title="Fit the map to these transfers"
-          className="inline-flex items-center gap-[5px] rounded-[8px] border border-hair bg-card/90 px-[9px] py-[5px] text-[12px] text-secondary backdrop-blur hover:text-label"
+          className="inline-flex items-center gap-[5px] rounded-[2px] border border-hair bg-card/90 px-[9px] py-[5px] text-[12px] text-secondary backdrop-blur hover:text-label"
         >
           <Icon name="locate" size={12} />
           Reset view
         </button>
         {offline ? (
-          <span className="rounded-[6px] bg-card/90 px-[8px] py-[4px] font-mono text-[10.5px] text-orange">
+          <span className="rounded-[2px] bg-card/90 px-[8px] py-[4px] font-mono text-[10.5px] text-orange">
             basemap offline · lanes still drawn
           </span>
         ) : null}
@@ -1144,7 +1144,7 @@ function MapPanel({
 
       {tip ? (
         <div
-          className="pointer-events-none absolute z-[2] max-w-[240px] rounded-[7px] border border-sand bg-birch px-[9px] py-[6px] text-[11.5px] leading-[1.45] shadow-[0_6px_20px_rgba(0,0,0,0.45)]"
+          className="pointer-events-none absolute z-[2] max-w-[240px] rounded-[2px] border border-sand bg-birch px-[9px] py-[6px] text-[11.5px] leading-[1.45] shadow-[0_6px_20px_rgba(0,0,0,0.45)]"
           style={{ left: tip.x + 14, top: tip.y + 12 }}
         >
           {tip.body}
@@ -1156,7 +1156,7 @@ function MapPanel({
 
 function Legend() {
   return (
-    <ul className="pointer-events-none absolute bottom-[10px] left-[10px] z-[1] flex max-w-[calc(100%-300px)] flex-wrap gap-x-[12px] gap-y-[4px] rounded-[7px] bg-card/80 px-[9px] py-[5px] backdrop-blur">
+    <ul className="pointer-events-none absolute bottom-[10px] left-[10px] z-[1] flex max-w-[calc(100%-300px)] flex-wrap gap-x-[12px] gap-y-[4px] rounded-[2px] bg-card/80 px-[9px] py-[5px] backdrop-blur">
       {[...RISK_ORDER].reverse().map((r) => (
         <li key={r} className="inline-flex items-center gap-[5px] text-[10.5px] text-secondary">
           <span className="h-[2px] w-[14px] rounded-full" style={{ background: RISK[r].colour }} />
@@ -1180,7 +1180,7 @@ function Legend() {
 function Row({ k, children }: { k: string; children: React.ReactNode }) {
   return (
     <div className="flex items-baseline gap-3 border-b border-hair/60 py-[6px] last:border-b-0">
-      <dt className="w-[86px] shrink-0 font-mono text-[10.5px] uppercase tracking-[0.06em] text-tertiary">{k}</dt>
+      <dt className="w-[86px] shrink-0 text-[11.5px] font-bold uppercase tracking-[0.06em] [font-stretch:75%] text-tertiary">{k}</dt>
       <dd className="min-w-0 flex-1 text-[12.5px] text-label">{children}</dd>
     </div>
   )
@@ -1188,9 +1188,9 @@ function Row({ k, children }: { k: string; children: React.ReactNode }) {
 
 function Bar({ value, max, colour }: { value: number; max: number; colour: string }) {
   return (
-    <span className="relative block h-[6px] flex-1 overflow-hidden rounded-full bg-fill">
+    <span className="relative block h-[6px] flex-1 overflow-hidden bg-fill">
       <span
-        className="absolute inset-y-0 left-0 rounded-full"
+        className="absolute inset-y-0 left-0"
         style={{ width: `${Math.max(2, (value / Math.max(max, 1)) * 100)}%`, background: colour }}
       />
     </span>
@@ -1281,7 +1281,7 @@ function OrderDetail({ o, bot }: { o: OpsOrder; bot: BotProps }) {
     <div>
       <div className="flex items-center gap-[8px]">
         <span className="font-mono text-[17px] font-semibold text-label">{o.ref}</span>
-        <span className="rounded-[5px] bg-fill px-[6px] py-[1px] font-mono text-[10px] uppercase text-secondary">
+        <span className="rounded-[2px] bg-fill px-[6px] py-[1px] text-[11.5px] font-bold uppercase tracking-[0.06em] [font-stretch:75%] text-secondary">
           {o.lane}
         </span>
         <span className="ml-auto truncate text-[11.5px] text-secondary">
@@ -1292,7 +1292,7 @@ function OrderDetail({ o, bot }: { o: OpsOrder; bot: BotProps }) {
       {/* ---- why ---- */}
       {o.why ? (
         <div
-          className={`mt-[12px] rounded-[8px] border px-[11px] py-[9px] ${o.risk === 'critical' ? 'border-red/40 bg-red/[0.06]' : 'border-orange/40 bg-orange/[0.06]'}`}
+          className={`mt-[12px] rounded-[2px] border px-[11px] py-[9px] ${o.risk === 'critical' ? 'border-red/40 bg-red/[0.06]' : 'border-orange/40 bg-orange/[0.06]'}`}
         >
           <p className={CAPTION}>
             <Icon name={r.icon} size={11} className={o.risk === 'critical' ? 'text-red' : 'text-orange'} />
@@ -1316,7 +1316,7 @@ function OrderDetail({ o, bot }: { o: OpsOrder; bot: BotProps }) {
 
       {/* ---- BahnBot's next decision ---- */}
       {o.next && who ? (
-        <div className="mt-[8px] rounded-[8px] border border-hair bg-birch px-[11px] py-[9px]">
+        <div className="mt-[8px] rounded-[2px] border border-hair bg-birch px-[11px] py-[9px]">
           <p className={CAPTION}>
             <Icon name="arrow-right" size={11} />
             BahnBot&apos;s next decision
@@ -1360,10 +1360,10 @@ function OrderDetail({ o, bot }: { o: OpsOrder; bot: BotProps }) {
               <p className="flex items-baseline gap-[6px] text-[11px]">
                 <span className="truncate font-medium text-label">{s.who}</span>
                 {s.kind === 'said' && s.internal ? (
-                  <span className="rounded-[4px] bg-fill px-[4px] font-mono text-[9.5px] uppercase text-tertiary">internal</span>
+                  <span className="rounded-[4px] bg-fill px-[4px] text-[11.5px] font-bold uppercase tracking-[0.06em] [font-stretch:75%] text-tertiary">internal</span>
                 ) : null}
                 {s.language && s.language !== 'en' ? (
-                  <span className="font-mono text-[9.5px] uppercase text-tertiary">{s.language}</span>
+                  <span className="text-[11.5px] font-bold uppercase tracking-[0.06em] [font-stretch:75%] text-tertiary">{s.language}</span>
                 ) : null}
                 <span className="ml-auto shrink-0 font-mono text-[10px] tabular-nums text-tertiary">{stamp(s.t)}</span>
               </p>
@@ -1407,7 +1407,7 @@ function OrderDetail({ o, bot }: { o: OpsOrder; bot: BotProps }) {
             return (
               <div
                 key={h.boundary}
-                className={`rounded-[8px] border px-[10px] py-[8px] ${h.next ? 'border-sand bg-birch' : 'border-hair'}`}
+                className={`rounded-[2px] border px-[10px] py-[8px] ${h.next ? 'border-sand bg-birch' : 'border-hair'}`}
               >
                 <p className="flex items-baseline gap-[6px] text-[12px]">
                   <Icon name={lv.icon} size={12} className={`self-center ${lv.tone}`} />
@@ -1481,10 +1481,10 @@ function OrderDetail({ o, bot }: { o: OpsOrder; bot: BotProps }) {
           </p>
           <ul className="mt-[5px] space-y-[5px]">
             {o.alerts.map((a) => (
-              <li key={a.signal} className="rounded-[7px] border border-hair px-[9px] py-[6px]">
+              <li key={a.signal} className="rounded-[2px] border border-hair px-[9px] py-[6px]">
                 <p className="flex items-center gap-[6px] text-[12px] text-label">
                   <span
-                    className={`font-mono text-[10px] uppercase ${a.severity === 'critical' || a.severity === 'high' ? 'text-red' : 'text-orange'}`}
+                    className={`text-[11.5px] font-bold uppercase tracking-[0.06em] [font-stretch:75%] ${a.severity === 'critical' || a.severity === 'high' ? 'text-red' : 'text-orange'}`}
                   >
                     {a.severity}
                   </span>
@@ -1498,7 +1498,7 @@ function OrderDetail({ o, bot }: { o: OpsOrder; bot: BotProps }) {
 
       <Link
         href={`/case/${o.ref}`}
-        className="mt-[14px] inline-flex w-full items-center justify-center gap-[6px] rounded-[7px] bg-ink px-[12px] py-[7px] text-[12.5px] font-semibold text-canvas transition-opacity hover:opacity-90"
+        className="mt-[14px] inline-flex w-full items-center justify-center gap-[6px] rounded-[2px] bg-ink px-[12px] py-[7px] text-[12.5px] font-semibold text-canvas transition-opacity hover:opacity-90"
       >
         {o.needsYou ? 'Open the case' : 'Open the order'}
         <Icon name="arrow-right" size={13} />
@@ -1529,12 +1529,12 @@ function CityDetail({
             <button
               type="button"
               onClick={() => pick(o.id)}
-              className="flex w-full items-center gap-[8px] rounded-[5px] px-[4px] py-[4px] text-left hover:bg-birch"
+              className="flex w-full items-center gap-[8px] rounded-[2px] px-[4px] py-[4px] text-left hover:bg-birch"
             >
               <span className="size-[7px] rounded-full" style={{ background: RISK[o.risk].colour }} />
               <span className="font-mono text-[11.5px] text-label">{o.ref}</span>
               <span className="min-w-0 flex-1 truncate text-[11.5px] text-secondary">{other(o)}</span>
-              <span className="font-mono text-[10px] uppercase text-tertiary">{o.lane}</span>
+              <span className="text-[11.5px] font-bold uppercase tracking-[0.06em] [font-stretch:75%] text-tertiary">{o.lane}</span>
             </button>
           </li>
         ))}
@@ -1618,7 +1618,7 @@ function Overview({
               key={k}
               type="button"
               onClick={bot.showQueue}
-              className="rounded-[8px] border border-hair px-[10px] py-[9px] text-left hover:border-sand hover:bg-birch"
+              className="rounded-[2px] border border-hair px-[10px] py-[9px] text-left hover:border-sand hover:bg-birch"
             >
               <span className={`flex items-center gap-[6px] ${n ? WHO[k].tone : 'text-tertiary'}`}>
                 <Icon name={WHO[k].icon} size={13} />
@@ -1670,7 +1670,7 @@ function Overview({
                     type="button"
                     onClick={() => pick(o.id)}
                     title={issue?.text}
-                    className="flex w-full gap-[8px] rounded-[5px] px-[4px] py-[7px] text-left hover:bg-birch"
+                    className="flex w-full gap-[8px] rounded-[2px] px-[4px] py-[7px] text-left hover:bg-birch"
                   >
                     <span className={`mt-[2px] ${LEVEL[h.level].tone}`}>
                       <Icon name={LEVEL[h.level].icon} size={13} />
@@ -1723,7 +1723,7 @@ function Overview({
               <button
                 type="button"
                 onClick={() => pick(o.id)}
-                className="flex w-full items-baseline gap-[8px] rounded-[5px] px-[4px] py-[7px] text-left hover:bg-birch"
+                className="flex w-full items-baseline gap-[8px] rounded-[2px] px-[4px] py-[7px] text-left hover:bg-birch"
               >
                 <span className="min-w-0 flex-1">
                   <span className="block truncate text-[13px] font-medium text-label">{o.nextLabel}</span>
@@ -1751,7 +1751,7 @@ function Overview({
               <button
                 type="button"
                 onClick={() => toggleLane(l)}
-                className="flex w-full items-center gap-[8px] rounded-[5px] px-[4px] py-[3px] text-left hover:bg-birch"
+                className="flex w-full items-center gap-[8px] rounded-[2px] px-[4px] py-[3px] text-left hover:bg-birch"
               >
                 <span className="w-[112px] shrink-0 text-[12.5px] text-label">{laneLabel(l)}</span>
                 <Bar value={n} max={maxLane} colour="var(--color-secondary)" />
@@ -1788,7 +1788,7 @@ function Overview({
               key={city}
               type="button"
               onClick={() => setSelected({ kind: 'city', name: city })}
-              className="rounded-[6px] border border-hair px-[8px] py-[3px] text-[12px] text-label hover:border-sand hover:bg-birch"
+              className="rounded-[2px] border border-hair px-[8px] py-[3px] text-[12px] text-label hover:border-sand hover:bg-birch"
             >
               {city} <span className="tabular-nums text-tertiary">{n}</span>
             </button>
@@ -1811,7 +1811,7 @@ function OverviewHead({ title, hint, count }: { title: string; hint: string; cou
       <p className="flex items-baseline gap-[8px] text-[13.5px] font-semibold text-label">
         {title}
         {count !== undefined ? (
-          <span className="ml-auto rounded-full bg-fill px-[7px] text-[11.5px] font-medium tabular-nums text-secondary">
+          <span className="ml-auto rounded-[2px] bg-fill px-[7px] text-[11.5px] font-medium tabular-nums text-secondary">
             {count}
           </span>
         ) : null}
@@ -1943,13 +1943,13 @@ function Timeline({
           <button
             type="button"
             onClick={() => setRange(null)}
-            className="ml-auto inline-flex items-center gap-[5px] rounded-[6px] border border-sand px-[7px] py-[2px] font-mono text-[11px] text-label hover:bg-birch"
+            className="ml-auto inline-flex items-center gap-[5px] rounded-[2px] border border-sand px-[7px] py-[2px] font-mono text-[11px] text-label hover:bg-birch"
           >
             {stamp(range[0])} – {stamp(range[1])}
             <Icon name="close" size={10} />
           </button>
         ) : (
-          <span className="ml-auto font-mono text-[10.5px] text-tertiary">drag to select a window</span>
+          <span className="ml-auto text-[12px] text-tertiary">Drag to select a window</span>
         )}
       </div>
 
@@ -2046,7 +2046,7 @@ function Timeline({
 
         {hb && !drag ? (
           <div
-            className="pointer-events-none absolute top-0 z-[2] w-[170px] rounded-[7px] border border-sand bg-birch px-[9px] py-[6px] text-[11px] shadow-[0_6px_20px_rgba(0,0,0,0.45)]"
+            className="pointer-events-none absolute top-0 z-[2] w-[170px] rounded-[2px] border border-sand bg-birch px-[9px] py-[6px] text-[11px] shadow-[0_6px_20px_rgba(0,0,0,0.45)]"
             style={{
               left: `clamp(0px, calc(${(x(hb.t + binMs / 2) / TW) * 100}% - 85px), calc(100% - 170px))`,
             }}
@@ -2196,7 +2196,7 @@ function ClockStrip({
     <div
       role="group"
       aria-label="Local time in each market"
-      className="grid grid-cols-3 overflow-hidden rounded-[10px] border border-hair bg-hair"
+      className="grid grid-cols-3 overflow-hidden rounded-[2px] border border-hair bg-hair"
       style={{ gap: 1 }}
     >
       {MARKETS.map((m) => {
@@ -2217,7 +2217,7 @@ function ClockStrip({
             title={on ? 'Showing this market. Click to show all.' : `Show ${m.name} only`}
             className={`min-w-[150px] px-[11px] py-[7px] text-left transition-colors ${on ? 'bg-birch shadow-[inset_0_-2px_0_var(--color-label)]' : 'bg-card hover:bg-birch'}`}
           >
-            <p className="flex items-center gap-[6px] font-mono text-[10px] uppercase tracking-[0.08em] text-tertiary">
+            <p className="flex items-center gap-[6px] text-[11.5px] font-bold uppercase tracking-[0.06em] [font-stretch:75%] text-tertiary">
               <span className="text-secondary">{m.code}</span>
               {m.city}
               {c ? (

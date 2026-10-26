@@ -50,12 +50,12 @@ export function CasePane({ reference, full = false, onChanged }: { reference: st
     <Reveal>
       <header className="hero">
         <div>
+          <h1>{view.headline}</h1>
           <div className="hero-meta">
             <span className="mono">{view.reference}</span><span className="sep" />
             <span>{view.route}</span><span className="sep" />
             <span>{view.driver}</span>
           </div>
-          <h1>{view.headline}</h1>
           <div className="hero-chips">
             {view.watch.level !== "fine" && <span className={`badge ${slip ? "badge-danger" : "badge-warn"}`} title={view.watch.signals.join(" ")}>
               <span className="badge-dot" />{slip ? "Likely to slip" : "On watch"}
@@ -68,7 +68,14 @@ export function CasePane({ reference, full = false, onChanged }: { reference: st
       </header>
     </Reveal>
 
-    {view.decision && <Reveal i={1}><DecisionCard key={view.decision.id} card={view.decision} route={view.decision.action === "propose_booking" ? view.geo : null} active onChanged={changed} /></Reveal>}
+    {(view.decision || view.geo) && <Reveal i={1} className={view.decision && view.geo ? "case-deck" : undefined}>
+      {view.decision && <DecisionCard key={view.decision.id} card={view.decision} facts={view.facts} route={view.decision.action === "propose_booking" ? view.geo : null} active onChanged={changed} />}
+      {/* The route as a line of stops, beside the decision it bears on. */}
+      {view.geo && <aside className="deck-route" aria-label="Route">
+        <h2 className="h-section">Route</h2>
+        <RouteStrip route={view.geo} compact />
+      </aside>}
+    </Reveal>}
 
     {view.agentWork.length > 0 && <Reveal i={2}>
       <section aria-label="Open work from Bahn's own agents">

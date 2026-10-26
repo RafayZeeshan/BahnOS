@@ -11,7 +11,7 @@ import { PulseCard } from "./components/cr/pulse-card"
 import { QueueRow } from "./components/cr/queue-row"
 import { useKeys } from "./components/cr/use-keys"
 import { Icon } from "./components/icons"
-import { Collapse, Reveal, Segmented, Ticker } from "./ui/kit"
+import { Collapse, Reveal, Segmented } from "./ui/kit"
 
 type Today = { snapshotAt: string | null; needsYou: QueueItem[]; quiet: QuietItem[]; recorded: boolean; agentRuns: number; headsUp: { total: number; alsoNeedsYou: number } }
 type Tab = "needs-you" | "heads-up" | "all"
@@ -82,9 +82,9 @@ function TodayPage() {
           {data?.recorded && <span className="badge" title="BahnBot runs here were recorded live earlier and replayed, so no API key is needed."><Icon name="sparkle" size={12} />Recorded BahnBot runs</span>}
         </div>
         <div className="today-stats" aria-label="Summary">
-          <span className="stat stat-accent"><b>{data ? <Ticker value={needsYou} /> : "–"}</b>need you</span>
-          <span className="stat"><b>{headsUp ? <Ticker value={headsUp.length} /> : "–"}</b>heads-up</span>
-          <span className="stat"><b>{data ? <Ticker value={data.quiet.length} /> : "–"}</b>on track</span>
+          <span className="stat stat-accent"><b>{data ? needsYou : "–"}</b>need you</span>
+          <span className="stat"><b>{headsUp ? headsUp.length : "–"}</b>heads-up</span>
+          <span className="stat"><b>{data ? data.quiet.length : "–"}</b>on track</span>
         </div>
       </header>
 
@@ -99,13 +99,14 @@ function TodayPage() {
           </div>
           <div className="list-scroll">
             {error && <div className="state" role="alert"><p>{error}</p><button type="button" className="btn btn-sm" onClick={load}>Try again</button></div>}
-            {!data && !error && <div aria-busy="true" style={{ display: "grid", gap: 8, padding: 4 }}>{Array.from({ length: 7 }, (_, i) => <div key={i} className="sk" style={{ height: 58 }} />)}</div>}
+            {!data && !error && <div aria-busy="true" style={{ display: "grid", gap: 1, borderTop: "2px solid var(--rule)" }}>{Array.from({ length: 8 }, (_, i) => <div key={i} className="sk" style={{ height: 62 }} />)}</div>}
 
             {data && tab !== "heads-up" && (rows.length === 0
               ? <div className="state"><span className="state-icon"><Icon name="check" size={18} /></span><b>Nothing needs you</b>{data.quiet.length} orders are on track.</div>
-              : <div role="list" style={{ display: "grid", gap: 2 }}>{rows.map((item, i) => <Reveal key={item.reference} i={i} role="listitem" id={`row-${item.reference}`}>
+              : <><div className="tt-head" aria-hidden="true"><span>Order</span><span>Car and reason</span><span>Leg and next move</span><span>Due</span></div>
+              <div role="list">{rows.map((item, i) => <Reveal key={item.reference} i={i} role="listitem" id={`row-${item.reference}`}>
                   <QueueRow item={item} selected={item.reference === selected} isNew={tab === "needs-you" && !seen.has(seenKey(item))} onSelect={() => select(item.reference)} />
-                </Reveal>)}</div>)}
+                </Reveal>)}</div></>)}
 
             {tab === "heads-up" && headsUp && (headsUp.length === 0
               ? <div className="state"><span className="state-icon"><Icon name="check" size={18} /></span><b>No heads-up</b>Watch warns here before a trip runs into trouble.</div>

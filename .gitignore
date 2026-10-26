@@ -39,3 +39,12 @@ venv/
 Thumbs.db
 .idea/
 *.swp
+
+# Impeccable working files: caches, decision-round state, sketches and review captures
+.impeccable/hook.cache.json
+.impeccable/questions/*.log
+.impeccable/questions/*.state.json
+.impeccable/questions/*.hand.json
+.impeccable/mocks/
+.impeccable/review/
+.impeccable/config.local.json

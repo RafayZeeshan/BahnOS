@@ -2,8 +2,8 @@
 
 // The control room's component kit (ADR-016): Motion for movement, our tokens for the look.
 // Every animation respects reduced motion through the MotionConfig in Providers.
-import { AnimatePresence, animate, motion, MotionConfig, useInView } from "motion/react"
-import { useEffect, useId, useRef, useState, type HTMLAttributes, type ReactNode } from "react"
+import { AnimatePresence, motion, MotionConfig } from "motion/react"
+import { useId, useState, type HTMLAttributes, type ReactNode } from "react"
 import { Icon } from "../components/icons"
 
 export const spring = { type: "spring", stiffness: 520, damping: 40, mass: 0.8 } as const
@@ -13,7 +13,7 @@ export function Providers({ children }: { children: ReactNode }) {
   return <MotionConfig reducedMotion="user" transition={{ duration: 0.28, ease }}>{children}</MotionConfig>
 }
 
-/** Fades and lifts its children in; `i` staggers siblings. Plain CSS, so content never waits on JavaScript frames. */
+/** A block that may enter with a short CSS fade; `i` is kept for callers. Content is visible by default, so a throttled tab never shows it half-faded. */
 export function Reveal({ i = 0, children, className, style, ...rest }: { i?: number; children: ReactNode } & HTMLAttributes<HTMLDivElement>) {
   return <div className={`reveal${className ? ` ${className}` : ""}`} style={{ ...style, ["--i" as string]: Math.min(i, 12) }} {...rest}>{children}</div>
 }
@@ -58,19 +58,6 @@ export function Tabs<T extends string>({ value, options, onChange, label }: { va
       {value === o.value && <motion.span layoutId={`tab-${id}`} className="tab-line" transition={spring} />}
     </button>)}
   </div>
-}
-
-/** Counts up to a number when it first comes into view. */
-export function Ticker({ value, className }: { value: number; className?: string }) {
-  const ref = useRef<HTMLSpanElement>(null)
-  const seen = useInView(ref, { once: true })
-  useEffect(() => {
-    const el = ref.current
-    if (!el || !seen) return
-    const controls = animate(0, value, { duration: 0.7, ease, onUpdate: (v) => { el.textContent = String(Math.round(v)) } })
-    return () => controls.stop()
-  }, [seen, value])
-  return <span ref={ref} className={className}>{value}</span>
 }
 
 const slug = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")

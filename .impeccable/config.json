@@ -1,0 +1,44 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "starter/app/ui/theme.css"
+        ],
+        "createdAt": "2026-10-26T14:10:20.651Z",
+        "reason": "Claude: 2px ink rules divide list and reading panes (Kursbuch contract), not card accents"
+      },
+      {
+        "rule": "border-accent-on-rounded",
+        "value": "*",
+        "files": [
+          "starter/app/ui/theme.css"
+        ],
+        "createdAt": "2026-10-26T14:10:20.675Z",
+        "reason": "Claude: the 4px red rule opens square (radius 0) decision and command blocks per the Kursbuch contract"
+      },
+      {
+        "rule": "undersized-ui-text",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/*.html"
+        ],
+        "createdAt": "2026-10-26T14:12:24.714Z",
+        "reason": "Claude: spent decision-round sketches, never shipped; the page draws them as skeletons"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/*.html"
+        ],
+        "createdAt": "2026-10-26T14:27:05.590Z",
+        "reason": "Claude: spent decision-round sketches of rejected and pre-build directions; never shipped, so DESIGN.md does not govern them"
+      }
+    ]
+  }
+}

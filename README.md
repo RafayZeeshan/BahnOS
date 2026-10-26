@@ -42,7 +42,7 @@ If port 5438 or 9009 is taken, change it in `starter/compose.yaml` and the match
 
 ## What you'll see
 
-Light and dark themes follow the system; the moon/sun button in the sidebar switches them.
+Light and dark themes follow the system; the moon/sun button in the header bar switches them.
 
 - **Ops map:** the whole network on one screen: every order as a lane between two cities, coloured by what it needs, with BahnBot's open decisions on the lanes, local clocks for Finland, Denmark and Germany, handovers at risk, the next deadlines, an activity timeline you can brush, and a disruption watch of public holidays and live headlines. It shows the records at the snapshot; a lane opens its case. Ported from our team's BahnOS ops map (ADR-017).
 - **Answer book:** 80 driver-support questions, each saying whether BahnBot may answer it alone, must check the records, must ask one question first, or must hand it to a person, with what it must never say and the corner cases. BahnBot looks entries up with its `answer_book` tool, in the driver's own market.
@@ -62,8 +62,8 @@ Light and dark themes follow the system; the moon/sun button in the sidebar swit
 - `starter/lib/dream/`: casebook, replay, learning loop, versions, new data, simulation.
 - `starter/app/map/`, `starter/lib/opsmap/`: the ops map, ported from the team's BahnOS (ADR-017). It is written in Tailwind, scoped to that page and the answer book.
 - `starter/lib/answers/`: the answer book and BahnBot's lookup into it.
-- `starter/app/ui/`: the design system (ADR-016): tokens for light and dark, and a small component kit on Motion.
-- `docs/decisions/`: 17 architecture decision records. ADRs 001–016 call BahnBot "the Recovery agent", its earlier name. `docs/SPEC.md` and `tasks/plan.md` are the spec and task list we built from.
+- `starter/app/ui/`: the design system (ADR-018, Kursbuch): tokens for light and dark, and a small component kit on Motion.
+- `docs/decisions/`: 18 architecture decision records. ADRs 001–016 call BahnBot "the Recovery agent", its earlier name. `docs/SPEC.md` and `tasks/plan.md` are the spec and task list we built from.
 - `docs/AI-LOG.md`: how we worked with Claude Code, including what we threw away.
 
 ## What's not done, and why

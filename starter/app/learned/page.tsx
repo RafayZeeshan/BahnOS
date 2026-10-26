@@ -6,7 +6,7 @@ import { AppFrame } from "../components/app-frame"
 import { Icon } from "../components/icons"
 import { NewSinceBar } from "../components/cr/new-since"
 import { VersionCard, type VersionView } from "../components/cr/version-card"
-import { Reveal, Tabs, Ticker } from "../ui/kit"
+import { Reveal, Tabs } from "../ui/kit"
 
 type TypeRow = { cause: string; label: string; cases: number; hitsByVersion: number[]; maturity: "learning" | "emerging" | "reliable"; minCases: number }
 type StressRow = { perturbation: string; label: string; k: number; n: number; sentence: string }
@@ -52,9 +52,9 @@ export default function LearnedPage() {
       {data && adopted && <div style={{ display: "grid", gap: 18 }}>
         <Reveal i={1}><div className="kpis">
           <dl className="surf kpi"><dt>In use</dt><dd>v{adopted.version}<small>{data.proposer === "model" ? "BahnBot-suggested" : "rules"}</small></dd></dl>
-          <dl className="surf kpi"><dt>Past problems caught ahead</dt><dd><Ticker value={adopted.metrics.hits.k} /><small>of {adopted.metrics.hits.n}</small></dd></dl>
-          <dl className="surf kpi"><dt>False alarms</dt><dd><Ticker value={adopted.metrics.falseAlarms.k} /><small>of {adopted.metrics.falseAlarms.n} quiet</small></dd></dl>
-          <dl className="surf kpi"><dt>Median warning</dt><dd>{adopted.metrics.medianLeadHours === null ? "–" : <><Ticker value={adopted.metrics.medianLeadHours} /><small>h ahead</small></>}</dd></dl>
+          <dl className="surf kpi"><dt>Past problems caught ahead</dt><dd>{adopted.metrics.hits.k}<small>of {adopted.metrics.hits.n}</small></dd></dl>
+          <dl className="surf kpi"><dt>False alarms</dt><dd>{adopted.metrics.falseAlarms.k}<small>of {adopted.metrics.falseAlarms.n} quiet</small></dd></dl>
+          <dl className="surf kpi"><dt>Median warning</dt><dd>{adopted.metrics.medianLeadHours === null ? "–" : <>{adopted.metrics.medianLeadHours}<small>h ahead</small></>}</dd></dl>
         </div></Reveal>
 
         <Reveal i={2}><NewSinceBar version={adopted.version} onLearned={load} /></Reveal>

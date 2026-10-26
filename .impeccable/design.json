@@ -1,0 +1,777 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-26T14:26:25+00:00",
+  "title": "Design System: BahnOS",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "oklch(15% 0.000 89.9)",
+          "oklch(26% 0.000 89.9)",
+          "oklch(38% 0.000 89.9)",
+          "oklch(49% 0.000 89.9)",
+          "oklch(61% 0.000 89.9)",
+          "oklch(72% 0.000 89.9)",
+          "oklch(84% 0.000 89.9)",
+          "oklch(95% 0.000 89.9)"
+        ],
+        "dark": "#0e0e0d"
+      },
+      "paper-tint": {
+        "role": "neutral",
+        "displayName": "Paper Tint",
+        "canonical": "#f4f4f1",
+        "tonalRamp": [
+          "oklch(15% 0.004 106.5)",
+          "oklch(26% 0.004 106.5)",
+          "oklch(38% 0.004 106.5)",
+          "oklch(49% 0.004 106.5)",
+          "oklch(61% 0.004 106.5)",
+          "oklch(72% 0.004 106.5)",
+          "oklch(84% 0.004 106.5)",
+          "oklch(95% 0.004 106.5)"
+        ],
+        "dark": "#191917"
+      },
+      "paper-shade": {
+        "role": "neutral",
+        "displayName": "Paper Shade",
+        "canonical": "#e9e9e4",
+        "tonalRamp": [
+          "oklch(15% 0.007 106.5)",
+          "oklch(26% 0.007 106.5)",
+          "oklch(38% 0.007 106.5)",
+          "oklch(49% 0.007 106.5)",
+          "oklch(61% 0.007 106.5)",
+          "oklch(72% 0.007 106.5)",
+          "oklch(84% 0.007 106.5)",
+          "oklch(95% 0.007 106.5)"
+        ],
+        "dark": "#25251f"
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#deded8",
+        "tonalRamp": [
+          "oklch(15% 0.008 106.6)",
+          "oklch(26% 0.008 106.6)",
+          "oklch(38% 0.008 106.6)",
+          "oklch(49% 0.008 106.6)",
+          "oklch(61% 0.008 106.6)",
+          "oklch(72% 0.008 106.6)",
+          "oklch(84% 0.008 106.6)",
+          "oklch(95% 0.008 106.6)"
+        ],
+        "dark": "#2c2c28"
+      },
+      "hairline-strong": {
+        "role": "neutral",
+        "displayName": "Strong Hairline",
+        "canonical": "#b8b8b0",
+        "tonalRamp": [
+          "oklch(15% 0.011 106.7)",
+          "oklch(26% 0.011 106.7)",
+          "oklch(38% 0.011 106.7)",
+          "oklch(49% 0.011 106.7)",
+          "oklch(61% 0.011 106.7)",
+          "oklch(72% 0.011 106.7)",
+          "oklch(84% 0.011 106.7)",
+          "oklch(95% 0.011 106.7)"
+        ],
+        "dark": "#4a4a43"
+      },
+      "ink": {
+        "role": "primary",
+        "displayName": "Timetable Ink",
+        "canonical": "#111111",
+        "tonalRamp": [
+          "oklch(15% 0.000 89.9)",
+          "oklch(26% 0.000 89.9)",
+          "oklch(38% 0.000 89.9)",
+          "oklch(49% 0.000 89.9)",
+          "oklch(61% 0.000 89.9)",
+          "oklch(72% 0.000 89.9)",
+          "oklch(84% 0.000 89.9)",
+          "oklch(95% 0.000 89.9)"
+        ],
+        "dark": "#efefe9"
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Ink Soft",
+        "canonical": "#45453f",
+        "tonalRamp": [
+          "oklch(15% 0.010 106.9)",
+          "oklch(26% 0.010 106.9)",
+          "oklch(38% 0.010 106.9)",
+          "oklch(49% 0.010 106.9)",
+          "oklch(61% 0.010 106.9)",
+          "oklch(72% 0.010 106.9)",
+          "oklch(84% 0.010 106.9)",
+          "oklch(95% 0.010 106.9)"
+        ],
+        "dark": "#bdbdb4"
+      },
+      "ink-faint": {
+        "role": "neutral",
+        "displayName": "Ink Faint",
+        "canonical": "#686862",
+        "tonalRamp": [
+          "oklch(15% 0.009 106.7)",
+          "oklch(26% 0.009 106.7)",
+          "oklch(38% 0.009 106.7)",
+          "oklch(49% 0.009 106.7)",
+          "oklch(61% 0.009 106.7)",
+          "oklch(72% 0.009 106.7)",
+          "oklch(84% 0.009 106.7)",
+          "oklch(95% 0.009 106.7)"
+        ],
+        "dark": "#8f8f87"
+      },
+      "act-hover": {
+        "role": "primary",
+        "displayName": "Ink Hover",
+        "canonical": "#34342f",
+        "tonalRamp": [
+          "oklch(15% 0.009 106.9)",
+          "oklch(26% 0.009 106.9)",
+          "oklch(38% 0.009 106.9)",
+          "oklch(49% 0.009 106.9)",
+          "oklch(61% 0.009 106.9)",
+          "oklch(72% 0.009 106.9)",
+          "oklch(84% 0.009 106.9)",
+          "oklch(95% 0.009 106.9)"
+        ],
+        "dark": "#ffffff"
+      },
+      "signal-red": {
+        "role": "primary",
+        "displayName": "Signal Red",
+        "canonical": "#c8211a",
+        "tonalRamp": [
+          "oklch(15% 0.200 28.8)",
+          "oklch(26% 0.200 28.8)",
+          "oklch(38% 0.200 28.8)",
+          "oklch(49% 0.200 28.8)",
+          "oklch(61% 0.200 28.8)",
+          "oklch(72% 0.200 28.8)",
+          "oklch(84% 0.200 28.8)",
+          "oklch(95% 0.200 28.8)"
+        ],
+        "dark": "#ff5a4b"
+      },
+      "signal-red-text": {
+        "role": "primary",
+        "displayName": "Signal Red Text",
+        "canonical": "#b21d17",
+        "tonalRamp": [
+          "oklch(15% 0.184 28.7)",
+          "oklch(26% 0.184 28.7)",
+          "oklch(38% 0.184 28.7)",
+          "oklch(49% 0.184 28.7)",
+          "oklch(61% 0.184 28.7)",
+          "oklch(72% 0.184 28.7)",
+          "oklch(84% 0.184 28.7)",
+          "oklch(95% 0.184 28.7)"
+        ],
+        "dark": "#ff7468"
+      },
+      "plate-red": {
+        "role": "primary",
+        "displayName": "Plate Red",
+        "canonical": "#ff6b5e",
+        "tonalRamp": [
+          "oklch(15% 0.183 27.7)",
+          "oklch(26% 0.183 27.7)",
+          "oklch(38% 0.183 27.7)",
+          "oklch(49% 0.183 27.7)",
+          "oklch(61% 0.183 27.7)",
+          "oklch(72% 0.183 27.7)",
+          "oklch(84% 0.183 27.7)",
+          "oklch(95% 0.183 27.7)"
+        ],
+        "dark": "#ff6e60"
+      },
+      "plate-ink-soft": {
+        "role": "neutral",
+        "displayName": "Plate Soft Text",
+        "canonical": "#c4c4bd",
+        "tonalRamp": [
+          "oklch(15% 0.010 106.6)",
+          "oklch(26% 0.010 106.6)",
+          "oklch(38% 0.010 106.6)",
+          "oklch(49% 0.010 106.6)",
+          "oklch(61% 0.010 106.6)",
+          "oklch(72% 0.010 106.6)",
+          "oklch(84% 0.010 106.6)",
+          "oklch(95% 0.010 106.6)"
+        ],
+        "dark": "#b9b9b0"
+      },
+      "bar-paper": {
+        "role": "neutral",
+        "displayName": "Bar Paper",
+        "canonical": "#f4f4f0",
+        "tonalRamp": [
+          "oklch(15% 0.005 106.5)",
+          "oklch(26% 0.005 106.5)",
+          "oklch(38% 0.005 106.5)",
+          "oklch(49% 0.005 106.5)",
+          "oklch(61% 0.005 106.5)",
+          "oklch(72% 0.005 106.5)",
+          "oklch(84% 0.005 106.5)",
+          "oklch(95% 0.005 106.5)"
+        ],
+        "dark": "#efefe9"
+      },
+      "bar-paper-soft": {
+        "role": "neutral",
+        "displayName": "Bar Paper Soft",
+        "canonical": "#a9a9a2",
+        "tonalRamp": [
+          "oklch(15% 0.010 106.6)",
+          "oklch(26% 0.010 106.6)",
+          "oklch(38% 0.010 106.6)",
+          "oklch(49% 0.010 106.6)",
+          "oklch(61% 0.010 106.6)",
+          "oklch(72% 0.010 106.6)",
+          "oklch(84% 0.010 106.6)",
+          "oklch(95% 0.010 106.6)"
+        ],
+        "dark": "#9b9b93"
+      },
+      "danger": {
+        "role": "tertiary",
+        "displayName": "Danger",
+        "canonical": "#b3261e",
+        "tonalRamp": [
+          "oklch(15% 0.178 28.7)",
+          "oklch(26% 0.178 28.7)",
+          "oklch(38% 0.178 28.7)",
+          "oklch(49% 0.178 28.7)",
+          "oklch(61% 0.178 28.7)",
+          "oklch(72% 0.178 28.7)",
+          "oklch(84% 0.178 28.7)",
+          "oklch(95% 0.178 28.7)"
+        ],
+        "dark": "#ff7468"
+      },
+      "warn": {
+        "role": "tertiary",
+        "displayName": "Warn",
+        "canonical": "#9a6200",
+        "tonalRamp": [
+          "oklch(15% 0.117 70.8)",
+          "oklch(26% 0.117 70.8)",
+          "oklch(38% 0.117 70.8)",
+          "oklch(49% 0.117 70.8)",
+          "oklch(61% 0.117 70.8)",
+          "oklch(72% 0.117 70.8)",
+          "oklch(84% 0.117 70.8)",
+          "oklch(95% 0.117 70.8)"
+        ],
+        "dark": "#e8ad3a"
+      },
+      "ok": {
+        "role": "tertiary",
+        "displayName": "OK",
+        "canonical": "#1b7339",
+        "tonalRamp": [
+          "oklch(15% 0.122 150.1)",
+          "oklch(26% 0.122 150.1)",
+          "oklch(38% 0.122 150.1)",
+          "oklch(49% 0.122 150.1)",
+          "oklch(61% 0.122 150.1)",
+          "oklch(72% 0.122 150.1)",
+          "oklch(84% 0.122 150.1)",
+          "oklch(95% 0.122 150.1)"
+        ],
+        "dark": "#5cc47f"
+      },
+      "info": {
+        "role": "tertiary",
+        "displayName": "Info",
+        "canonical": "#006a83",
+        "tonalRamp": [
+          "oklch(15% 0.089 221.5)",
+          "oklch(26% 0.089 221.5)",
+          "oklch(38% 0.089 221.5)",
+          "oklch(49% 0.089 221.5)",
+          "oklch(61% 0.089 221.5)",
+          "oklch(72% 0.089 221.5)",
+          "oklch(84% 0.089 221.5)",
+          "oklch(95% 0.089 221.5)"
+        ],
+        "dark": "#46b9d2"
+      },
+      "mode-road": {
+        "role": "secondary",
+        "displayName": "Road Ochre",
+        "canonical": "#c98a00",
+        "tonalRamp": [
+          "oklch(15% 0.142 76.5)",
+          "oklch(26% 0.142 76.5)",
+          "oklch(38% 0.142 76.5)",
+          "oklch(49% 0.142 76.5)",
+          "oklch(61% 0.142 76.5)",
+          "oklch(72% 0.142 76.5)",
+          "oklch(84% 0.142 76.5)",
+          "oklch(95% 0.142 76.5)"
+        ],
+        "dark": "#e8ad3a"
+      },
+      "mode-ferry": {
+        "role": "secondary",
+        "displayName": "Ferry Teal",
+        "canonical": "#00708a",
+        "tonalRamp": [
+          "oklch(15% 0.093 221.3)",
+          "oklch(26% 0.093 221.3)",
+          "oklch(38% 0.093 221.3)",
+          "oklch(49% 0.093 221.3)",
+          "oklch(61% 0.093 221.3)",
+          "oklch(72% 0.093 221.3)",
+          "oklch(84% 0.093 221.3)",
+          "oklch(95% 0.093 221.3)"
+        ],
+        "dark": "#46b9d2"
+      },
+      "mode-rail": {
+        "role": "secondary",
+        "displayName": "Rail Red",
+        "canonical": "#c8211a",
+        "tonalRamp": [
+          "oklch(15% 0.200 28.8)",
+          "oklch(26% 0.200 28.8)",
+          "oklch(38% 0.200 28.8)",
+          "oklch(49% 0.200 28.8)",
+          "oklch(61% 0.200 28.8)",
+          "oklch(72% 0.200 28.8)",
+          "oklch(84% 0.200 28.8)",
+          "oklch(95% 0.200 28.8)"
+        ],
+        "dark": "#ff5a4b"
+      },
+      "mode-flight": {
+        "role": "secondary",
+        "displayName": "Flight Violet",
+        "canonical": "#5a4fb3",
+        "tonalRamp": [
+          "oklch(15% 0.153 284.3)",
+          "oklch(26% 0.153 284.3)",
+          "oklch(38% 0.153 284.3)",
+          "oklch(49% 0.153 284.3)",
+          "oklch(61% 0.153 284.3)",
+          "oklch(72% 0.153 284.3)",
+          "oklch(84% 0.153 284.3)",
+          "oklch(95% 0.153 284.3)"
+        ],
+        "dark": "#a39bff"
+      },
+      "moving": {
+        "role": "secondary",
+        "displayName": "On-the-Road Blue",
+        "canonical": "#2d55d0",
+        "tonalRamp": [
+          "oklch(15% 0.195 265.7)",
+          "oklch(26% 0.195 265.7)",
+          "oklch(38% 0.195 265.7)",
+          "oklch(49% 0.195 265.7)",
+          "oklch(61% 0.195 265.7)",
+          "oklch(72% 0.195 265.7)",
+          "oklch(84% 0.195 265.7)",
+          "oklch(95% 0.195 265.7)"
+        ],
+        "dark": "#7d97ff"
+      },
+      "open-case": {
+        "role": "secondary",
+        "displayName": "Muted Case Red",
+        "canonical": "#a8524b",
+        "tonalRamp": [
+          "oklch(15% 0.115 26.3)",
+          "oklch(26% 0.115 26.3)",
+          "oklch(38% 0.115 26.3)",
+          "oklch(49% 0.115 26.3)",
+          "oklch(61% 0.115 26.3)",
+          "oklch(72% 0.115 26.3)",
+          "oklch(84% 0.115 26.3)",
+          "oklch(95% 0.115 26.3)"
+        ],
+        "dark": "#d9837b"
+      },
+      "paper-dark": {
+        "role": "neutral",
+        "displayName": "Night Paper",
+        "canonical": "#0e0e0d",
+        "tonalRamp": [
+          "oklch(15% 0.002 106.6)",
+          "oklch(26% 0.002 106.6)",
+          "oklch(38% 0.002 106.6)",
+          "oklch(49% 0.002 106.6)",
+          "oklch(61% 0.002 106.6)",
+          "oklch(72% 0.002 106.6)",
+          "oklch(84% 0.002 106.6)",
+          "oklch(95% 0.002 106.6)"
+        ],
+        "theme": "dark"
+      },
+      "paper-tint-dark": {
+        "role": "neutral",
+        "displayName": "Night Paper Tint",
+        "canonical": "#191917",
+        "tonalRamp": [
+          "oklch(15% 0.004 106.7)",
+          "oklch(26% 0.004 106.7)",
+          "oklch(38% 0.004 106.7)",
+          "oklch(49% 0.004 106.7)",
+          "oklch(61% 0.004 106.7)",
+          "oklch(72% 0.004 106.7)",
+          "oklch(84% 0.004 106.7)",
+          "oklch(95% 0.004 106.7)"
+        ],
+        "theme": "dark"
+      },
+      "hairline-dark": {
+        "role": "neutral",
+        "displayName": "Night Hairline",
+        "canonical": "#2c2c28",
+        "tonalRamp": [
+          "oklch(15% 0.007 106.8)",
+          "oklch(26% 0.007 106.8)",
+          "oklch(38% 0.007 106.8)",
+          "oklch(49% 0.007 106.8)",
+          "oklch(61% 0.007 106.8)",
+          "oklch(72% 0.007 106.8)",
+          "oklch(84% 0.007 106.8)",
+          "oklch(95% 0.007 106.8)"
+        ],
+        "theme": "dark"
+      },
+      "ink-dark": {
+        "role": "primary",
+        "displayName": "Warm Off-White",
+        "canonical": "#efefe9",
+        "tonalRamp": [
+          "oklch(15% 0.008 106.6)",
+          "oklch(26% 0.008 106.6)",
+          "oklch(38% 0.008 106.6)",
+          "oklch(49% 0.008 106.6)",
+          "oklch(61% 0.008 106.6)",
+          "oklch(72% 0.008 106.6)",
+          "oklch(84% 0.008 106.6)",
+          "oklch(95% 0.008 106.6)"
+        ],
+        "theme": "dark"
+      },
+      "rule-dark": {
+        "role": "neutral",
+        "displayName": "Night Rule",
+        "canonical": "#e8e8e1",
+        "tonalRamp": [
+          "oklch(15% 0.009 106.6)",
+          "oklch(26% 0.009 106.6)",
+          "oklch(38% 0.009 106.6)",
+          "oklch(49% 0.009 106.6)",
+          "oklch(61% 0.009 106.6)",
+          "oklch(72% 0.009 106.6)",
+          "oklch(84% 0.009 106.6)",
+          "oklch(95% 0.009 106.6)"
+        ],
+        "theme": "dark"
+      },
+      "plate-dark": {
+        "role": "neutral",
+        "displayName": "Night Plate",
+        "canonical": "#2e2e29",
+        "tonalRamp": [
+          "oklch(15% 0.009 106.9)",
+          "oklch(26% 0.009 106.9)",
+          "oklch(38% 0.009 106.9)",
+          "oklch(49% 0.009 106.9)",
+          "oklch(61% 0.009 106.9)",
+          "oklch(72% 0.009 106.9)",
+          "oklch(84% 0.009 106.9)",
+          "oklch(95% 0.009 106.9)"
+        ],
+        "theme": "dark"
+      },
+      "bar-dark": {
+        "role": "neutral",
+        "displayName": "Night Bar",
+        "canonical": "#000000",
+        "tonalRamp": [
+          "oklch(15% 0.000 0.0)",
+          "oklch(26% 0.000 0.0)",
+          "oklch(38% 0.000 0.0)",
+          "oklch(49% 0.000 0.0)",
+          "oklch(61% 0.000 0.0)",
+          "oklch(72% 0.000 0.0)",
+          "oklch(84% 0.000 0.0)",
+          "oklch(95% 0.000 0.0)"
+        ],
+        "theme": "dark"
+      },
+      "signal-red-dark": {
+        "role": "primary",
+        "displayName": "Night Signal Red",
+        "canonical": "#ff5a4b",
+        "tonalRamp": [
+          "oklch(15% 0.200 28.7)",
+          "oklch(26% 0.200 28.7)",
+          "oklch(38% 0.200 28.7)",
+          "oklch(49% 0.200 28.7)",
+          "oklch(61% 0.200 28.7)",
+          "oklch(72% 0.200 28.7)",
+          "oklch(84% 0.200 28.7)",
+          "oklch(95% 0.200 28.7)"
+        ],
+        "theme": "dark"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Page titles; condensed uppercase (font-stretch 75%, text-transform uppercase). 28px below 900px."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "The case headline; a sentence, so normal width, text-wrap balance."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "The decision heading, before the BahnBot attribution."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Rows, facts and prose; tabular figures on body; prose capped at 75ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Column heads, section heads, fact and KPI terms; condensed uppercase, 11.5-12.5px, 0.06-0.07em."
+      },
+      "figure": {
+        "displayName": "Figure",
+        "purpose": "Due times (17px), stats (24px), risk ratios (30px), KPIs (32px); tabular."
+      },
+      "reference": {
+        "displayName": "Reference",
+        "purpose": "Order numbers and kbd hints in Geist Mono."
+      }
+    },
+    "shadows": [
+      {
+        "name": "hairline-ring",
+        "value": "inset 0 0 0 1px var(--line)",
+        "purpose": "In-flow frames drawn without layout shift."
+      },
+      {
+        "name": "opening-rule",
+        "value": "inset 0 2px 0 var(--rule), inset 0 0 0 1px var(--line)",
+        "purpose": "A ruled section: 2px ink rule on top, hairline frame."
+      },
+      {
+        "name": "float",
+        "value": "0 18px 44px -14px rgba(17,17,17,0.32), 0 0 0 1px var(--line-2)",
+        "purpose": "Records popover, command menu, phone preview. Dark: 0 24px 60px -18px rgba(0,0,0,0.85), 0 0 0 1px var(--line-2)."
+      },
+      {
+        "name": "toast",
+        "value": "0 18px 40px -14px rgba(0,0,0,0.45)",
+        "purpose": "The undo toast on the plate."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Default easing (CSS --ease and Motion default, 0.28s)."
+      },
+      {
+        "name": "plate-spring",
+        "value": "spring stiffness 520, damping 40, mass 0.8",
+        "purpose": "The reversed plate, nav underline, segmented thumb and tab line sliding to the new selection."
+      },
+      {
+        "name": "colour-state",
+        "value": "0.15s",
+        "purpose": "Colour and background transitions on hover."
+      },
+      {
+        "name": "disclosure",
+        "value": "height + opacity, 0.26s, ease",
+        "purpose": "Details on demand (Collapse)."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "MotionConfig reducedMotion=\"user\"; CSS durations 0.01ms",
+        "purpose": "Every movement honours reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide",
+        "value": "1280px"
+      },
+      {
+        "name": "laptop",
+        "value": "1100px"
+      },
+      {
+        "name": "tablet",
+        "value": "900px"
+      },
+      {
+        "name": "phone",
+        "value": "560px"
+      },
+      {
+        "name": "case-deck (container)",
+        "value": "740px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Response",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The first numbered response in a decision: ink fill, key hint beside the label.",
+      "html": "<button class=\"ds-btn ds-btn-primary\">Go ahead<kbd class=\"ds-kbd\">1</kbd></button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 14px;border:1.5px solid var(--text,#111111);border-radius:2px;background:transparent;color:var(--text,#111111);font:600 13.5px/1 var(--font-sans,'Archivo Variable',sans-serif);cursor:pointer;transition:background .15s,color .15s,transform .1s}.ds-btn-primary{background:var(--act,#111111);border-color:var(--act,#111111);color:var(--on-act,#ffffff)}.ds-btn-primary:hover{background:var(--act-hover,#34342f);border-color:var(--act-hover,#34342f)}.ds-btn:active{transform:translateY(1px)}.ds-btn:focus-visible{outline:2px solid var(--accent,#c8211a);outline-offset:2px}.ds-kbd{display:inline-grid;place-items:center;min-width:18px;height:18px;padding:0 4px;margin-left:2px;border-radius:2px;font:500 10.5px/1 var(--font-code,'Geist Mono',monospace);color:currentColor;opacity:.75;box-shadow:inset 0 0 0 1px currentColor}"
+    },
+    {
+      "name": "Outlined Response",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "The other numbered responses: a printed box with a 1.5px ink stroke.",
+      "html": "<button class=\"ds-btn-o\">Change it<kbd class=\"ds-kbd-o\">2</kbd></button>",
+      "css": ".ds-btn-o{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 14px;border:1.5px solid var(--text,#111111);border-radius:2px;background:transparent;color:var(--text,#111111);font:600 13.5px/1 var(--font-sans,'Archivo Variable',sans-serif);cursor:pointer;transition:background .15s,transform .1s}.ds-btn-o:hover{background:var(--surface-2,#f4f4f1)}.ds-btn-o:active{transform:translateY(1px)}.ds-btn-o:focus-visible{outline:2px solid var(--accent,#c8211a);outline-offset:2px}.ds-kbd-o{display:inline-grid;place-items:center;min-width:18px;height:18px;padding:0 4px;border-radius:2px;font:500 10.5px/1 var(--font-code,'Geist Mono',monospace);color:var(--text-3,#686862);box-shadow:inset 0 0 0 1px var(--line-2,#b8b8b0)}"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Snooze and Cancel: no stroke, soft ink.",
+      "html": "<button class=\"ds-btn-ghost\">Snooze</button>",
+      "css": ".ds-btn-ghost{display:inline-flex;align-items:center;height:28px;padding:0 10px;border:1.5px solid transparent;border-radius:2px;background:transparent;color:var(--text-2,#45453f);font:600 12.5px/1 var(--font-sans,'Archivo Variable',sans-serif);cursor:pointer;transition:background .15s,color .15s}.ds-btn-ghost:hover{background:var(--surface-2,#f4f4f1);color:var(--text,#111111)}.ds-btn-ghost:focus-visible{outline:2px solid var(--accent,#c8211a);outline-offset:2px}"
+    },
+    {
+      "name": "Reason Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Textarea for the reason behind Change it, Take over or Not this; the ring turns ink on focus.",
+      "html": "<textarea class=\"ds-field\" rows=\"2\" placeholder=\"One line is enough. BahnBot learns from it.\"></textarea>",
+      "css": ".ds-field{width:320px;min-height:44px;padding:10px 12px;border:0;border-radius:2px;resize:vertical;font:400 14px/1.5 var(--font-sans,'Archivo Variable',sans-serif);color:var(--text,#111111);background:var(--surface,#ffffff);box-shadow:inset 0 0 0 1.5px var(--line-2,#b8b8b0);transition:box-shadow .15s}.ds-field::placeholder{color:var(--text-3,#686862)}.ds-field:focus{outline:0;box-shadow:inset 0 0 0 1.5px var(--text,#111111)}"
+    },
+    {
+      "name": "Header Bar",
+      "kind": "nav",
+      "refersTo": "header-bar",
+      "description": "The black timetable bar: red brand square, condensed wordmark, work links with a red current underline.",
+      "html": "<header class=\"ds-bar\"><a class=\"ds-brand\" href=\"#\"><span class=\"ds-mark\"></span><span class=\"ds-name\">BahnOS</span></a><nav class=\"ds-nav\"><a class=\"ds-link\" aria-current=\"page\" href=\"#\">Today<span class=\"ds-count ds-hot\">19</span><span class=\"ds-line\"></span></a><a class=\"ds-link\" href=\"#\">Heads-up<span class=\"ds-count\">9</span></a><a class=\"ds-link\" href=\"#\">Ops map</a></nav></header>",
+      "css": ".ds-bar{display:flex;align-items:stretch;gap:22px;height:52px;padding:0 20px;background:var(--bar,#111111);color:var(--bar-text,#f4f4f0);font-family:var(--font-sans,'Archivo Variable',sans-serif)}.ds-brand{display:flex;align-items:center;gap:9px;color:inherit;text-decoration:none}.ds-mark{width:12px;height:12px;background:var(--accent,#c8211a)}.ds-name{font-stretch:75%;font-weight:750;font-size:20px;letter-spacing:.04em;text-transform:uppercase;line-height:1}.ds-nav{display:flex;align-items:stretch;gap:2px}.ds-link{position:relative;display:flex;align-items:center;gap:7px;padding:0 10px;font:500 13.5px/1 var(--font-sans,'Archivo Variable',sans-serif);color:var(--bar-text-2,#a9a9a2);text-decoration:none;transition:color .15s}.ds-link:hover,.ds-link[aria-current=page]{color:var(--bar-text,#f4f4f0)}.ds-link:focus-visible{outline:2px solid var(--accent,#c8211a);outline-offset:-2px}.ds-line{position:absolute;left:10px;right:10px;bottom:0;height:3px;background:var(--accent,#c8211a)}.ds-count{min-width:20px;height:18px;padding:0 5px;display:inline-grid;place-items:center;font-size:11.5px;font-weight:650;color:var(--bar-text-2,#a9a9a2);box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)}.ds-hot{color:#fff;background:#c8211a;box-shadow:none}"
+    },
+    {
+      "name": "Timetable Queue",
+      "kind": "custom",
+      "refersTo": "queue-row",
+      "description": "Head row with an opening 2px rule, then one order per row in a shared column rhythm; the selected row is the reversed plate.",
+      "html": "<div class=\"ds-tt\"><div class=\"ds-tt-head\"><span>Order</span><span>Car and reason</span><span>Leg and next move</span><span>Due</span></div><button class=\"ds-qi\" aria-current=\"true\"><span class=\"ds-ref\">420322</span><span class=\"ds-main\"><b>Bentley Continental GT</b><span class=\"ds-why\">Red warning on the road</span></span><span class=\"ds-main\"><span>Munich → Hamburg</span><span class=\"ds-why\">Take over</span></span><span class=\"ds-side\"><span class=\"ds-due ds-late\">5 h</span><span class=\"ds-why\">Delivery promise</span></span></button><button class=\"ds-qi\"><span class=\"ds-ref\">420154</span><span class=\"ds-main\"><b>Audi Q8 e-tron</b><span class=\"ds-why\">Book travel for the driver</span></span><span class=\"ds-main\"><span>Marseille → Lahti</span><span class=\"ds-why\">Go ahead</span></span><span class=\"ds-side\"><span class=\"ds-due\">23 h</span><span class=\"ds-why\">Pickup slot</span></span></button></div>",
+      "css": ".ds-tt{width:600px;font:400 14px/1.5 var(--font-sans,'Archivo Variable',sans-serif);font-variant-numeric:tabular-nums;color:var(--text,#111111);background:var(--surface,#ffffff)}.ds-tt-head,.ds-qi{display:grid;grid-template-columns:64px minmax(0,1fr) 132px 100px;gap:14px}.ds-tt-head{padding:7px 16px;border-top:2px solid var(--rule,#111111);border-bottom:1px solid var(--rule,#111111);font-size:11.5px;font-weight:750;font-stretch:75%;text-transform:uppercase;letter-spacing:.07em}.ds-tt-head span:last-child{text-align:right}.ds-qi{width:100%;align-items:start;padding:11px 16px;border:0;border-bottom:1px solid var(--line,#deded8);border-radius:0;background:transparent;color:inherit;font:inherit;text-align:left;cursor:pointer}.ds-qi:hover:not([aria-current]){background:var(--surface-2,#f4f4f1)}.ds-qi:focus-visible{outline:2px solid var(--accent,#c8211a);outline-offset:-2px}.ds-ref{font:500 12px/1.4 var(--font-code,'Geist Mono',monospace);color:var(--text-3,#686862);padding-top:2px}.ds-main{display:grid;gap:2px;min-width:0}.ds-main b{font-weight:650}.ds-why{font-size:13px;color:var(--text-2,#45453f);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ds-side{display:grid;justify-items:end;gap:2px}.ds-due{font-size:17px;font-weight:700;line-height:1.2}.ds-late{color:var(--accent-text,#b21d17)}.ds-qi[aria-current]{background:var(--plate,#111111);color:var(--on-plate,#ffffff)}.ds-qi[aria-current] .ds-why{color:var(--on-plate-2,#c4c4bd)}.ds-qi[aria-current] .ds-ref,.ds-qi[aria-current] .ds-late{color:var(--plate-accent,#ff6b5e);font-weight:700}"
+    },
+    {
+      "name": "Status Badge",
+      "kind": "chip",
+      "refersTo": "badge",
+      "description": "Printed status box; tone variants take the tone's text colour, a soft tint and a 45% ring.",
+      "html": "<span class=\"ds-badge\">Estimate</span> <span class=\"ds-badge ds-badge-ok\"><span class=\"ds-dot\"></span>Booked</span> <span class=\"ds-badge ds-badge-warn\"><span class=\"ds-dot\"></span>On watch</span>",
+      "css": ".ds-badge{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 7px;border-radius:2px;font:600 12px/1 var(--font-sans,'Archivo Variable',sans-serif);color:var(--text-2,#45453f);box-shadow:inset 0 0 0 1px var(--line-2,#b8b8b0);white-space:nowrap}.ds-badge-ok{color:var(--ok,#1b7339);background:var(--ok-soft,rgba(27,115,57,.09));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--ok,#1b7339) 45%,transparent)}.ds-badge-warn{color:var(--warn,#9a6200);background:var(--warn-soft,rgba(201,138,0,.12));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--warn,#9a6200) 45%,transparent)}.ds-dot{width:7px;height:7px;background:currentColor}"
+    },
+    {
+      "name": "Evidence Chip",
+      "kind": "chip",
+      "refersTo": "evidence-chip",
+      "description": "A fact's source: strength in shape (ring to solid check) and in words.",
+      "html": "<span class=\"ds-ev\"><svg width=\"11\" height=\"11\" viewBox=\"0 0 12 12\"><circle cx=\"6\" cy=\"6\" r=\"4.6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\"/></svg>driver said</span> <span class=\"ds-ev ds-ev-verified\"><svg width=\"11\" height=\"11\" viewBox=\"0 0 12 12\"><circle cx=\"6\" cy=\"6\" r=\"4.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"1.4\"/><path d=\"M3.8 6.1 5.3 7.6 8.3 4.6\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.4\" stroke-linecap=\"round\"/></svg>confirmed by provider</span>",
+      "css": ".ds-ev{display:inline-flex;align-items:center;gap:5px;height:20px;padding:0 6px;border-radius:2px;font:600 11.5px/1 var(--font-sans,'Archivo Variable',sans-serif);white-space:nowrap;color:var(--text-3,#686862);box-shadow:inset 0 0 0 1px var(--line-2,#b8b8b0)}.ds-ev-verified{color:var(--ok,#1b7339);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--ok,#1b7339) 45%,transparent)}"
+    },
+    {
+      "name": "Route Strip",
+      "kind": "custom",
+      "description": "A vertical line of stops; each leg in its mode colour, its pattern saying booked (solid), quoted (dashed) or estimated (dotted).",
+      "html": "<div class=\"ds-rs\"><div class=\"ds-stop\"><span class=\"ds-node\"></span>Munich</div><div class=\"ds-leg\"><span class=\"ds-rl ds-est\"></span><span class=\"ds-rb\"><b>Drive</b> 20 Oct 13:00 · 10 h 42 min</span></div><div class=\"ds-stop\"><span class=\"ds-node ds-end\"></span>Hamburg</div></div>",
+      "css": ".ds-rs{display:grid;font:650 14px/1.4 var(--font-sans,'Archivo Variable',sans-serif);color:var(--text,#111111);font-variant-numeric:tabular-nums}.ds-stop,.ds-leg{display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;align-items:center}.ds-stop{min-height:28px}.ds-node{justify-self:center;width:13px;height:13px;border-radius:50%;background:var(--surface,#ffffff);box-shadow:inset 0 0 0 3px var(--text,#111111)}.ds-end{background:var(--text,#111111)}.ds-rl{justify-self:center;width:4px;min-height:52px;background:var(--mode-drive,#c98a00)}.ds-est{background:repeating-linear-gradient(to bottom,var(--mode-drive,#c98a00) 0 3px,transparent 3px 7px)}.ds-rb{padding:10px 0;font-size:13px;font-weight:400;color:var(--text-2,#45453f)}.ds-rb b{font-weight:650;color:var(--text,#111111);margin-right:8px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Kursbuch",
+    "overview": "**Creative North Star: \"The Kursbuch\"**\n\nBahnOS looks like a rail and ferry timetable book printed on thin paper. Today's work is laid out as a timetable: each order is a row in a fixed column rhythm, and the time left sits right-aligned in tabular figures, like a departure time. Each route is drawn as a vertical line of stops. Type is ink on white. A heavy rule opens every table and section, hairlines separate the rows, and corners are square. Colour is used only where it has a job to do.\n\nThe density is a timetable's: rows of 11px by 16px padding, 14px body text, labels set condensed and uppercase, and no cards floating on a tinted canvas. Depth comes from rules and one reversed plate, not from shadows. Both themes come from the same tokens. In the dark theme the paper turns near-black (#0e0e0d), the ink turns warm off-white, and the rules turn light.\n\nThe system rejects the category default it replaced: rounded grey cards with one soft accent in a sidebar app (ADR-016's look).",
+    "keyCharacteristics": [
+      "Heavy 2px rule above every table and section, 1px hairlines between rows, square corners.",
+      "Archivo condensed (wdth 75) and uppercase for page titles, column heads and labels; normal width for anything people read.",
+      "Tabular figures everywhere: body text carries `tnum`.",
+      "Ink means act, signal red means needs you or late, and mode colours name the leg.",
+      "One reversed plate (ink ground, paper type) marks the selected row in each list, and it slides when the selection moves.",
+      "Flat at rest. Shadows exist only on layers that float above the page."
+    ],
+    "rules": [
+      {
+        "name": "The Ink Acts Rule",
+        "body": "The primary response fills in ink, never in red. Red marks what needs you, and ink marks what you do about it.",
+        "section": "colors"
+      },
+      {
+        "name": "The Red Is Urgency Rule",
+        "body": "Signal Red appears only where something needs a person or is late, plus the brand square and the current-nav line. It never fills a button or decorates a heading.",
+        "section": "colors"
+      },
+      {
+        "name": "The Mode Colour Rule",
+        "body": "Mode colours belong to route legs (and to map layers through the Tailwind mapping). They never carry status. A leg's status is carried by its line pattern and its words.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Widths Rule",
+        "body": "Use the condensed uppercase cut for things that name a column or section. Use normal width for anything a person reads as a sentence. Headlines of cases and decisions are sentences.",
+        "section": "typography"
+      },
+      {
+        "name": "The Departure Figure Rule",
+        "body": "Every time, count and amount uses tabular figures, and the time left in a list is right-aligned.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Page Rule",
+        "body": "Anything that sits in the page flow has no drop shadow. A shadow means the layer floats above the timetable.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Opening Rule Rule",
+        "body": "Every table, section and list opens with a 2px ink rule (`border-top` or `inset 0 2px 0`). The decision block and the command menu open with a 4px Signal Red rule instead. A decided decision's rule fades to Strong Hairline.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** open every table, list and section with a 2px ink rule and separate rows with 1px hairlines.",
+      "**Do** fill the primary response in ink (#111111 light, #efefe9 dark) and show its number key beside its label.",
+      "**Do** set column heads, section heads and fact terms in Archivo at wdth 75, uppercase, 750, 0.06–0.07em.",
+      "**Do** right-align due times in tabular figures and colour them Signal Red Text only when late or under six hours.",
+      "**Do** mark the selected row of a list with the reversed plate, and only that row.",
+      "**Do** pair every evidence colour with a shape and a word.",
+      "**Do** take colours from the theme tokens so both themes follow. The Tailwind views map their colour names onto those tokens in `map.css`."
+    ],
+    "donts": [
+      "**Don't** round containers. Section, row and menu corners are 0, and interactive edges stop at 2px. Circles are kept for things that are round in the world: stop nodes, evidence marks and the countdown ring.",
+      "**Don't** put drop shadows on in-flow content. Only floating layers (popover, command menu, toast, phone preview) cast a shadow.",
+      "**Don't** fill a button in Signal Red or use red for decoration. Red means needs you or late.",
+      "**Don't** use a mode colour to say status. Teal is the ferry, not \"on the road\".",
+      "**Don't** set sentence headlines in the condensed uppercase cut.",
+      "**Don't** add load choreography. The only authored movements are the sliding plate and indicators, plus height-animated disclosure, and all of it honours reduced motion."
+    ]
+  }
+}
